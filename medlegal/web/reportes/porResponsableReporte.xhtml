@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="../Admin/plantillaAdmin.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <f:view>
+                        <h:outputText value="Proceso  " style="width: 140" />  
+                        <p:selectOneMenu id="proceso" value="#{reportesBean.idresponsable}" style="width: 200px" >
+                            <f:selectItem itemLabel="Seleccione responsable del proceso" itemValue=""/>
+                            <f:selectItems value="#{reportesBean.listaFuncionarios()}" var="p"
+                                           itemLabel="#{p.nombre}" itemValue="#{p.idfuncionario}" />
+                            <p:ajax update="procesoList"/>
+                        </p:selectOneMenu>
+                        <p:dataTable id="procesoList" var="pro" value="#{reportesBean.listaRiesResponsable()}"  
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     scrollable="true" scrollWidth="780" resizableColumns="true" >  
+                            <f:facet name="header">  
+                                Riesgo de Procesos  
+                            </f:facet>  
+
+                            <p:column width="40">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Codigo del Proceso" />  
+                                </f:facet>  
+                                <h:outputText value="#{pro.codigo}" />  
+                            </p:column>  
+
+                            <p:column width="260">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Proceso Asociado" />  
+                                </f:facet>  
+                                <h:outputText value="#{pro.procesoasociado.descasociado}" />  
+                            </p:column>  
+
+                            <p:column width="200">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Funcionario Encargado" />  
+                                </f:facet>  
+                                <h:outputText value="(#{pro.funcionario.identificacion}) #{pro.funcionario.nombre} #{pro.funcionario.apellido}" />  
+                            </p:column>  
+                            
+                            <p:column width="100">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Cargo" />  
+                                </f:facet>  
+                                <h:outputText value="#{pro.funcionario.cargo.desccargo}" />  
+                            </p:column>  
+                            
+                            <p:column width="100">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Area" />  
+                                </f:facet>  
+                                <h:outputText value="#{pro.funcionario.subarea.descsubarea}" />  
+                            </p:column>  
+                            
+                            <p:column width="125">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Creado" />  
+                                </f:facet>  
+                                <h:outputText value="#{pro.creado}" />  
+                            </p:column>  
+                        </p:dataTable> 
+                        <h:commandLink>    
+                            <p:graphicImage value="/resources/imagenes/excel.png" /> 
+                            <p:dataExporter type="xls" target="procesoList" fileName="Procesos filtarados" />  
+                        </h:commandLink>
+                    </f:view>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

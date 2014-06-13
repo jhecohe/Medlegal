@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h1><h:outputText value="Panorama de Riesgos" /></h1>
+
+                    <h:form> 
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Panorama de Riesgo" immediate="true" icon="ui-icon-gear"/>   
+                            <p:menuitem id="modificar" value="Modificar Datos del Panorama" actionListener="#{panoramaBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem value="Actualizar" update="panorama, informacion" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
+                        </p:menubar>
+                        
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" 
+                                        style="background-color: scrollbar" dynamic="true">
+                            <p:panelGrid columns="4">
+                                <h:outputText value="Causa  " style="width: 140" />  
+                                <p:selectOneMenu id="cuasa" value="#{panoramaBean.idriesgo}" style="width: 200px" filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Seleccione la causa" itemValue=""/>
+                                    <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
+                                                   itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
+                                </p:selectOneMenu>
+                                <h:outputText value="Efecto  " style="width: 140" />  
+                                <p:selectOneMenu id="efecto" value="#{panoramaBean.causa}" style="width: 200px" filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Seleccione el efecto" itemValue=""/>
+                                    <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
+                                                   itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
+                                </p:selectOneMenu>
+                                <p:commandButton action="#{panoramaBean.panoramaAgregar()}" value="agregar" update="panorama" />
+                                <p:commandLink action="/Admin/agregarRiesgo" value="Agregar Riesgo" immediate="true"/>
+                            </p:panelGrid>
+                        </p:overlayPanel>
+
+                        <h:outputText value="Proceso  " style="width: 140" />  
+                        <p:selectOneMenu id="proceso" value="#{panoramaBean.idproceso}" style="width: 200px" >
+                            <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
+                            <f:selectItems value="#{panoramaBean.procesoList()}" var="p"
+                                           itemLabel="#{p.codigo}" itemValue="#{p.idproceso}" />
+                            <p:ajax update="informacion, panorama"/>
+                        </p:selectOneMenu>
+                        <br/><br/>
+                        <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro">
+                            <p:column headerText="Codigo" width="40">
+                                <h:outputText value="#{pro.codigo}"/>
+                            </p:column>
+                            <p:column headerText="Proceso Asociado" width="200">
+                                <h:outputText value="#{pro.procesoasociado.descasociado}"/>
+                            </p:column>
+                            <p:column headerText="Subarea" width="120">
+                                <h:outputText value="#{pro.subarea.descsubarea}"/>
+                            </p:column>
+                            <p:column headerText="Fucionario" width="150">
+                                <h:outputText value="#{pro.funcionario.identificacion} - #{pro.funcionario.nombre} #{pro.funcionario.apellido}"/>
+                            </p:column>
+                            <p:column headerText="Fecha Creacion" width="80">
+                                <h:outputText value="#{pro.creado}"/>
+                            </p:column>
+                        </p:dataTable>
+
+                        <br/>
+                        <br/>
+                        <p:dataTable id="panorama" value="#{panoramaBean.panoramabyRiesgo()}" var="efe"
+                                     paginator="true" rows="10"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     scrollable="true" scrollWidth="100%" resizableColumns="true">
+                            <p:column headerText="Nombre Riesgo" width="170">
+                                <h:outputText value="#{efe.riesgoByIdriesgo.nombre}"/>
+                            </p:column>
+                            <p:column headerText="Descripcion Riesgo" width="170">
+                                <h:outputText value="#{efe.riesgoByIdriesgo.descripcion}"/>
+                            </p:column>
+                            <p:column headerText="Nombre Efecto" width="170">
+                                <h:outputText value="#{efe.riesgoByIdcausa.nombre}" />
+                            </p:column>
+                            <p:column headerText="Descripcion Efecto" width="170">
+                                <h:outputText value="#{efe.riesgoByIdcausa.descripcion}" />
+                            </p:column>
+                        </p:dataTable>
+                        <br/>
+                        <h:commandButton action="/Admin/agregarMejoramiento" value="Plan de Mejoramiento" immediate="true"/>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

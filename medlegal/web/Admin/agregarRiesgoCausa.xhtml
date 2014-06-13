@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./formaAdmin.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                content
+
+                <f:view>
+                    <h1><h:outputText value="Agregar Causas a Riesgos" /></h1>
+
+                    <h:form>                
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Seleccione el riesgo a agregar causas" /> 
+                            <p:selectOneMenu id="riesgo" value="#{riesgoBean.idriesgo}">
+                                <f:selectItem itemLabel="Seleccione el Riesgo" itemValue=""/>
+                                <f:selectItems value="#{riesgoBean.riesgoLista()}" var="ries"
+                                               itemLabel="#{ries.descripcion}" itemValue="#{ries.idriesgo}"/>
+                            </p:selectOneMenu>
+                            <br/>        
+
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:selectCheckboxMenu value="#{riesgoBean.causas}" label="Causas" filter="true">  
+                                <f:selectItems value="#{riesgoBean.causaLista()}"/>
+                            </p:selectCheckboxMenu>  
+                        </h:panelGrid>
+                        <p:commandButton value="agregar" action="#{riesgoBean.agregarCausas}" />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <h:commandLink value="volver al menu" action="/Admin/menuAdmin" immediate="true"/><br></br>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

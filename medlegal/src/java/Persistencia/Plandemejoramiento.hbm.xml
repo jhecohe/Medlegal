@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Plandemejoramiento" table="plandemejoramiento" schema="public">
+        <id name="idmejoramiento" type="int" unsaved-value="0">
+            <column name="idmejoramiento" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">plandemejoramiento_idmejoramiento_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="panoramaderiesgos" class="Persistencia.Panoramaderiesgos" fetch="select">
+            <column name="idpanoramariesgos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="Persistencia.Funcionario" fetch="select">
+            <column name="idfuncionario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cronograma" class="Persistencia.Cronograma" fetch="select">
+            <column name="idcronograma" not-null="true" />
+        </many-to-one>
+        <property name="resultado" type="int">
+            <column name="resultado" not-null="true" />
+        </property>
+        <set name="accionmejoramientos" inverse="true">
+            <key>
+                <column name="idmejoramiento" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Accionmejoramiento" />
+        </set>
+    </class>
+</hibernate-mapping>

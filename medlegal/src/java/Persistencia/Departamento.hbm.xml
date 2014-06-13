@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Departamento" table="departamento" schema="public">
+        <id name="iddepartamento" type="int">
+            <column name="iddepartamento" />
+            <generator class="assigned" />
+        </id>
+        <property name="codigo" type="string">
+            <column name="codigo" length="40" not-null="true" />
+        </property>
+        <property name="descdepartamento" type="string">
+            <column name="descdepartamento" length="80" not-null="true" />
+        </property>
+        <set name="ciudads" inverse="true">
+            <key>
+                <column name="iddepartamento" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Ciudad" />
+        </set>
+    </class>
+</hibernate-mapping>

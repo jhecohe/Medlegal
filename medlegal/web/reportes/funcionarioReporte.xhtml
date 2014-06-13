@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="../Admin/plantillaAdmin.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <f:view>
+                        <p:dataTable id="funcionarioList" var="func" value="#{funcionarioBean.funcionarioslist}"  
+                                     paginator="true" rows="10" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     scrollable="true" scrollWidth="780" resizableColumns="true"  >  
+                            <p:column> 
+                                <f:facet name="header">
+                                    <h:outputText value="Documento"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.identificacion}" />  
+                            </p:column>  
+
+                            <p:column> 
+                                <f:facet name="header">
+                                    <h:outputText value="Nombre"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.nombre}" />  
+                            </p:column>
+
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="Seg Nombre"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.segnombre}" />  
+
+                            </p:column>
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="Apellido"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.apellido}" />  
+
+                            </p:column>
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="Seg Apellido"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.segapellido}" />  
+
+                            </p:column>
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="Fecha de Nacimiento"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.fechanacimiento}" />  
+
+                            </p:column>
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="Telefono"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.telefono}" />  
+
+                            </p:column>
+                            <p:column>  
+                                <f:facet name="header">
+                                    <h:outputText value="Correo"/>
+                                </f:facet>  
+                                <h:outputText value="#{func.correo}" />  
+
+                            </p:column>
+
+                        </p:dataTable> 
+                        <h:commandLink>    
+                            <p:graphicImage value="/resources/imagenes/excel.png" /> 
+                            <p:dataExporter type="xls" target="funcionarioList" fileName="Funcionarios" />  
+                        </h:commandLink>
+                    </f:view>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Seccional" table="seccional" schema="public">
+        <id name="idseccional" type="int" unsaved-value="0">
+            <column name="idseccional" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">seccional_idseccional_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="regional" class="Persistencia.Regional" fetch="select">
+            <column name="idregional" not-null="true" />
+        </many-to-one>
+        <property name="descseccional" type="string">
+            <column name="descseccional" length="100" not-null="true" />
+        </property>
+        <set name="areas" inverse="true">
+            <key>
+                <column name="idseccional" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Area" />
+        </set>
+    </class>
+</hibernate-mapping>

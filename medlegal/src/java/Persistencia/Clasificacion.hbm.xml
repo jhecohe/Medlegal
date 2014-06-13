@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Clasificacion" table="clasificacion" schema="public">
+        <id name="idclasificacion" type="int" unsaved-value="0">
+            <column name="idclasificacion" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">clasificacion_idclasificacion_seq</param>
+            </generator>
+        </id>
+        <property name="descclasificacion" type="string">
+            <column name="descclasificacion" length="50" not-null="true" />
+        </property>
+        <set name="riesgos" inverse="true">
+            <key>
+                <column name="idclasificacion" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Riesgo" />
+        </set>
+    </class>
+</hibernate-mapping>

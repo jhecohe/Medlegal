@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantilla.xhtml">
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="content">
+
+                <h:form>
+                    <h:outputText value="#{usuarioLoginBean.hora}" style="color: #7cadd3"/>
+                    <p:panel header="Administrcion de riesgos" style="background: none; border: 0">
+                        <h:panelGrid columns="2" style="width: 1000px">
+                            <img alt="triangulo" src="resources/imagenes/triangle.png"/>
+                            <h:panelGrid columns="2">      
+                                <h:outputText value="Digite su usuario"/>
+                                <h:inputText id ="usuario" value="#{usuarioLoginBean.usuario}">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:outputText value="Digite su Password"/>
+                                <h:inputSecret id ="password" value="#{usuarioLoginBean.password}">
+                                    <f:validateRequired />
+                                </h:inputSecret>                  
+                                <h:message for ="usuario" />
+                                <h:message for ="password"/>
+                                <h:commandButton value="Aceptar" action="#{usuarioLoginBean.doLogin(e)}">
+                                    <f:ajax execute="@form" render="mensaje"></f:ajax>
+                                </h:commandButton>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:panel>
+                    <h:outputText value="#{usuarioLoginBean.mensaje}" id="mensaje"></h:outputText>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

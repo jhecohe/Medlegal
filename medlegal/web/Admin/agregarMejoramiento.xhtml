@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Mejoramiento de Riesgo" /></h1>
+                    <br/>
+                    <h:form>   
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Mejoramiento" update=""  immediate="true" icon="ui-icon-gear"/>   
+                            <p:menuitem id="modificar" value="Modificar Datos del Mejoramiento" update="" actionListener="#{funcionarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem value="Actualizar" update="" icon="ui-icon-arrowrefresh-1-w" immediate="true" ajax="false"/> 
+                        </p:menubar> 
+
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Cronograma:" />
+                                <p:selectOneMenu id="cronograma" value="#{mejoraBean.cronograma}" style="width: 240px" >
+                                    <f:selectItems value="#{mejoraBean.cronogramaList()}" var="c"
+                                                   itemLabel="#{c.desccronograma}" itemValue="#{c.idcronograma}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel value="Mejoramiento:" />
+                                <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy color"/>
+
+                                <h:outputLabel value="Responsable:" />
+                                <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" >
+                                    <f:selectItems value="#{mejoraBean.funcionarioList()}" var="f"
+                                                   itemLabel="(#{f.identificacion}) #{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel value="Calificacion:" />
+                                <p:inputText id="calificacion" value="#{mejoraBean.calificacion}" style="width: 230px"/>
+                                <p:commandButton value="Aceptar" actionListener="#{mejoraBean.agregar()}"/>
+                            </h:panelGrid>
+                        </p:overlayPanel>
+                        <h:panelGrid columns="2" style="width: 68%;" >
+                            <h:outputLabel value="Proceso:" for="idproceso" />  
+                            <p:selectOneMenu id="proceso" value="#{mejoraBean.idproceso}" style="width: 240px" >
+                                <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
+                                <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
+                                               itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
+                                <p:ajax update="riesgo"/>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Riesgo:" />
+                            <p:selectOneMenu id="riesgo" value="#{mejoraBean.idpanorama}" style="width: 240px" >
+                                <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
+                                               itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid> 
+
+                        <p:dataTable id="funcionarioList" var="m" value="#{mejoraBean.mejorameintoList()}"  
+                                     paginator="true" rows="10"  editable="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     scrollable="true" scrollWidth="990" resizableColumns="true"  >  
+                            <f:facet name="header">  
+                                Listado de Fucionarios
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{mejoraBean.modificar}" />
+
+                            <p:column headerText="Riesgo" width="125">  
+                                <h:outputText value="#{m.panoramaderiesgos.riesgoByIdriesgo.descripcion}" />  
+                            </p:column>  
+
+                            <p:column headerText="Identificacion" width="125">  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{m.funcionario.identificacion}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{m.funcionario.identificacion}"/>  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+
+                            <p:column headerText="Nombre" width="125">  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{m.cronograma.desccronograma}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{m.cronograma.desccronograma}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+
+                            <p:column headerText="Options" width="25">  
+                                <p:rowEditor />  
+                            </p:column>  
+
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

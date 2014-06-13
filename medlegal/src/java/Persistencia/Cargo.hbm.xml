@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Cargo" table="cargo" schema="public">
+        <id name="idcargo" type="int" unsaved-value="0">
+            <column name="idcargo" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">cargo_idcargo_seq</param>
+            </generator>
+        </id>
+        <property name="desccargo" type="string">
+            <column name="desccargo" length="80" not-null="true" />
+        </property>
+        <set name="funcionarios" inverse="true">
+            <key>
+                <column name="idcargo" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Funcionario" />
+        </set>
+    </class>
+</hibernate-mapping>

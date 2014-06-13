@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Accionmejoramiento" table="accionmejoramiento" schema="public">
+        <id name="idaccion" type="int" unsaved-value="0">
+            <column name="idaccion" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">accionmejoramiento_idaccion_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="plandemejoramiento" class="Persistencia.Plandemejoramiento" fetch="select">
+            <column name="idmejoramiento" not-null="true" />
+        </many-to-one>
+        <property name="mejoramiento" type="string">
+            <column name="mejoramiento" length="800" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

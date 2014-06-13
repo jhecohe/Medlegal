@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="medlegal" match-schema="public"/>
+  <table-filter match-name="ciudad"/>
+  <table-filter match-name="funcionario"/>
+  <table-filter match-name="panoramaderiesgos"/>
+  <table-filter match-name="subarea"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="enfoque"/>
+  <table-filter match-name="clase"/>
+  <table-filter match-name="regional"/>
+  <table-filter match-name="clasificacion"/>
+  <table-filter match-name="procesoasociado"/>
+  <table-filter match-name="tipo"/>
+  <table-filter match-name="area"/>
+  <table-filter match-name="cargo"/>
+  <table-filter match-name="analisisvaloracion"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="nombreproceso"/>
+  <table-filter match-name="seccional"/>
+  <table-filter match-name="proceso"/>
+  <table-filter match-name="estado"/>
+  <table-filter match-name="plandemejoramiento"/>
+  <table-filter match-name="departamento"/>
+  <table-filter match-name="cronograma"/>
+  <table-filter match-name="tipoproceso"/>
+  <table-filter match-name="accionmejoramiento"/>
+  <table-filter match-name="grado"/>
+  <table-filter match-name="riesgo"/>
+</hibernate-reverse-engineering>

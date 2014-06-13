@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="Persistencia.Tipoproceso" table="tipoproceso" schema="public">
+        <id name="idtipoproceso" type="int" unsaved-value="0">
+            <column name="idtipoproceso" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">tipoproceso_idtipoproceso_seq</param>
+            </generator>
+        </id>
+        <property name="desctipo" type="string">
+            <column name="desctipo" length="200" not-null="true" />
+        </property>
+        <set name="nombreprocesos" inverse="true">
+            <key>
+                <column name="idtipoproceso" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Nombreproceso" />
+        </set>
+    </class>
+</hibernate-mapping>

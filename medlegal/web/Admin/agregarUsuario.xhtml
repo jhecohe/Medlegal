@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Usuario" /></h1>
+                    <h:form>
+
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
+                            <h:panelGrid columns="3" style="width: 500px">
+                                <h:outputLabel value="Funcionario *" />
+                                <p:selectOneMenu value="#{usuarioBean.idfuncionario}" style="width: 160px" id="selecfuncionarios"
+                                                 label="funcionarios">
+                                    <f:selectItems value="#{usuarioBean.funcionariolist}" var="rol"
+                                                   itemLabel="#{rol.nombre}" itemValue="#{rol.idfuncionario}" />
+                                </p:selectOneMenu> 
+                                <p:message for="selecfuncionarios" display="icon"/>
+                                <h:outputLabel value="Nombre de Usuario *" />
+                                <p:inputText value="#{usuarioBean.nombre}" id="campousuario" required="true" label="Nombre de Usuario"/>
+                                <p:message for="campousuario" display="icon"/>
+                                <h:outputLabel value="Digite Clave *" />
+                                <p:password value="#{usuarioBean.clave}" id="clave1" required="true" label="clave"/>
+                                <p:message for="clave1" display="icon"/>
+                                <h:outputLabel value="Vuelva a digitar la clave *" />
+                                <h:inputSecret value="#{usuarioBean.reclave}" id="clave2" required="true" label="clave"/>
+                                <p:message for="clave1" display="icon"/>
+                                <h:outputLabel value="seleccione el rol *" />
+                                <p:selectOneMenu value="#{usuarioBean.idroles}" style="width: 160px" id="selecrol" label="roles">
+                                    <f:selectItems value="#{usuarioBean.roles}" var="rol"
+                                                   itemLabel="#{rol.nombre}" itemValue="#{rol.idrol}" />
+                                </p:selectOneMenu>  
+                                <p:message for="selecrol" display="icon"/>
+                                <h:outputLabel value="Los campos con * son obligatorios"  style="color: red"/>
+                                <p:commandButton action="#{usuarioBean.agregar()}" value="Enviar" update="usuarioList" ajax="false"/>
+                            </h:panelGrid>
+                        </p:overlayPanel>
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Usuario" update=""  immediate="true" icon="ui-icon-gear"/>   
+                            <p:menuitem id="modificar" value="Modificar Datos del Usuario" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem value="Actualizar" update="usuarioList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
+                        </p:menubar>                   
+                        
+                        <p:messages id="mensajes" />
+                        
+                        <p:dataTable var="usua" value="#{usuarioBean.usuarioList()}" id="usuarioList" 
+                                     editable="true" style="width: 500px" scrollable="true" scrollHeight="300">  
+                            <p:menubar />
+                            <f:facet name="header">  
+                                Listado de Usuarios
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{usuarioBean.modificar}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{usua.idusuario}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{usua.nombreusuario}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{usua.nombreusuario}"/> 
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Modificar" style="width:20px" rendered="#{usuarioBean.modificar}" >  
+                                <p:rowEditor/>  
+                            </p:column>  
+                        </p:dataTable> <br/>
+                        <h:commandLink value="volver al menu" action="/Admin/menuAdmin" immediate="true"/><br></br>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="Admin/agregarEnfoque.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="reportes/funcionarioReporte.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="Admin/agregarCargo.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="Admin/agregarClase.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Usuario/agregarProceso.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="Admin/agregarEstado.xhtml" x="150" y="150" zoom="false"/>
+        <Node id="Admin/agregarClasificacion.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="Admin/agregarArea.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="Admin/agregarSubarea.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="Admin/agregarFuncionario.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="Admin/agregarUsuario.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="Admin/agregarRegional.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="Admin/agregarDepartamento.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="Admin/plantillaAdmin.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="error.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="Admin/agregarProceso.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="Admin/agregarRiesgoCausa.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="Admin/agregarGrado.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="Admin/agregarRiesgo.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="Admin/agregarEfecto.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="Admin/agregarValoracion.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="Usuario/menuUsuario.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="reportes/porResponsableReporte.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="Admin/mapa.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="Admin/agregarTipoProceso.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="Admin/agregarRoles.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="Admin/agregarNombreProceso.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="reportes/porProcesoReporte.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="index.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="Admin/agregarPanorama.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="Admin/agregarSeccional.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="Admin/menuAdmin.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="plantilla.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="Admin/agregarMejoramiento.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="Admin/agregarCiudad.xhtml" x="150" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

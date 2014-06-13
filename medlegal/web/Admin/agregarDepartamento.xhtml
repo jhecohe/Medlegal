@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Agregar Departamento" /></h1>
+
+                    <h:form>  
+                        <p:menubar >
+                            <p:menuitem id="agregar" value="Agregar Departamento" icon="ui-icon-gear"/>
+                            <p:menuitem id="actualizar" value="Actualizar" actionListener="#{departamentoBean.visible()}" 
+                                        update="departaList" icon="ui-icon-arrowrefresh-1-w"/>
+                        </p:menubar>
+
+                        <p:overlayPanel for="agregar">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel value="Nombre del Departamento *" />
+                                <p:inputText id="nombre" value="#{departamentoBean.nombre}" required="true"/>
+                                <p:commandButton  value="Agregar" actionListener="#{departamentoBean.agregar()}" update="departaList" style="background: white"/>
+                            </p:panelGrid>
+                        </p:overlayPanel>
+                       
+                        <p:dataTable var="depar" value="#{departamentoBean.departamentoList()}" id="departaList" 
+                                     editable="true" style="width: 600px" scrollable="true" scrollHeight="400">  
+                            <p:menubar />
+                            <f:facet name="header">  
+                                Listado de Areas
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{departamentoBean.modificar}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{depar.codigo}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{depar.descdepartamento}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{depar.descdepartamento}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Modificar" style="width:20px" rendered="#{departamentoBean.modificar}" >  
+                                <p:rowEditor/>  
+                            </p:column>  
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="menu">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h1><h:outputText value="Estado" /></h1>
+
+                    <h:form>                
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
+                            <p:panelGrid columns="2" style="width: 400px">
+                                <h:outputLabel value="Nombre del Estado *" />
+                                <p:inputText id="nombre" value="#{estadoBean.nombre}" required="true">
+                                    <f:validateLength minimum="2"/>
+                                </p:inputText>
+                                <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
+                                <p:commandButton action="#{estadoBean.agregar()}" value="Agregar" update="estadoList" ajax="false"/>
+                            </p:panelGrid>
+                        </p:overlayPanel>
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Estado" update=""  immediate="true" icon="ui-icon-gear"/>   
+                            <p:menuitem id="modificar" value="Modificar Datos del Estado" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem value="Actualizar" update="estadoList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
+                        </p:menubar>   
+                        <p:message for="nombre" display="" /> 
+
+                        <p:dataTable var="estado" value="#{estadoBean.estadoLista()}" id="estadoList" editable="true" style="width: 300px">  
+
+                            <f:facet name="header">  
+                                Listado de Estados
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{estadoBean.modificar}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{estado.idestado}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{estado.descestado}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{estado.descestado}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Modificar" style="width:20px" rendered="#{estadoBean.modificar}" >  
+                                <p:rowEditor/>  
+                            </p:column>  
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
