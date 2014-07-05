@@ -12,7 +12,6 @@ body {
     color: #000000;  
     margin-right: auto;
     margin-left: auto;
-    
 }
 
 h1 {
@@ -34,4 +33,17 @@ a:link:hover, a:visited:hover  {
   color: #045491;
   font-weight : bold;
   text-decoration : underline;
+}
+
+.info{
+    position: relative;
+}
+
+.fecha{
+    position: absolute;
+    margin-left: 20px;
+}
+
+.usuario{
+    margin-left: 900px;
 }

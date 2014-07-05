@@ -15,23 +15,31 @@
     <h:body>
 
         <div id="top">
-             <div class="logo">
-            <h:graphicImage alt="logo srp" url="../resources/imagenes/logofinal.png" />
+            <div class="logo">
+                <h:graphicImage alt="logo srp" url="../resources/imagenes/logofinal.png" />
             </div>
             <div class="titular">
-            <h1>SISTEMA DE RIESGOS POR PROCESO</h1>
+                <h1>SISTEMA DE RIESGOS POR PROCESO</h1>
             </div>
             <div class="logoml">
-            <h:graphicImage alt="logo medicina legal" url="../resources/imagenes/logo-medicina.png" width="130" height="120"/>
+                <h:graphicImage alt="logo medicina legal" url="../resources/imagenes/logo-medicina.png" width="130" height="120"/>
             </div>
             <ui:insert name="top"></ui:insert>
         </div>
 
         <div id="menu">
+            <div class="info">
+                <div class="fecha">
+                    <h:outputText value="#{hora.fecha}" style="color: #65859F; font-weight: bolder"/>
+                </div>
+                <div class="usuario">
+                    <h:outputText value="#{usuario.usuarioNombre}" style="color: #65859F; font-weight: bolder"/>
+                </div>
+            </div>
             <h:form id="fmenu">
                 <p:menubar>  
                     <p:submenu label="Proceso" >  
-                        <p:menuitem value="Proceso" action="/Admin/agregarProceso" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Procesos" action="/Admin/agregarProceso" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Panorama de Riesgos" action="/Admin/agregarPanorama" icon="ui-icon-document" ajax="false"/> 
                         <p:menuitem value="Mejoramiento" action="/Admin/agregarMejoramiento" icon="ui-icon-document" ajax="false" />
                         <p:menuitem value="Valoracion" action="/Admin/agregarValoracion" icon="ui-icon-document" ajax="false"/>                           
@@ -70,7 +78,7 @@
             </h:form>
             <ui:insert name="menu">
 
-            </ui:insert>
+            </ui:insert>  
         </div>
 
         <div id="content" class="center_content">

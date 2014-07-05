@@ -7,14 +7,11 @@ package login;
 import Persistencia.Usuario;
 import UtilPersistencia.Listados;
 import java.io.IOException;
-import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.servlet.http.HttpSession;
-import login.TipoUsuario;
 
 /**
  *
@@ -28,12 +25,10 @@ public class UsuarioLoginBean {
     private String password;
     private String rol;
     private String mensaje;
-    private Date hora;
     public final static String USER_KEY="auth_user";
     
     /** Creates a new instance of UsuarioBean */
     public UsuarioLoginBean() {
-        hora = new Date();
     }
     
     public void doLogin(ActionEvent e) throws IOException{
@@ -128,14 +123,6 @@ public class UsuarioLoginBean {
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
     }
     
 }
