@@ -81,12 +81,11 @@
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">
                             <p:menuitem id="agregar" value="Agregar Proceso" update=""  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Proceso" actionListener="#{areaBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
                             <p:menuitem value="Actualizar" update="procesoList" icon="ui-icon-arrowrefresh-1-w"/> 
                         </p:menubar>   
 
                         <p:dataTable id="procesoList" var="pro" value="#{procesoBean.procesoList()}"  
-                                     paginator="true" rows="10"  
+                                     paginator="true" rows="10" editable="true" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                      rowsPerPageTemplate="5,10,15"
                                      scrollable="true" scrollWidth="990" resizableColumns="true" >  
@@ -101,6 +100,8 @@
                                 <h:outputText value="#{pro.codigo}" />  
                             </p:column>-->  
 
+                            <p:ajax event="rowEdit" listener="#{procesoBean.modificar}"/>
+
                             <p:column width="260">  
                                 <f:facet name="header">  
                                     <h:outputText value="Proceso Asociado" />  
@@ -108,11 +109,20 @@
                                 <h:outputText value="#{pro.procesoasociado.descasociado}" />  
                             </p:column>  
 
-                            <p:column width="200">  
-                                <f:facet name="header">  
-                                    <h:outputText value="Funcionario Encargado" />  
-                                </f:facet>  
-                                <h:outputText value="(#{pro.funcionario.identificacion}) #{pro.funcionario.nombre} #{pro.funcionario.apellido}" />  
+                            <p:column headerText="Funcionario Encargado" width="200">  
+                                <p:cellEditor>
+                                    <f:facet name="output">  
+                                        <h:outputText value="(#{pro.funcionario.identificacion}) #{pro.funcionario.nombre} #{pro.funcionario.apellido}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">
+                                        #{procesoBean.idsubarea = pro.funcionario.subarea.idsubarea}
+                                        <p:selectOneMenu id="encargado" value="#{procesoBean.idfuncionario}" style="width: 196px">
+                                            <f:selectItem itemLabel="Seleccione Funcionario" itemValue=""/>
+                                            <f:selectItems value="#{procesoBean.funcionariolist}" var="f" 
+                                                           itemLabel="#{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}" />
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
                             </p:column>  
 
                             <p:column width="100">  
@@ -126,14 +136,22 @@
                                 <f:facet name="header">  
                                     <h:outputText value="Subarea" />  
                                 </f:facet>  
-                                <h:outputText value="#{pro.funcionario.subarea.descsubarea}" />  
+                                <h:outputText value="#{pro.funcionario.subarea.descsubarea}" />
                             </p:column>
 
-                            <p:column width="100">  
-                                <f:facet name="header">  
-                                    <h:outputText value="Estado" />  
-                                </f:facet>  
-                                <h:outputText value="#{pro.estado.descestado}" />  
+                            <p:column headerText="Estado" width="100">  
+                                <p:cellEditor>
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{pro.estado.descestado}" />  
+                                    </f:facet> 
+                                    <f:facet name="input">
+                                        <p:selectOneMenu id="estado" value="#{procesoBean.idestado}" style="width: 98px">
+                                            <f:selectItem itemLabel="Seleccione Estado" itemValue=""/>
+                                            <f:selectItems value="#{procesoBean.estadolist}" var="e" 
+                                                           itemLabel="#{e.descestado}" itemValue="#{e.idestado}" />
+                                        </p:selectOneMenu>  
+                                    </f:facet>
+                                </p:cellEditor>
                             </p:column>
 
                             <p:column width="125">  
@@ -142,6 +160,11 @@
                                 </f:facet>  
                                 <h:outputText value="#{pro.creado}" />  
                             </p:column>  
+
+                            <p:column headerText="Editar" width="25">  
+                                <p:rowEditor />  
+                            </p:column>  
+
                         </p:dataTable>
 
                     </h:form>

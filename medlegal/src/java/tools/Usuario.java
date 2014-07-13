@@ -28,7 +28,7 @@ public class Usuario {
     
     public String getUsuarioNombre(){
         String usuario = ((TipoUsuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(USER_KEY)).toString();
-        return usuario.toUpperCase();
+        return "Usuario: "+usuario.toUpperCase();
     }
     
 }

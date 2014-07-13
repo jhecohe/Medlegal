@@ -74,6 +74,8 @@
                         <p:menuitem value="Riesgos por Proceso" action="/reportes/porProcesoReporte" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Riesgos por Responsable" action="/reportes/porResponsableReporte" icon="ui-icon-document" ajax="false"/>
                     </p:submenu>
+                    
+                    <p:menuitem value="Cerrar Sesion" action="#{usuarioLoginBean.logout()}" style="margin-left: 500px" icon="ui-icon-extlink"/>
                 </p:menubar>
             </h:form>
             <ui:insert name="menu">

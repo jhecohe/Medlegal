@@ -6,6 +6,7 @@ package UtilPersistencia;
 
 import Persistencia.Area;
 import Persistencia.Funcionario;
+import Persistencia.Proceso;
 import Persistencia.Riesgo;
 import org.hibernate.Query;
 
@@ -73,6 +74,30 @@ public class Actualizar {
             int result = query.executeUpdate();
             inicio.getSession().getTransaction().commit();
             System.out.println("Actualizar funcionario resultado de la modificacion: " + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void procesoModificar(Object objeto, int estado, int funcionario) {
+        Proceso proceso = (Proceso) objeto;
+        if(estado == 0){
+            estado = proceso.getEstado().getIdestado();
+        }
+        if(funcionario == 0){
+            funcionario = proceso.getFuncionario().getIdfuncionario();
+        }
+        try {
+            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
+            Query query = inicio.session.createQuery("update Proceso set idestado = :estado , idfuncionario = :funcionario"
+                    + " where idproceso = :id");
+            query.setParameter("estado", estado);
+            query.setParameter("funcionario", funcionario);
+            query.setParameter("id", proceso.getIdproceso());
+            System.out.println("CLASE ACTUALIZAR " + estado + funcionario + proceso.getIdproceso());
+            int result = query.executeUpdate();
+            inicio.getSession().getTransaction().commit();
+            System.out.println("Actualizar proceso resultado de la modificacion: " + result);
         } catch (Exception e) {
             e.printStackTrace();
         }

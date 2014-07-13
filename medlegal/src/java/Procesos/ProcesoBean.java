@@ -5,11 +5,14 @@
 package Procesos;
 
 import Persistencia.Funcionario;
+import Persistencia.Proceso;
+import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -187,5 +190,12 @@ public class ProcesoBean {
         Listados listas = new Listados();
         List arealist = listas.listaSubareabyArea(idarea);
         return arealist;
+    }
+    
+    public void modificar(RowEditEvent event){
+        System.out.println("Modificar proceso" + idestado);
+        Object proceso = (Object) event.getObject();
+        Actualizar actualizar = new Actualizar();
+        actualizar.procesoModificar(proceso, idestado, idfuncionario);
     }
 }

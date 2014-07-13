@@ -236,27 +236,25 @@ public class FuncionarioBean {
         return claselist;
     }
 
-    public List getCargolist() {  
+    public List getCargolist() {
         Listados listas = new Listados();
-        List cargolist = listas.listaCargo(); 
+        List cargolist = listas.listaCargo();
         return cargolist;
     }
 
     public List getFuncionarioslist() {
         Listados listas = new Listados();
-        if (funcionariolist == null) {
-            funcionariolist = new ArrayList(listas.listaFuncionarios());
-        }
+        funcionariolist = new ArrayList(listas.listaFuncionarios());
         return funcionariolist;
     }
 
     public void modificar(RowEditEvent event) {
         System.out.println("Modificar funcionario");
-        Object riesgo = (Object) event.getObject();
+        Object funcionario = (Object) event.getObject();
         Actualizar actualizar = new Actualizar();
-        actualizar.funcionarioModificar(riesgo);
+        actualizar.funcionarioModificar(funcionario);
     }
-    
+
     public List getEstadolist() {
         Listados listas = new Listados();
         List estadolist = listas.listaEstado();
@@ -270,7 +268,7 @@ public class FuncionarioBean {
     }
 
     public List getSeccionallist() {
-        Listados listas = new Listados();     
+        Listados listas = new Listados();
         List seccionallist = listas.listaSeccionalbyRegion(getIdregion());
         return seccionallist;
     }
@@ -281,7 +279,7 @@ public class FuncionarioBean {
         List arealist = listas.listaAreabySeccional(getIdseccional());
         return arealist;
     }
-    
+
     public List getSubarealist() {
         Listados listas = new Listados();
         List arealist = listas.listaSubareabyArea(getIdarea());
