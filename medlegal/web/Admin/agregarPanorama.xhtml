@@ -16,13 +16,13 @@
 
                     <h:form> 
                         <p:menubar style="height: 26px; padding-right: 1%">
-                            <p:menuitem id="agregar" value="Agregar Panorama de Riesgo" immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Panorama" actionListener="#{panoramaBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem id="agregar" value="Agregar Panorama de Riesgo" immediate="true" icon="ui-icon-gear"/>    
+                            <p:menuitem value="Borrar Panorama de Riesgo" action="#{panoramaBean.eliminarPanorama()}" update="panorama" ajax="false" icon="ui-icon-close"/>
                             <p:menuitem value="Actualizar" update="panorama, informacion" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
+                            <p:menuitem value="Agregar Riesgo" action="/Admin/agregarRiesgo" icon="ui-icon-gear" />   
                         </p:menubar>
-                        
-                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" 
-                                        style="background-color: scrollbar" dynamic="true">
+
+                        <p:overlayPanel id="datos" for="agregar" style="background-color: scrollbar" >
                             <p:panelGrid columns="4">
                                 <h:outputText value="Causa  " style="width: 140" />  
                                 <p:selectOneMenu id="cuasa" value="#{panoramaBean.idriesgo}" style="width: 200px" filter="true" filterMatchMode="startsWith">
@@ -37,7 +37,6 @@
                                                    itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
                                 </p:selectOneMenu>
                                 <p:commandButton action="#{panoramaBean.panoramaAgregar()}" value="agregar" update="panorama" />
-                                <p:commandLink action="/Admin/agregarRiesgo" value="Agregar Riesgo" immediate="true"/>
                             </p:panelGrid>
                         </p:overlayPanel>
 
@@ -60,7 +59,6 @@
                                 <h:outputText value="#{pro.subarea.descsubarea}"/>
                             </p:column>
                             <p:column headerText="Fucionario" width="150">
-                                <h:outputText value="#{pro.funcionario.identificacion} - #{pro.funcionario.nombre} #{pro.funcionario.apellido}"/>
                             </p:column>
                             <p:column headerText="Fecha Creacion" width="80">
                                 <h:outputText value="#{pro.creado}"/>
@@ -69,26 +67,28 @@
 
                         <br/>
                         <br/>
-                        <p:dataTable id="panorama" value="#{panoramaBean.panoramabyRiesgo()}" var="efe"
-                                     paginator="true" rows="10"  
-                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                                     rowsPerPageTemplate="5,10,15"
-                                     scrollable="true" scrollWidth="100%" resizableColumns="true">
-                            <p:column headerText="Nombre Riesgo" width="170">
+                        <p:dataTable id="panorama"  value="#{panoramaBean.panoramabyRiesgo()}" var="efe"
+                                     rows="10"  resizableColumns="true" scrollWidth="400"
+                                     selection="#{panoramaBean.panoSelec}" rowKey="#{efe.idpanoramariesgos}">
+                            
+                            <p:column headerText="Codigo" width="70"  rendered="false">
+                                <h:outputText value="#{efe.idpanoramariesgos}"/>
+                            </p:column>
+                            <p:column headerText="Nombre Riesgo" width="170" >
                                 <h:outputText value="#{efe.riesgoByIdriesgo.nombre}"/>
                             </p:column>
-                            <p:column headerText="Descripcion Riesgo" width="170">
+                            <p:column headerText="Descripcion Riesgo" width="200">
                                 <h:outputText value="#{efe.riesgoByIdriesgo.descripcion}"/>
                             </p:column>
                             <p:column headerText="Nombre Efecto" width="170">
                                 <h:outputText value="#{efe.riesgoByIdcausa.nombre}" />
                             </p:column>
-                            <p:column headerText="Descripcion Efecto" width="170">
+                            <p:column headerText="Descripcion Efecto" width="200">
                                 <h:outputText value="#{efe.riesgoByIdcausa.descripcion}" />
                             </p:column>
+                            <p:column selectionMode="single" width="14" style="text-align:center"/>
                         </p:dataTable>
-                        <br/>
-                        <h:commandButton action="/Admin/agregarMejoramiento" value="Plan de Mejoramiento" immediate="true"/>
+
                     </h:form>
                 </f:view>
             </ui:define>

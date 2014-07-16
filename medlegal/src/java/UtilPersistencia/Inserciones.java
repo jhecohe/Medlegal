@@ -6,7 +6,6 @@ package UtilPersistencia;
 
 import Persistencia.*;
 import java.util.Date;
-import java.util.LinkedList;
 import org.hibernate.Query;
 
 /**

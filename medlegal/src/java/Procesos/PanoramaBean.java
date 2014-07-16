@@ -4,13 +4,14 @@
  */
 package Procesos;
 
+import Persistencia.Panoramaderiesgos;
 import Persistencia.Riesgo;
+import UtilPersistencia.Eliminar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 /**
  *
  * @author jacs
@@ -32,11 +33,12 @@ public class PanoramaBean {
     private String personas;
     private int idriesgo;
     private int causa;
-    private boolean modificar = false;
     Riesgo risk;
     private int temp;
     private Riesgo riesg;
     Inserciones agregar;
+    Eliminar eliminar;
+    Panoramaderiesgos panoSelec;
 
     public PanoramaBean() {
         agregar = new Inserciones();
@@ -48,6 +50,14 @@ public class PanoramaBean {
 
     public void setIdriesgo(int idriesgo) {
         this.idriesgo = idriesgo;
+    }
+
+    public Panoramaderiesgos getPanoSelec() {
+        return panoSelec;
+    }
+
+    public void setPanoSelec(Panoramaderiesgos panoSelec) {
+        this.panoSelec = panoSelec;
     }
 
     public int getIdproceso() {
@@ -185,15 +195,15 @@ public class PanoramaBean {
     
     public List panoramabyRiesgo(){
         Listados lista = new Listados();
-        List panora = null;
-        panora = lista.listaPanoramabyProceso(idproceso);
+        List panora = lista.listaPanoramabyProceso(idproceso);
         return panora;
     }
     
-    public void visible(){
-        if(modificar == false){
-            modificar = true;
-        }else
-            modificar = false;   
+    public void eliminarPanorama(){
+        int id = (Integer)panoSelec.getIdpanoramariesgos();
+        System.out.println("A ver que salio a ver si vamos por buen camino "+ panoSelec.getIdpanoramariesgos());
+        eliminar = new Eliminar();
+        eliminar.panorama(id);
     }
+    
 }

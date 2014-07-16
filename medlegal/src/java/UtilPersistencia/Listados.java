@@ -6,6 +6,7 @@ package UtilPersistencia;
 
 
 import Persistencia.*;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.model.DataModel;
 import org.hibernate.Query;
@@ -15,7 +16,7 @@ import org.hibernate.Query;
  *
  * @author jacs
  */
-public class Listados {
+public class Listados implements Serializable{
 
     iniciarHibernate inicio;
     Funcionario funcionario;
