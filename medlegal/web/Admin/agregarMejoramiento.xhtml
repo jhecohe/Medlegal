@@ -17,9 +17,8 @@
                     <br/>
                     <h:form>   
                         <p:menubar style="height: 26px; padding-right: 1%">
-                            <p:menuitem id="agregar" value="Agregar Mejoramiento" update=""  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Mejoramiento" update="" actionListener="#{funcionarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
-                            <p:menuitem value="Actualizar" update="" icon="ui-icon-arrowrefresh-1-w" immediate="true" ajax="false"/> 
+                            <p:menuitem id="agregar" value="Agregar Mejoramiento" update=""  immediate="true" icon="ui-icon-gear"/> 
+                            <p:menuitem value="Actualizar" update="mejoramientoList" icon="ui-icon-arrowrefresh-1-w" immediate="true" ajax="false"/> 
                         </p:menubar> 
 
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
@@ -41,7 +40,7 @@
 
                                 <h:outputLabel value="Calificacion:" />
                                 <p:inputText id="calificacion" value="#{mejoraBean.calificacion}" style="width: 230px"/>
-                                <p:commandButton value="Aceptar" actionListener="#{mejoraBean.agregar()}"/>
+                                <p:commandButton value="Aceptar" actionListener="#{mejoraBean.agregar()}" update="mejoramientoList" ajax="false"/>
                             </h:panelGrid>
                         </p:overlayPanel>
                         <h:panelGrid columns="2" style="width: 68%;" >
@@ -55,38 +54,50 @@
 
                             <h:outputLabel value="Riesgo:" />
                             <p:selectOneMenu id="riesgo" value="#{mejoraBean.idpanorama}" style="width: 240px" >
+                                <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                 <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
-                                               itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
+                                               itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.riesgoByIdriesgo.idriesgo}"/>
+                                <p:ajax update="mejoramientoList"/>
                             </p:selectOneMenu>
                         </h:panelGrid> 
 
-                        <p:dataTable id="funcionarioList" var="m" value="#{mejoraBean.mejorameintoList()}"  
+                        <p:dataTable id="mejoramientoList" var="m" value="#{mejoraBean.mejorameintoList()}"  
                                      paginator="true" rows="10"  editable="true"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                      rowsPerPageTemplate="5,10,15"
                                      scrollable="true" scrollWidth="990" resizableColumns="true"  >  
                             <f:facet name="header">  
-                                Listado de Fucionarios
+                                Listado de Mejoramientos
                             </f:facet>  
 
                             <p:ajax event="rowEdit" listener="#{mejoraBean.modificar}" />
 
-                            <p:column headerText="Riesgo" width="125">  
+                            <p:column headerText="Riesgo" width="100">  
                                 <h:outputText value="#{m.panoramaderiesgos.riesgoByIdriesgo.descripcion}" />  
                             </p:column>  
 
-                            <p:column headerText="Identificacion" width="125">  
+                            <p:column headerText="Identificacion" width="70">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
-                                        <h:outputText value="#{m.funcionario.identificacion}" />  
+                                        <h:outputText value="(#{m.funcionario.identificacion})#{m.funcionario.nombre}#{m.funcionario.apellido}" />  
                                     </f:facet>  
                                     <f:facet name="input">  
-                                        <p:inputText value="#{m.funcionario.identificacion}"/>  
+                                        <p:inputText value="#{m.funcionario.idfuncionario}"/>  
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
 
-                            <p:column headerText="Nombre" width="125">  
+                            <p:column headerText="Detalle" width="125">  
+                                <p:cellEditor>  
+                                    <f:facet name="output"> 
+                                        <p:dataScroller value="#{m.cronograma.desccronograma}"/>
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{m.cronograma.desccronograma}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Periodo" width="25">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
                                         <h:outputText value="#{m.cronograma.desccronograma}" />  
@@ -97,7 +108,7 @@
                                 </p:cellEditor>  
                             </p:column>
 
-                            <p:column headerText="Options" width="25">  
+                            <p:column headerText="Editar" width="5">  
                                 <p:rowEditor />  
                             </p:column>  
 

@@ -73,6 +73,7 @@
                         <h:panelGrid id="color" columns="2" style="width: 80%; #{valoracionBean.color()}">      
                             <h:outputLabel value="Riesgo:" />
                             <p:selectOneMenu id="panorama" value="#{valoracionBean.idpanorama}" style="width: 240px" >
+                                <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                 <f:selectItems value="#{valoracionBean.riesgosList()}" var="pr"
                                                itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
                             </p:selectOneMenu>
@@ -112,7 +113,7 @@
                             <br/>
                             <h:outputLabel value="Calificacion:#{valoracionBean.calificacion2}" id="calificacion2" />      
                             <p>
-                                <h:outputLabel value="Valor del riego #{valoracionBean.valoracion}" id="valoracion" />      
+                                <h:outputLabel value="Valor del riesgo #{valoracionBean.valoracion}" id="valoracion" />      
                             </p>
                         </h:panelGrid>  
                         <p:commandButton value="Aceptar" actionListener="#{valoracionBean.agregar()}"/>

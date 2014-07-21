@@ -480,11 +480,14 @@ public class Listados implements Serializable{
         return cronograma; 
     }
     
-    public List listaMejoramiento(){
+    public List listaMejoramientobyRiesgo(int idriesgo){
         List mejora = null;
+        System.out.println(idriesgo);
         try{
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
-            Query q = inicio.session.createQuery("from Plandemejoramiento");
+            //Query q = inicio.session.createQuery("from Plandemejoramiento p where p.panoramaderiesgos.riesgoByIdriesgo.idriesgo = :riesgo");
+            Query q = inicio.session.createQuery("from Plandemejoramiento p where p.panoramaderiesgos.riesgoByIdriesgo.idriesgo = :riesgo ");
+            q.setParameter("riesgo", idriesgo);
             mejora = q.list();
         }catch(Exception e){
             e.printStackTrace();

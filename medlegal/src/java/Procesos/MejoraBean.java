@@ -65,7 +65,7 @@ public class MejoraBean {
     
     public List mejorameintoList(){
         Listados lista = new Listados();
-        List mejoras = lista.listaMejoramiento();
+        List mejoras = lista.listaMejoramientobyRiesgo(idpanorama);
         return mejoras;
     }
     

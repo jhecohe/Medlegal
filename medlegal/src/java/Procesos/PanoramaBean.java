@@ -162,11 +162,6 @@ public class PanoramaBean {
         return proce;
     }
     
-    public void agregarBoton(){
-        temp = idriesgo;
-        System.out.println("riesgo "+ idriesgo +"temp  "+temp +"causa  "+causa);
-    }
-    
     public List riesgosList(){
         List riesgos = null;
         Listados lista = new Listados();

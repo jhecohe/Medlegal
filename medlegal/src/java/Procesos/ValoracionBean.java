@@ -34,6 +34,7 @@ public class ValoracionBean {
 
     public void agregar() {
         Inserciones inser = new Inserciones();
+        System.out.println("Bean valoracio" + idpanorama +"/"+ origen +"/"+ probabilidad +"/"+ impacto +"/"+ calificacion2 +"/"+ color);
         inser.agregarValoracion(idpanorama, origen, probabilidad, impacto, calificacion2, color);
     }
 
