@@ -242,6 +242,20 @@ public class Listados implements Serializable{
         return listRiesgo;
     }
     
+    public List listaMejoramiento(int idriesgo) {
+        List<Plandemejoramiento> listRiesgo = null;
+        try {
+            org.hibernate.Transaction tx = inicio.session.beginTransaction();
+            //Query q = inicio.session.createQuery("select p.riesgo from Panoramariesgos p where p.proceso.idproceso = :proceso");
+            Query q = inicio.session.createQuery("from Panoramaderiesgos p where p.riesgoByIdriesgo.idriesgo = :riesgo");
+            q.setParameter("riesgo", idriesgo);
+            listRiesgo = (List<Plandemejoramiento>) q.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listRiesgo;
+    }
+    
     public List listaRiesgoByParametro(String descripcion) {
         List<Riesgo> listRiesgo = null;
         try {

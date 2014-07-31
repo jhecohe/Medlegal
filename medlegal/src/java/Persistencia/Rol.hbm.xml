@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Rol" table="rol" schema="public">
         <id name="idrol" type="int" unsaved-value="0">
@@ -16,7 +16,7 @@
         <property name="descrol" type="string">
             <column name="descrol" length="100" not-null="true" />
         </property>
-        <set name="usuarios" inverse="true">
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idrol" not-null="true" />
             </key>

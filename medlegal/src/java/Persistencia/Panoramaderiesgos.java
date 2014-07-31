@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -16,6 +16,7 @@ public class Panoramaderiesgos  implements java.io.Serializable {
      private Riesgo riesgoByIdcausa;
      private Riesgo riesgoByIdriesgo;
      private Set analisisvaloracions = new HashSet(0);
+     private Set logs = new HashSet(0);
      private Set plandemejoramientos = new HashSet(0);
 
     public Panoramaderiesgos() {
@@ -28,12 +29,13 @@ public class Panoramaderiesgos  implements java.io.Serializable {
         this.riesgoByIdcausa = riesgoByIdcausa;
         this.riesgoByIdriesgo = riesgoByIdriesgo;
     }
-    public Panoramaderiesgos(int idpanoramariesgos, Proceso proceso, Riesgo riesgoByIdcausa, Riesgo riesgoByIdriesgo, Set analisisvaloracions, Set plandemejoramientos) {
+    public Panoramaderiesgos(int idpanoramariesgos, Proceso proceso, Riesgo riesgoByIdcausa, Riesgo riesgoByIdriesgo, Set analisisvaloracions, Set logs, Set plandemejoramientos) {
        this.idpanoramariesgos = idpanoramariesgos;
        this.proceso = proceso;
        this.riesgoByIdcausa = riesgoByIdcausa;
        this.riesgoByIdriesgo = riesgoByIdriesgo;
        this.analisisvaloracions = analisisvaloracions;
+       this.logs = logs;
        this.plandemejoramientos = plandemejoramientos;
     }
    
@@ -71,6 +73,13 @@ public class Panoramaderiesgos  implements java.io.Serializable {
     
     public void setAnalisisvaloracions(Set analisisvaloracions) {
         this.analisisvaloracions = analisisvaloracions;
+    }
+    public Set getLogs() {
+        return this.logs;
+    }
+    
+    public void setLogs(Set logs) {
+        this.logs = logs;
     }
     public Set getPlandemejoramientos() {
         return this.plandemejoramientos;

@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public class Departamento  implements java.io.Serializable {
 
 
      private int iddepartamento;
-     private String codigo;
+     private String codigoregional;
      private String descdepartamento;
      private Set ciudads = new HashSet(0);
 
@@ -20,14 +20,14 @@ public class Departamento  implements java.io.Serializable {
     }
 
 	
-    public Departamento(int iddepartamento, String codigo, String descdepartamento) {
+    public Departamento(int iddepartamento, String codigoregional, String descdepartamento) {
         this.iddepartamento = iddepartamento;
-        this.codigo = codigo;
+        this.codigoregional = codigoregional;
         this.descdepartamento = descdepartamento;
     }
-    public Departamento(int iddepartamento, String codigo, String descdepartamento, Set ciudads) {
+    public Departamento(int iddepartamento, String codigoregional, String descdepartamento, Set ciudads) {
        this.iddepartamento = iddepartamento;
-       this.codigo = codigo;
+       this.codigoregional = codigoregional;
        this.descdepartamento = descdepartamento;
        this.ciudads = ciudads;
     }
@@ -39,12 +39,12 @@ public class Departamento  implements java.io.Serializable {
     public void setIddepartamento(int iddepartamento) {
         this.iddepartamento = iddepartamento;
     }
-    public String getCodigo() {
-        return this.codigo;
+    public String getCodigoregional() {
+        return this.codigoregional;
     }
     
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoregional(String codigoregional) {
+        this.codigoregional = codigoregional;
     }
     public String getDescdepartamento() {
         return this.descdepartamento;

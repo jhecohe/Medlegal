@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Panoramaderiesgos" table="panoramaderiesgos" schema="public">
         <id name="idpanoramariesgos" type="int" unsaved-value="0">
             <column name="idpanoramariesgos" unique="true" sql-type="int"/>
             <generator class="native" >
-                <param name="sequence">panoramaderiesgos_idpanoramariesgos_seq</param>
+                <param name="sequence">panoramaderiesgos_idpanoramariesgos</param>
             </generator>
         </id>
         <many-to-one name="proceso" class="Persistencia.Proceso" fetch="select">
@@ -19,13 +19,19 @@
         <many-to-one name="riesgoByIdriesgo" class="Persistencia.Riesgo" fetch="select">
             <column name="idriesgo" not-null="true" />
         </many-to-one>
-        <set name="analisisvaloracions" inverse="true">
+        <set name="analisisvaloracions" table="analisisvaloracion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idpanoramariesgos" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Analisisvaloracion" />
         </set>
-        <set name="plandemejoramientos" inverse="true">
+        <set name="logs" table="log" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpanoramariesgos" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Log" />
+        </set>
+        <set name="plandemejoramientos" table="plandemejoramiento" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idpanoramariesgos" not-null="true" />
             </key>

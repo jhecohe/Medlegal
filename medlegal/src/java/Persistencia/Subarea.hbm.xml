@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Subarea" table="subarea" schema="public">
         <id name="idsubarea" type="int" unsaved-value="0">
@@ -16,13 +16,16 @@
         <property name="descsubarea" type="string">
             <column name="descsubarea" length="100" not-null="true" />
         </property>
-        <set name="procesos" inverse="true">
+        <property name="codigosubarea" type="string">
+            <column name="codigosubarea" length="20" not-null="true" />
+        </property>
+        <set name="procesos" table="proceso" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idsubarea" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Proceso" />
         </set>
-        <set name="funcionarios" inverse="true">
+        <set name="funcionarios" table="funcionario" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idsubarea" not-null="true" />
             </key>

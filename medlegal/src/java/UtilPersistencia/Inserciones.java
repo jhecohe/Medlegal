@@ -409,38 +409,31 @@ public class Inserciones {
             mejoramiento.setPanoramaderiesgos(panora);
             mejoramiento.setFuncionario(funcio);
             mejoramiento.setResultado(reslutado);
-            System.out.println("Agregar Mejorameinto");
+            mejoramiento.setMejoramiento(mejora);
+            System.out.println("Agregar Mejorameinto aqui");
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(mejoramiento);
-            
-            int codigo = buscarMejoramientoUltimoRegistro();
-            Plandemejoramiento plan = new Plandemejoramiento();
-            plan.setIdmejoramiento(codigo);
-            Accionmejoramiento accion = new Accionmejoramiento();
-            accion.setMejoramiento(mejora);
-            accion.setPlandemejoramiento(plan);
-            System.out.println("Agregar Accion de mejoramiento");
-            inicio.getSession().persist(accion);
             inicio.getSession().getTransaction().commit();
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    public int buscarMejoramientoUltimoRegistro() {
-        int id = 0;
-        try {
-            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            Query q = inicio.getSession().createQuery("select max(p.idmejoramiento) from Plandemejoramiento p");
-            //Query q = inicio.getSession().createQuery("from Proceso order by idproceso desc");
-            if (q.uniqueResult() == null) {
-                id = 1;
-            } else {
-                id = (Integer) q.uniqueResult();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return id;
-    }
+//    public int buscarMejoramientoUltimoRegistro() {
+//        int id = 0;
+//        try {
+//            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
+//            Query q = inicio.getSession().createQuery("select max(p.idmejoramiento) from Plandemejoramiento p");
+//            //Query q = inicio.getSession().createQuery("from Proceso order by idproceso desc");
+//            if (q.uniqueResult() == null) {
+//                id = 1;
+//            } else {
+//                id = (Integer) q.uniqueResult();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return id;
+//    }
 }

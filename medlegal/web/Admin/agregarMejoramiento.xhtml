@@ -23,6 +23,20 @@
 
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
                             <h:panelGrid columns="2">
+                                <h:outputLabel value="Proceso:" for="idproceso" />  
+                                <p:selectOneMenu id="procesos" value="#{mejoraBean.idproceso}" style="width: 240px" >
+                                    <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
+                                    <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
+                                                   itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
+                                    <p:ajax update="riesgo"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel value="Riesgo:" />
+                                <p:selectOneMenu id="riesgo" value="#{mejoraBean.idriesgo}" style="width: 240px" >
+                                    <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
+                                    <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
+                                                   itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
+                                </p:selectOneMenu>
                                 <h:outputLabel value="Cronograma:" />
                                 <p:selectOneMenu id="cronograma" value="#{mejoraBean.cronograma}" style="width: 240px" >
                                     <f:selectItems value="#{mejoraBean.cronogramaList()}" var="c"
@@ -30,7 +44,7 @@
                                 </p:selectOneMenu>
 
                                 <h:outputLabel value="Mejoramiento:" />
-                                <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy color"/>
+                                <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy"/>
 
                                 <h:outputLabel value="Responsable:" />
                                 <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" >
@@ -44,16 +58,16 @@
                             </h:panelGrid>
                         </p:overlayPanel>
                         <h:panelGrid columns="2" style="width: 68%;" >
-                            <h:outputLabel value="Proceso:" for="idproceso" />  
+                            <h:outputLabel value="Procesos:" for="idproceso" />  
                             <p:selectOneMenu id="proceso" value="#{mejoraBean.idproceso}" style="width: 240px" >
                                 <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
                                 <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
                                                itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
-                                <p:ajax update="riesgo"/>
+                                <p:ajax update="panorama"/>
                             </p:selectOneMenu>
 
                             <h:outputLabel value="Riesgo:" />
-                            <p:selectOneMenu id="riesgo" value="#{mejoraBean.idpanorama}" style="width: 240px" >
+                            <p:selectOneMenu id="panorama" value="#{mejoraBean.idpanorama}" style="width: 240px" >
                                 <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                 <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
                                                itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.riesgoByIdriesgo.idriesgo}"/>
@@ -90,10 +104,10 @@
                             <p:column headerText="Detalle" width="125">  
                                 <p:cellEditor>  
                                     <f:facet name="output"> 
-                                        <p:dataScroller value="#{m.cronograma.desccronograma}"/>
+                                        <p:inputTextarea value="#{m.mejoramiento}" readonly="true" style="width: 270px" />
                                     </f:facet>  
                                     <f:facet name="input">  
-                                        <p:inputText value="#{m.cronograma.desccronograma}" />  
+                                        <p:inputText value="#{m.mejoramiento}" />  
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>

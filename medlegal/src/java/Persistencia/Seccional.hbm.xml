@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Seccional" table="seccional" schema="public">
         <id name="idseccional" type="int" unsaved-value="0">
-            <column name="idseccional" unique="true" sql-type="int"/>
+            <column name="idseccional" unique="true" sql-type="int"/> 
             <generator class="native" >
                 <param name="sequence">seccional_idseccional_seq</param>
             </generator>
@@ -16,7 +16,10 @@
         <property name="descseccional" type="string">
             <column name="descseccional" length="100" not-null="true" />
         </property>
-        <set name="areas" inverse="true">
+        <property name="codigoseccional" type="string">
+            <column name="codigoseccional" length="20" not-null="true" />
+        </property>
+        <set name="areas" table="area" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idseccional" not-null="true" />
             </key>

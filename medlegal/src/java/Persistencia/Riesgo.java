@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -21,6 +21,7 @@ public class Riesgo  implements java.io.Serializable {
      private int entrada;
      private Set panoramaderiesgosesForIdcausa = new HashSet(0);
      private Set panoramaderiesgosesForIdriesgo = new HashSet(0);
+     private Set logs = new HashSet(0);
 
     public Riesgo() {
     }
@@ -36,7 +37,7 @@ public class Riesgo  implements java.io.Serializable {
         this.descripcion = descripcion;
         this.entrada = entrada;
     }
-    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tipo tipo, Clasificacion clasificacion, String nombre, String descripcion, int entrada, Set panoramaderiesgosesForIdcausa, Set panoramaderiesgosesForIdriesgo) {
+    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tipo tipo, Clasificacion clasificacion, String nombre, String descripcion, int entrada, Set panoramaderiesgosesForIdcausa, Set panoramaderiesgosesForIdriesgo, Set logs) {
        this.idriesgo = idriesgo;
        this.estado = estado;
        this.enfoque = enfoque;
@@ -47,6 +48,7 @@ public class Riesgo  implements java.io.Serializable {
        this.entrada = entrada;
        this.panoramaderiesgosesForIdcausa = panoramaderiesgosesForIdcausa;
        this.panoramaderiesgosesForIdriesgo = panoramaderiesgosesForIdriesgo;
+       this.logs = logs;
     }
    
     public int getIdriesgo() {
@@ -118,6 +120,13 @@ public class Riesgo  implements java.io.Serializable {
     
     public void setPanoramaderiesgosesForIdriesgo(Set panoramaderiesgosesForIdriesgo) {
         this.panoramaderiesgosesForIdriesgo = panoramaderiesgosesForIdriesgo;
+    }
+    public Set getLogs() {
+        return this.logs;
+    }
+    
+    public void setLogs(Set logs) {
+        this.logs = logs;
     }
 
 

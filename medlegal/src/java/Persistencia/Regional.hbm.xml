@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Regional" table="regional" schema="public">
         <id name="idregional" type="int" unsaved-value="0">
@@ -13,7 +13,10 @@
         <property name="descregional" type="string">
             <column name="descregional" length="100" not-null="true" />
         </property>
-        <set name="seccionals" inverse="true">
+        <property name="codigoregional" type="string">
+            <column name="codigoregional" length="20" not-null="true" />
+        </property>
+        <set name="seccionals" table="seccional" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idregional" not-null="true" />
             </key>

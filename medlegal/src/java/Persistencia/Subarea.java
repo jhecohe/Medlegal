@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class Subarea  implements java.io.Serializable {
      private int idsubarea;
      private Area area;
      private String descsubarea;
+     private String codigosubarea;
      private Set procesos = new HashSet(0);
      private Set funcionarios = new HashSet(0);
 
@@ -21,15 +22,17 @@ public class Subarea  implements java.io.Serializable {
     }
 
 	
-    public Subarea(int idsubarea, Area area, String descsubarea) {
+    public Subarea(int idsubarea, Area area, String descsubarea, String codigosubarea) {
         this.idsubarea = idsubarea;
         this.area = area;
         this.descsubarea = descsubarea;
+        this.codigosubarea = codigosubarea;
     }
-    public Subarea(int idsubarea, Area area, String descsubarea, Set procesos, Set funcionarios) {
+    public Subarea(int idsubarea, Area area, String descsubarea, String codigosubarea, Set procesos, Set funcionarios) {
        this.idsubarea = idsubarea;
        this.area = area;
        this.descsubarea = descsubarea;
+       this.codigosubarea = codigosubarea;
        this.procesos = procesos;
        this.funcionarios = funcionarios;
     }
@@ -54,6 +57,13 @@ public class Subarea  implements java.io.Serializable {
     
     public void setDescsubarea(String descsubarea) {
         this.descsubarea = descsubarea;
+    }
+    public String getCodigosubarea() {
+        return this.codigosubarea;
+    }
+    
+    public void setCodigosubarea(String codigosubarea) {
+        this.codigosubarea = codigosubarea;
     }
     public Set getProcesos() {
         return this.procesos;

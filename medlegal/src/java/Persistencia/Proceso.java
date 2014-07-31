@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -20,39 +20,45 @@ public class Proceso  implements java.io.Serializable {
      private String codigo;
      private Date creado;
      private Date modificado;
+     private Set logs = new HashSet(0);
      private Set panoramaderiesgoses = new HashSet(0);
 
     public Proceso() {
     }
 
 	
-    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigo, Date creado) {
+    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoregional, Date creado) {
         this.idproceso = idproceso;
         this.estado = estado;
         this.subarea = subarea;
         this.procesoasociado = procesoasociado;
         this.funcionario = funcionario;
-        this.codigo = codigo;
+        this.codigo = codigoregional;
         this.creado = creado;
     }
-    
-    public Proceso(Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigo, Date creado) {
-        this.estado = estado;
-        this.subarea = subarea;
-        this.procesoasociado = procesoasociado;
-        this.funcionario = funcionario;
-        this.codigo = codigo;
-        this.creado = creado;
-    }
-    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigo, Date creado, Date modificado, Set panoramaderiesgoses) {
+    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoregional, Date creado, Date modificado, Set logs, Set panoramaderiesgoses) {
        this.idproceso = idproceso;
        this.estado = estado;
        this.subarea = subarea;
        this.procesoasociado = procesoasociado;
        this.funcionario = funcionario;
-       this.codigo = codigo;
+       this.codigo = codigoregional;
        this.creado = creado;
        this.modificado = modificado;
+       this.logs = logs;
+       this.panoramaderiesgoses = panoramaderiesgoses;
+    }
+
+    public Proceso(Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoregional, Date creado) {
+       this.idproceso = idproceso;
+       this.estado = estado;
+       this.subarea = subarea;
+       this.procesoasociado = procesoasociado;
+       this.funcionario = funcionario;
+       this.codigo = codigoregional;
+       this.creado = creado;
+       this.modificado = modificado;
+       this.logs = logs;
        this.panoramaderiesgoses = panoramaderiesgoses;
     }
    
@@ -95,8 +101,8 @@ public class Proceso  implements java.io.Serializable {
         return this.codigo;
     }
     
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigo(String codigoregional) {
+        this.codigo = codigoregional;
     }
     public Date getCreado() {
         return this.creado;
@@ -111,6 +117,13 @@ public class Proceso  implements java.io.Serializable {
     
     public void setModificado(Date modificado) {
         this.modificado = modificado;
+    }
+    public Set getLogs() {
+        return this.logs;
+    }
+    
+    public void setLogs(Set logs) {
+        this.logs = logs;
     }
     public Set getPanoramaderiesgoses() {
         return this.panoramaderiesgoses;

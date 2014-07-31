@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,21 +14,24 @@ public class Seccional  implements java.io.Serializable {
      private int idseccional;
      private Regional regional;
      private String descseccional;
+     private String codigoseccional;
      private Set areas = new HashSet(0);
 
     public Seccional() {
     }
 
 	
-    public Seccional(int idseccional, Regional regional, String descseccional) {
+    public Seccional(int idseccional, Regional regional, String descseccional, String codigoseccional) {
         this.idseccional = idseccional;
         this.regional = regional;
         this.descseccional = descseccional;
+        this.codigoseccional = codigoseccional;
     }
-    public Seccional(int idseccional, Regional regional, String descseccional, Set areas) {
+    public Seccional(int idseccional, Regional regional, String descseccional, String codigoseccional, Set areas) {
        this.idseccional = idseccional;
        this.regional = regional;
        this.descseccional = descseccional;
+       this.codigoseccional = codigoseccional;
        this.areas = areas;
     }
    
@@ -52,6 +55,13 @@ public class Seccional  implements java.io.Serializable {
     
     public void setDescseccional(String descseccional) {
         this.descseccional = descseccional;
+    }
+    public String getCodigoseccional() {
+        return this.codigoseccional;
+    }
+    
+    public void setCodigoseccional(String codigoseccional) {
+        this.codigoseccional = codigoseccional;
     }
     public Set getAreas() {
         return this.areas;

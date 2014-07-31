@@ -24,6 +24,7 @@ public class MejoraBean {
      */
     
     private int idproceso;
+    private int idriesgo;
     private int idpanorama;
     private int cronograma;
     private String mejora;
@@ -36,7 +37,7 @@ public class MejoraBean {
 
     public void agregar(){
         Inserciones insertar = new Inserciones();
-        insertar.agregarMejoramiento(cronograma, idpanorama, idfuncionario, calificacion, mejora);
+        insertar.agregarMejoramiento(cronograma, idriesgo, idfuncionario, calificacion, mejora);
     }
     
     public List procesoList() {
@@ -48,6 +49,12 @@ public class MejoraBean {
     public List riesgosList() {
         Listados lista = new Listados();
         List riesgos = lista.listaRiesgoValoracion(idproceso);
+        return riesgos;
+    }
+    
+    public List mejoramientoList() {
+        Listados lista = new Listados();
+        List riesgos = lista.listaMejoramiento(idpanorama);
         return riesgos;
     }
     
@@ -118,6 +125,14 @@ public class MejoraBean {
 
     public int getCalificacion() {
         return calificacion;
+    }
+
+    public int getIdriesgo() {
+        return idriesgo;
+    }
+
+    public void setIdriesgo(int idriesgo) {
+        this.idriesgo = idriesgo;
     }
 
     public void setCalificacion(int calificacion) {

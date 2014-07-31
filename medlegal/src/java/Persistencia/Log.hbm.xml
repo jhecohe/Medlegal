@@ -3,27 +3,27 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="Persistencia.Plandemejoramiento" table="plandemejoramiento" schema="public">
-        <id name="idmejoramiento" type="int" unsaved-value="0">
-            <column name="idmejoramiento" unique="true" sql-type="int"/>
+    <class name="Persistencia.Log" table="log" schema="public">
+        <id name="idlog" type="int" unsaved-value="0">
+            <column name="idlog" unique="true" sql-type="int"/>
             <generator class="native" >
-                <param name="sequence">plandemejoramiento_idmejoramiento_seq</param>
+                <param name="sequence">log.idlog_seq</param>
             </generator>
         </id>
+        <many-to-one name="proceso" class="Persistencia.Proceso" fetch="select">
+            <column name="idproceso" not-null="true" />
+        </many-to-one>
         <many-to-one name="panoramaderiesgos" class="Persistencia.Panoramaderiesgos" fetch="select">
             <column name="idpanoramariesgos" not-null="true" />
         </many-to-one>
         <many-to-one name="funcionario" class="Persistencia.Funcionario" fetch="select">
             <column name="idfuncionario" not-null="true" />
         </many-to-one>
-        <many-to-one name="cronograma" class="Persistencia.Cronograma" fetch="select">
-            <column name="idcronograma" not-null="true" />
+        <many-to-one name="riesgo" class="Persistencia.Riesgo" fetch="select">
+            <column name="idriesgo" not-null="true" />
         </many-to-one>
-        <property name="resultado" type="int">
-            <column name="resultado" not-null="true" />
-        </property>
-        <property name="mejoramiento" type="string">
-            <column name="mejoramiento" length="800" not-null="true" />
+        <property name="fecha" type="date">
+            <column name="fecha" length="13" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

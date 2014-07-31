@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Estado" table="estado" schema="public">
         <id name="idestado" type="int" unsaved-value="0">
@@ -13,25 +13,25 @@
         <property name="descestado" type="string">
             <column name="descestado" length="40" not-null="true" />
         </property>
-        <set name="procesos" inverse="true">
+        <set name="procesos" table="proceso" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idestado" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Proceso" />
         </set>
-        <set name="rols" inverse="true">
+        <set name="rols" table="rol" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idestado" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Rol" />
         </set>
-        <set name="riesgos" inverse="true">
+        <set name="riesgos" table="riesgo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idestado" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Riesgo" />
         </set>
-        <set name="funcionarios" inverse="true">
+        <set name="funcionarios" table="funcionario" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idestado" not-null="true" />
             </key>

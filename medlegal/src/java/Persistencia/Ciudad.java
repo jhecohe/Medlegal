@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated Mar 14, 2013 9:27:03 AM by Hibernate Tools 3.2.1.GA
+// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -13,7 +13,7 @@ public class Ciudad  implements java.io.Serializable {
 
      private int idciudad;
      private Departamento departamento;
-     private String codigo;
+     private String codigoregional;
      private String descciudad;
      private Set funcionariosForIdciudad = new HashSet(0);
      private Set funcionariosForCiuIdciudad = new HashSet(0);
@@ -23,16 +23,16 @@ public class Ciudad  implements java.io.Serializable {
     }
 
 	
-    public Ciudad(int idciudad, Departamento departamento, String codigo, String descciudad) {
+    public Ciudad(int idciudad, Departamento departamento, String codigoregional, String descciudad) {
         this.idciudad = idciudad;
         this.departamento = departamento;
-        this.codigo = codigo;
+        this.codigoregional = codigoregional;
         this.descciudad = descciudad;
     }
-    public Ciudad(int idciudad, Departamento departamento, String codigo, String descciudad, Set funcionariosForIdciudad, Set funcionariosForCiuIdciudad, Set funcionariosForCiuIdciudad2) {
+    public Ciudad(int idciudad, Departamento departamento, String codigoregional, String descciudad, Set funcionariosForIdciudad, Set funcionariosForCiuIdciudad, Set funcionariosForCiuIdciudad2) {
        this.idciudad = idciudad;
        this.departamento = departamento;
-       this.codigo = codigo;
+       this.codigoregional = codigoregional;
        this.descciudad = descciudad;
        this.funcionariosForIdciudad = funcionariosForIdciudad;
        this.funcionariosForCiuIdciudad = funcionariosForCiuIdciudad;
@@ -53,12 +53,12 @@ public class Ciudad  implements java.io.Serializable {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
-    public String getCodigo() {
-        return this.codigo;
+    public String getCodigoregional() {
+        return this.codigoregional;
     }
     
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoregional(String codigoregional) {
+        this.codigoregional = codigoregional;
     }
     public String getDescciudad() {
         return this.descciudad;

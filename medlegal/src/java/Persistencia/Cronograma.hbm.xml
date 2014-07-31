@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 14, 2013 9:27:12 AM by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Cronograma" table="cronograma" schema="public">
         <id name="idcronograma" type="int" unsaved-value="0">
@@ -13,7 +13,7 @@
         <property name="desccronograma" type="string">
             <column name="desccronograma" length="60" not-null="true" />
         </property>
-        <set name="plandemejoramientos" inverse="true">
+        <set name="plandemejoramientos" table="plandemejoramiento" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idcronograma" not-null="true" />
             </key>
