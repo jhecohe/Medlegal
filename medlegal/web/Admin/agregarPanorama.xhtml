@@ -47,6 +47,7 @@
                                            itemLabel="#{p.codigo}" itemValue="#{p.idproceso}" />
                             <p:ajax update="informacion, panorama"/>
                         </p:selectOneMenu>
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         <br/><br/>
                         <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro">
                             <p:column headerText="Codigo" width="40">

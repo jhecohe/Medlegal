@@ -441,6 +441,21 @@ public class Listados implements Serializable{
         return listPanorama;
     }
     
+    public List listaPanormaValidacionRiesgo(int idproceso, int idriesgo){
+        List<Panoramaderiesgos> listaRiesgos = null;
+        try {
+            org.hibernate.Transaction tx = inicio.session.beginTransaction();
+            Query q = inicio.session.createQuery("from Panoramaderiesgos p  "
+                    + "where p.proceso.idproceso = :idproceso and p.riesgoByIdriesgo.idriesgo = :idriesgo");
+            q.setParameter("idproceso", idproceso);
+            q.setParameter("idriesgo", idriesgo);
+            listaRiesgos = (List<Panoramaderiesgos>) q.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaRiesgos;
+    }
+    
     public List listaProcesotobyId(int idproceso) {
         //Proceso proce = null;
         List<Proceso> proce = null;

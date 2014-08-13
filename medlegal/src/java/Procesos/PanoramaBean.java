@@ -10,8 +10,10 @@ import UtilPersistencia.Eliminar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 /**
  *
  * @author jacs
@@ -184,8 +186,23 @@ public class PanoramaBean {
     
     public void panoramaAgregar(){
         System.out.println("Datos panorama" + idproceso +"-"+ idriesgo+"-"+causa);
-        Inserciones ins = new Inserciones();
-        ins.agregarPanoramaRiesgos(idproceso, idriesgo, causa);
+        if(validacion()){
+            Inserciones ins = new Inserciones();
+            ins.agregarPanoramaRiesgos(idproceso, idriesgo, causa);   
+        }
+    }
+    
+    public boolean validacion (){
+        boolean validado = true;
+        Listados lista = new Listados();
+        List panora = lista.listaPanormaValidacionRiesgo(idproceso, idriesgo);
+        if(panora != null){
+            validado = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        (FacesMessage.SEVERITY_INFO, "Info", "Este riesgo ya es una causa, una causa no puede ser efecto"));
+
+        }
+        return validado;
     }
     
     public List panoramabyRiesgo(){
