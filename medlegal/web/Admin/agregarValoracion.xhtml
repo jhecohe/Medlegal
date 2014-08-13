@@ -10,51 +10,6 @@
 
         <ui:composition template="./plantillaAdmin.xhtml">
 
-            <ui:define name="top">
-
-            </ui:define>
-
-            <ui:define name="left">
-                <h:form>
-                    <p:slideMenu style="width: 185px; height: 390px" >  
-                        <p:submenu label="Proceso" >  
-                            <p:menuitem value="Proceso" action="/Admin/agregarProceso" icon="ui-icon-document"/>
-                            <p:menuitem value="Panorama de Riesgos" action="/Admin/agregarPanorama" icon="ui-icon-document"/> 
-                            <p:menuitem value="Mejoramiento" action="/Admin/agregarMejoramiento" icon="ui-icon-document"/>
-                            <p:menuitem value="Valoracion" action="/Admin/agregarValoracion" icon="ui-icon-document"/>                          
-                        </p:submenu> 
-
-                        <p:submenu label="Funcionarios" >  
-                            <p:menuitem value="Funcionario" action="/Admin/agregarFuncionario" icon="ui-icon-document"/>
-                            <p:menuitem value="Usuario" action="/Admin/agregarUsuario" icon="ui-icon-document"/>
-                            <p:menuitem value="Roles" action="/Admin/agregarRoles" icon="ui-icon-document"/> 
-                            <p:menuitem value="Cargo" action="/Admin/agregarCargo" icon="ui-icon-document"/>
-                            <p:menuitem value="Grado" action="/Admin/agregarGrado" icon="ui-icon-document"/>
-                            <p:menuitem value="Clase" action="/Admin/agregarClase" icon="ui-icon-document"/>
-                        </p:submenu>    
-
-                        <p:submenu label="Administrativo" >  
-                            <p:menuitem value="Clasificacion" action="/Admin/agregarClasificacion" icon="ui-icon-document"/>
-                            <p:menuitem value="Enfoque" action="/Admin/agregarEnfoque" icon="ui-icon-document"/>
-                            <p:menuitem value="Estado" action="/Admin/agregarEstado" icon="ui-icon-document"/>
-                            <p:menuitem value="Nombre Proceso" action="/Admin/agregarNombreProceso" icon="ui-icon-document"/>
-                            <p:menuitem value="Riesgo" action="/Admin/agregarRiesgo" icon="ui-icon-document"/>
-                            <p:menuitem value="Tipo Proceso" action="/Admin/agregarTipoProceso" icon="ui-icon-document"/>
-                            <p:menuitem value="Area" action="/Admin/agregarArea" icon="ui-icon-document"/>
-                            <p:menuitem value="Ciudad" action="/Admin/agregarCiudad" icon="ui-icon-document"/> 
-                            <p:menuitem value="Departamento" action="/Admin/agregarDepartamento" icon="ui-icon-document"/>
-                            <p:menuitem value="Regional" action="/Admin/agregarRegional" icon="ui-icon-document"/> 
-                            <p:menuitem value="Seccional" action="/Admin/agregarSeccional" icon="ui-icon-document"/>
-                            <p:menuitem value="Sub-Area" action="/Admin/agregarSubarea" icon="ui-icon-document"/>
-                        </p:submenu> 
-
-                        <p:submenu label="Reportes" style="height: 260px">
-
-                        </p:submenu>
-                    </p:slideMenu>
-                </h:form>
-            </ui:define>
-
             <ui:define name="content">
 
                 <f:view>

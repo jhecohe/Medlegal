@@ -89,10 +89,6 @@ public class ValoracionBean {
         return color;
     }
 
-    public ValoracionBean() {
-        
-    }
-
     public int getIdproceso() {
         return idproceso;
     }

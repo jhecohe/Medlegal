@@ -8,7 +8,6 @@ package UtilPersistencia;
 import Persistencia.*;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.model.DataModel;
 import org.hibernate.Query;
 
 
