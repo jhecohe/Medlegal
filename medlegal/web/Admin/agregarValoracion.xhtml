@@ -17,26 +17,26 @@
                     <br/>
                     <h:form>                
                         <h:panelGrid columns="2" style="width: 68%;" >
-                            <h:outputLabel value="Proceso:" for="idproceso" />  
+                            <h:outputLabel value="Proceso:" for="proceso" />  
                             <p:selectOneMenu id="proceso" value="#{valoracionBean.idproceso}" style="width: 240px" >
                                 <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
                                 <f:selectItems value="#{valoracionBean.procesoList()}" var="p"
                                                itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
                                 <p:ajax update="panorama"/>
                             </p:selectOneMenu>
-                        </h:panelGrid>
-                        <h:panelGrid id="color" columns="2" style="width: 80%; #{valoracionBean.color()}">      
                             <h:outputLabel value="Riesgo:" />
                             <p:selectOneMenu id="panorama" value="#{valoracionBean.idpanorama}" style="width: 240px" >
                                 <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                 <f:selectItems value="#{valoracionBean.riesgosList()}" var="pr"
                                                itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
                             </p:selectOneMenu>
+                        </h:panelGrid>
+                        <h:panelGrid id="color" columns="2" style="width: 80%; #{valoracionBean.color()}">     
                             <h:outputLabel value="Origen:         " />
                             <p:selectOneRadio value="#{valoracionBean.origen}" >
                                 <f:selectItem itemLabel="Externo" itemValue="2"/>
                                 <f:selectItem itemLabel="Interno" itemValue="1"/>
-                                <p:ajax update="calificacion1, color, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
+                                <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
                             </p:selectOneRadio>
 
                             <h:outputLabel value="Probabilidad:   " />
@@ -44,7 +44,7 @@
                                 <f:selectItem itemLabel="Alto" itemValue="20" />
                                 <f:selectItem itemLabel="Medio" itemValue="10"/>
                                 <f:selectItem itemLabel="Bajo" itemValue="5"/>
-                                <p:ajax update="calificacion1, color, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
+                                <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
                             </p:selectOneRadio>
 
                             <h:outputLabel value="Impacto:        " />
@@ -52,7 +52,7 @@
                                 <f:selectItem itemLabel="Alto" itemValue="3"/>
                                 <f:selectItem itemLabel="Medio" itemValue="2"/>
                                 <f:selectItem itemLabel="Bajo" itemValue="1"/>
-                                <p:ajax update="calificacion1, color, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
+                                <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
                             </p:selectOneRadio>
                             <br/>
                             <br/>
@@ -63,7 +63,7 @@
                                 <f:selectItem itemLabel="Los controles existentes no son efectivos" itemValue="3"/>
                                 <f:selectItem itemLabel="Los controles existentes son efectivos, pero no están documentados" itemValue="2"/>
                                 <f:selectItem itemLabel="Los controles son efectivos y están documentados" itemValue="1"/>
-                                <p:ajax update="calificacion2, color, valoracion" listener="#{valoracionBean.calificacion2}"/>
+                                <p:ajax update="calificacion2, valoracion, color" listener="#{valoracionBean.calificacion2}"/>
                             </p:selectOneMenu>
                             <br/>
                             <h:outputLabel value="Calificacion:#{valoracionBean.calificacion2}" id="calificacion2" />      
@@ -71,13 +71,9 @@
                                 <h:outputLabel value="Valor del riesgo #{valoracionBean.valoracion}" id="valoracion" />      
                             </p>
                         </h:panelGrid>  
-                        <p:commandButton value="Aceptar" actionListener="#{valoracionBean.agregar()}"/>
+                        <p:commandButton value="Aceptar" actionListener="#{valoracionBean.agregar()}" update="color"/>
                     </h:form>
                 </f:view>
-            </ui:define>
-
-            <ui:define name="bottom">
-                bottom
             </ui:define>
 
         </ui:composition>
