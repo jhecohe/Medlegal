@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
@@ -18,7 +18,7 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @RequestScoped
-public class GradoBean {
+public class CargoBean {
 
     /**
      * Creates a new instance of Grado
@@ -26,7 +26,7 @@ public class GradoBean {
     private String nombre;
     private boolean modificar = false;
     
-    public GradoBean() {
+    public CargoBean() {
     }
 
     public String getNombre() {
@@ -47,13 +47,13 @@ public class GradoBean {
     
     public void agregar(){
         Inserciones insertar = new Inserciones();
-        insertar.agregarGrado(nombre);
+        insertar.agregarCargo(nombre);
     }
     
-    public List gradoListado(){
+    public List cargoListado(){
         Listados lista = new Listados();
-        List grados = lista.listaGrado();
-        return grados;
+        List cargos = lista.listaCargo();
+        return cargos;
     }
     
     public void modificar(RowEditEvent event) {

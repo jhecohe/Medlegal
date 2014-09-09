@@ -37,6 +37,12 @@ public class ValoracionBean {
         System.out.println("Bean valoracio" + idpanorama +"/"+ origen +"/"+ probabilidad +"/"+ impacto +"/"+ calificacion2 +"/"+ color);
         inser.agregarValoracion(idpanorama, origen, probabilidad, impacto, calificacion2, color);
     }
+    
+    public List valoracionList(){
+        Listados lista = new Listados();
+        List valoraciones = lista.listaValoracion();
+        return valoraciones;
+    }
 
     public List procesoList() {
         Listados lista = new Listados();

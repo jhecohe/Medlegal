@@ -25,9 +25,9 @@
                             <h:panelGrid columns="2">
                                 <h:outputLabel value="Proceso:" for="idproceso" />  
                                 <p:selectOneMenu id="procesos" value="#{mejoraBean.idproceso}" style="width: 240px" >
-                                    <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
+                                    <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
                                     <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
-                                                   itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
+                                                   itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
                                     <p:ajax update="riesgo"/>
                                 </p:selectOneMenu>
 
@@ -62,7 +62,7 @@
                             <p:selectOneMenu id="proceso" value="#{mejoraBean.idproceso}" style="width: 240px" >
                                 <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
                                 <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
-                                               itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
+                                               itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
                                 <p:ajax update="panorama"/>
                             </p:selectOneMenu>
 
@@ -96,18 +96,21 @@
                                         <h:outputText value="(#{m.funcionario.identificacion})#{m.funcionario.nombre}#{m.funcionario.apellido}" />  
                                     </f:facet>  
                                     <f:facet name="input">  
-                                        <p:inputText value="#{m.funcionario.idfuncionario}"/>  
+                                        <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" >
+                                            <f:selectItems value="#{mejoraBean.funcionarioList()}" var="f"
+                                                           itemLabel="(#{f.identificacion}) #{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}"/>
+                                        </p:selectOneMenu> 
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
 
-                            <p:column headerText="Detalle" width="125">  
+                            <p:column headerText="Accion de Mejora" width="125">  
                                 <p:cellEditor>  
                                     <f:facet name="output"> 
                                         <p:inputTextarea value="#{m.mejoramiento}" readonly="true" style="width: 270px" />
                                     </f:facet>  
                                     <f:facet name="input">  
-                                        <p:inputText value="#{m.mejoramiento}" />  
+                                        <p:inputTextarea value="#{m.mejoramiento}" style="width: 270px"/>  
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>

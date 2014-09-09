@@ -2,17 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
-import UtilPersistencia.iniciarHibernate;
-import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.ListDataModel;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -29,8 +28,6 @@ public class AreaBean {
     private String nombre;
     private int idseccional;
     private List seccionallist;
-    private boolean datos = false;
-    private boolean visible = false;
     
     public AreaBean() {
        
@@ -51,28 +48,16 @@ public class AreaBean {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public boolean isDatos() {
-        return datos;
-    }
-
-    public void setDatos(boolean datos) {
-        this.datos = datos;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
- 
     
     public void agregar(){
+        boolean respuesta;
         Inserciones insertar = new Inserciones();
-        insertar.agregarArea(nombre, idseccional);
+        respuesta = insertar.agregarArea(nombre, idseccional);
+        if(respuesta == false){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "'El enfoque "+ nombre +"' ya a sido  creado"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", nombre +" a sido creada correctamente."));
+        }
     }
     
     public List getSeccionallist() {
@@ -91,9 +76,5 @@ public class AreaBean {
         Object objeto = (Object) event.getObject();
         Actualizar actualizar = new Actualizar();
         actualizar.areaModificar(objeto);
-    }
-    
-    public void visible(){
-        visible = true;
     }
 }

@@ -20,16 +20,26 @@ public class Inserciones {
         inicio = new iniciarHibernate();
     }
 
-    public void agregarDepartamento(String nombre) {
+    public boolean agregarDepartamento(String nombre, String codigo) {
+        boolean respuesta = true;
         try {
             Departamento departamento = new Departamento();
             departamento.setDescdepartamento(nombre);
+            departamento.setCodigoregional(codigo);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(departamento);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Departamento where descdepartamento = :descripcion");
+            q.setParameter("descripcion", nombre);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(departamento);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
     public void agregarGrado(String nombre) {
@@ -44,20 +54,29 @@ public class Inserciones {
         }
     }
 
-    public void agregarCiudad(String nombre, int iddepartamento) {
+    public boolean agregarCiudad(String nombre, String codigo, int iddepartamento) {
+        boolean respuesta = true;
         try {
             Ciudad ciudad = new Ciudad();
             Departamento departamento = new Departamento();
             ciudad.setDescciudad(nombre);
+            ciudad.setCodigoregional(codigo);
             departamento.setIddepartamento(iddepartamento);
             ciudad.setDepartamento(departamento);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(ciudad);
-            inicio.getSession().getTransaction().commit();
-            inicio.getSession().close();
+            Query q = inicio.session.createQuery("from Ciudad where descciudad = :descripcion");
+            q.setParameter("descripcion", nombre);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(ciudad);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
     public void agregarClase(String nombre) {
@@ -178,42 +197,64 @@ public class Inserciones {
 //        }
 //        return id;
 //    }
-    public void agregarEnfoque(String descripcion) {
+    public boolean agregarEnfoque(String descripcion) {
+        boolean respuesta = true;
         try {
             Enfoque enfoque = new Enfoque();
             enfoque.setDescenfoque(descripcion);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(enfoque);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Enfoque where descenfoque = :descripcion");
+            q.setParameter("descripcion", descripcion);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(enfoque);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
-    public void agregarClasificacion(String descripcion) {
+    public boolean agregarClasificacion(String descripcion) {
+        boolean respuesta = true;
         try {
             Clasificacion clasi = new Clasificacion();
             clasi.setDescclasificacion(descripcion);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(clasi);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Clasificacion where descclasificacion = :descripcion");
+            q.setParameter("descripcion", descripcion);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(clasi);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
-    public void agregarRiesgo(int idclasificacion, int idenfoque, String nombre, String descripcion) {
+    public void agregarRiesgo(int idclasificacion, int idenfoque, String nombre, String descripcion, int idtipo) {
         try {
-            System.out.println("riesgo insercion agregar: " + nombre + "" + idenfoque + "" + idclasificacion);
+            System.out.println("riesgo insercion agregar: " + nombre + "" + idenfoque + "" + idclasificacion + "" + idtipo);
             Clasificacion clasi = new Clasificacion();
             clasi.setIdclasificacion(idclasificacion);
             Enfoque enfoque = new Enfoque();
             enfoque.setIdenfoque(idenfoque);
+            Tipo tipo = new Tipo();
+            tipo.setIdtipo(idtipo);
+            Estado estado = new Estado();
+            estado.setIdestado(1);
             Riesgo riesgo = new Riesgo();
             riesgo.setNombre(nombre);
             riesgo.setDescripcion(descripcion);
             riesgo.setEnfoque(enfoque);
             riesgo.setClasificacion(clasi);
+            riesgo.setTipo(tipo);
+            riesgo.setEstado(estado);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(riesgo);
             inicio.getSession().getTransaction().commit();
@@ -222,7 +263,8 @@ public class Inserciones {
         }
     }
 
-    public void agregarArea(String nombre, int idseccional) {
+    public boolean agregarArea(String nombre, int idseccional) {
+        boolean respuesta = true;
         try {
             Seccional seccional = new Seccional();
             seccional.setIdseccional(idseccional);
@@ -230,11 +272,18 @@ public class Inserciones {
             area.setDescarea(nombre);
             area.setSeccional(seccional);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(area);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Area where descarea = :descripcion");
+            q.setParameter("descripcion", nombre);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(area);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
     public void agregarSubArea(int idarea, String nombre) {
@@ -253,42 +302,67 @@ public class Inserciones {
         }
     }
 
-    public void agregarNombreProceso(String nombre) {
+    public boolean agregarNombreProceso(String nombre, int idtipopro) {
+        boolean respuesta = true;
         try {
-            System.out.println("Inserciones nombreproceso");
+            Tipoproceso tipoproceso = new Tipoproceso();
+            tipoproceso.setIdtipoproceso(idtipopro);
             Nombreproceso nomproceso = new Nombreproceso();
             nomproceso.setDescnombre(nombre);
+            nomproceso.setTipoproceso(tipoproceso);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(nomproceso);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Nombreproceso where descnombre = :descripcion");
+            q.setParameter("descripcion", nombre);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(nomproceso);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
-    public void agregarTipoProceso(String nombre) {
+    public boolean agregarTipoProceso(String nombre) {
+        boolean respuesta = true;
         try {
             Tipoproceso tipoproceso = new Tipoproceso();
             tipoproceso.setDesctipo(nombre);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(tipoproceso);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Tipoproceso where desctipo = :descripcion");
+            q.setParameter("descripcion", nombre);
+            if(q.uniqueResult() == null){
+               inicio.getSession().persist(tipoproceso);
+               inicio.getSession().getTransaction().commit(); 
+            }
+            else
+                respuesta = false;            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
-    public void agregarEstado(String nombre) {
+    public boolean agregarEstado(String descripcion) {
+        boolean respuesta = true;
         try {
             Estado estado = new Estado();
-            estado.setDescestado(nombre);
-            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(estado);
-            inicio.getSession().getTransaction().commit();
-            inicio.getSession().close();
+            estado.setDescestado(descripcion);
+            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();                        
+            Query q = inicio.session.createQuery("from Estado where descestado = :descripcion");
+            q.setParameter("descripcion", descripcion);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(estado);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
     public void agregarSeccional(String nombre, int idregional) {
@@ -306,16 +380,25 @@ public class Inserciones {
         }
     }
 
-    public void agregarRegional(String nombre) {
+    public boolean agregarRegional(String nombre) {
+        boolean respuesta = true;
         try {
             Regional regional = new Regional();
             regional.setDescregional(nombre);
+            regional.setCodigoregional("null");
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(regional);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Regional where descregional = :descripcion");
+            q.setParameter("descripcion", nombre);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(regional);
+                inicio.getSession().getTransaction().commit();
+            }
+            else
+                respuesta = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
     public void agregarProceso(int codigo, int idasociado, int idsubarea, int idfuncionario) {

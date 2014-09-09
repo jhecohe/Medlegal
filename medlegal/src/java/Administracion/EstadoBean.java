@@ -2,15 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import UtilPersistencia.iniciarHibernate;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -25,7 +27,6 @@ public class EstadoBean {
      * Creates a new instance of Departamento
      */
     private String nombre;
-    private boolean modificar = false;
     
     public EstadoBean() {
     }
@@ -37,18 +38,16 @@ public class EstadoBean {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public boolean isModificar() {
-        return modificar;
-    }
-
-    public void setModificar(boolean modificar) {
-        this.modificar = modificar;
-    }
     
     public void agregar(){
-        Inserciones insertar = new Inserciones();
-        insertar.agregarEstado(nombre);
+        boolean respuesta;
+        Inserciones inser = new Inserciones();
+        respuesta = inser.agregarEstado(nombre);
+        if(respuesta == false){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "'El estado "+ nombre +"' ya a sido  creado"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", nombre +" a sido creada correctamente."));
+        }
     }
     
     public List estadoLista(){
@@ -58,16 +57,8 @@ public class EstadoBean {
     }
     
     public void modificar(RowEditEvent event) {
-        Object riesgo = (Object) event.getObject();
-        //System.out.println("Codigo del riesgo:  " + riesgo.getIdriesgo() + "  Descripcion:  " + riesgo.getDescripcion());
+        Object obje = (Object) event.getObject();
         Actualizar actualizar = new Actualizar();
-        //actualizar.riesgoModificar(riesgo);
-    }
-    
-    public void visible(){
-        if(modificar == false){
-            modificar = true;
-        }else
-            modificar = false;  
+        actualizar.estadoModificar(obje);
     }
 }

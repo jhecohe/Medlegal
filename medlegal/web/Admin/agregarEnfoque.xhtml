@@ -10,14 +10,6 @@
 
         <ui:composition template="./plantillaAdmin.xhtml">
 
-            <ui:define name="top">
-                top
-            </ui:define>
-
-            <ui:define name="left">
-                
-            </ui:define>
-
             <ui:define name="content">
                 <f:view>
                     <h1><h:outputText value="Enfoque" /></h1>
@@ -26,7 +18,7 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <p:panelGrid columns="2" style="width: 400px">
                                 <h:outputLabel value="Nombre del Enfoque *" />
-                                <p:inputText id="nombre" value="#{enfoqueBean.descripcion}" required="true">
+                                <p:inputText id="nombre" value="#{enfoqueBean.descripcion}" required="true" label="nombre">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
@@ -35,10 +27,9 @@
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">
                             <p:menuitem id="agregar" value="Agregar Enfoque" update=""  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Enfoque" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
                             <p:menuitem value="Actualizar" update="enfoqueList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
                         </p:menubar>   
-                        <p:message for="nombre" display="" /> 
+                        <p:messages  showDetail="true" closable="true" /> 
 
                         <p:dataTable var="enfo" value="#{enfoqueBean.enfoqueListado()}" id="enfoqueList" editable="true" style="width: 400px">  
 
@@ -62,7 +53,7 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{enfoqueBean.modificar}" >  
+                            <p:column headerText="Modificar" style="width:20px">  
                                 <p:rowEditor/>  
                             </p:column>  
                         </p:dataTable>

@@ -92,14 +92,7 @@
                             <f:facet name="header">  
                                 Listado de Procesos  
                             </f:facet>  
-
-                            <!--<p:column width="40">  
-                                <f:facet name="header">  
-                                    <h:outputText value="Codigo del Proceso" />  
-                                </f:facet>  
-                                <h:outputText value="#{pro.codigo}" />  
-                            </p:column>-->  
-
+                            
                             <p:ajax event="rowEdit" listener="#{procesoBean.modificar}"/>
 
                             <p:column width="260">  

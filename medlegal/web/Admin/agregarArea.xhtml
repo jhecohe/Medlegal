@@ -15,14 +15,13 @@
                     <h1><h:outputText value="Agregar Area" /></h1>
                     <h:form>   
                         <p:menubar style="height: 26px; padding-right: 1%">
-                            <p:menuitem id="agregar" value="Agregar Area" update="areaList"  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Area" update="areaList" actionListener="#{areaBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem id="agregar" value="Agregar Area" update="areaList"  immediate="true" icon="ui-icon-gear"/>                               
                             <p:menuitem value="Actualizar" update="areaList" icon="ui-icon-arrowrefresh-1-w" immediate="true"/> 
                         </p:menubar> 
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
                             <h:panelGrid id="insertar" columns="2" >
                                 <h:outputLabel value="Nombre del Area *" />
-                                <p:inputText id="nombres" value="#{areaBean.nombre}" required="true" >
+                                <p:inputText id="nombre" value="#{areaBean.nombre}" required="true" label="nombre area">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <h:outputLabel value="Seleccione la Seccional       *" />
@@ -35,9 +34,10 @@
                                 <p:commandButton value="Aceptar" actionListener="#{areaBean.agregar()}" update="areaList" />
                             </h:panelGrid>
                         </p:overlayPanel>  
+                        <p:messages closable="true" showDetail="true"/>
                         
-                        <p:dataTable var="area" value="#{areaBean.areaLista}" id="areaList" editable="true" style="width: 400px"
-                                     scrollHeight="true" rows="16">  
+                        <p:dataTable var="area" value="#{areaBean.areaLista}" id="areaList" editable="true" style="width: 500px"
+                                     scrollHeight="true" rows="16" paginator="true">  
 
                             <f:facet name="header">  
                                 Listado de Areas
@@ -59,7 +59,7 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{areaBean.visible}" >  
+                            <p:column headerText="Editar" style="width:40px" >  
                                 <p:rowEditor/>  
                             </p:column>  
                         </p:dataTable>

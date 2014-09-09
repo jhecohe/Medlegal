@@ -4,10 +4,7 @@
  */
 package UtilPersistencia;
 
-import Persistencia.Area;
-import Persistencia.Funcionario;
-import Persistencia.Proceso;
-import Persistencia.Riesgo;
+import Persistencia.*;
 import org.hibernate.Query;
 
 /**
@@ -101,5 +98,85 @@ public class Actualizar {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public void clasificacionModificar(Object objeto){
+        Clasificacion clasificacion = (Clasificacion) objeto;
+        Query query = inicio.session.createQuery("update Clasificacion set descclasificacion = :descrip"
+                + " where idclasificacion = :id");
+        query.setParameter("descrip", clasificacion.getDescclasificacion());
+        query.setParameter("id", clasificacion.getIdclasificacion());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void enfoqueModificar(Object objeto){
+        Enfoque obje = (Enfoque) objeto;
+        Query query = inicio.session.createQuery("update Enfoque set descenfoque = :descrip"
+                + " where idenfoque = :id");
+        query.setParameter("descrip", obje.getDescenfoque());
+        query.setParameter("id", obje.getIdenfoque());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void estadoModificar(Object objeto){
+        Estado obje = (Estado) objeto;
+        Query query = inicio.session.createQuery("update Estado set descestado = :descrip"
+                + " where idestado = :id");
+        query.setParameter("descrip", obje.getDescestado());
+        query.setParameter("id", obje.getIdestado());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void nombreProModificar(Object objeto){
+        Nombreproceso obje = (Nombreproceso) objeto;
+        Query query = inicio.session.createQuery("update Nombreproceso set descnombre = :descrip"
+                + " where idnombreproceso = :id");
+        query.setParameter("descrip", obje.getDescnombre());
+        query.setParameter("id", obje.getIdnombreproceso());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void tipoProModificar(Object objeto){
+        Tipoproceso obje = (Tipoproceso) objeto;
+        Query query = inicio.session.createQuery("update Tipoproceso set desctipo = :descrip"
+                + " where idtipoproceso = :id");
+        query.setParameter("descrip", obje.getDesctipo());
+        query.setParameter("id", obje.getIdtipoproceso());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void departamentoModificar(Object objeto){
+        Departamento obje = (Departamento) objeto;
+        Query query = inicio.session.createQuery("update Departamento set descdepartamento = :descrip"
+                + " where iddepartamento = :id");
+        query.setParameter("descrip", obje.getDescdepartamento());
+        query.setParameter("id", obje.getIddepartamento());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void ciudadModificar(Object objeto){
+        Ciudad obje = (Ciudad) objeto;
+        Query query = inicio.session.createQuery("update Ciudad set descciudad = :descrip"
+                + " where idciudad = :id");
+        query.setParameter("descrip", obje.getDescciudad());
+        query.setParameter("id", obje.getIdciudad());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
+    }
+    
+    public void mejoramientoModificar(Object objeto){
+        Plandemejoramiento obje = (Plandemejoramiento) objeto;
+        Query query = inicio.session.createQuery("update Plandemejoramiento set mejoramiento = :descrip"
+                + " where idmejoramiento = :id");
+        query.setParameter("descrip", obje.getMejoramiento());
+        query.setParameter("id", obje.getIdmejoramiento());
+        int result = query.executeUpdate();
+        inicio.getSession().getTransaction().commit();
     }
 }

@@ -2,13 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -35,8 +37,14 @@ public class RegionalBean {
     }
 
     public void agregar() {
+        boolean respuesta;
         Inserciones insertar = new Inserciones();
-        insertar.agregarRegional(nombre);
+        respuesta = insertar.agregarRegional(nombre);
+        if(respuesta == false){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "'La regional "+ nombre +"' ya a sido  creado"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", nombre +" a sido creada correctamente."));
+        }
     }
 
     public List listadoRegional() {

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
@@ -10,6 +10,8 @@ import UtilPersistencia.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -18,19 +20,26 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @RequestScoped
-public class CiudadBean {
+public class SubareaBean {
     
     private String nombre;
-    private int iddepartamento;
-    private boolean modificar = false;
-    List departamentolist;
+    private int idarea;
     Listados listas;
+    private boolean modificar = false;
 
     /**
-     * Creates a new instance of CiudadBean
+     * Creates a new instance of Ciudad
      */
-    public CiudadBean() {
+    public SubareaBean() {
         listas = new Listados();
+    }
+
+    public int getIdarea() {
+        return idarea;
+    }
+
+    public void setIdarea(int iddepartamento) {
+        this.idarea = iddepartamento;
     }
 
     public String getNombre() {
@@ -39,14 +48,6 @@ public class CiudadBean {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getIddepartamento() {
-        return iddepartamento;
-    }
-
-    public void setIddepartamento(int iddepartamento) {
-        this.iddepartamento = iddepartamento;
     }
 
     public boolean isModificar() {
@@ -58,23 +59,20 @@ public class CiudadBean {
     }
     
     public void agregar(){
+        System.out.println("Estamos en el bean " + nombre + "+ " + idarea);
         Inserciones insertar = new Inserciones();
-        insertar.agregarCiudad(nombre, iddepartamento);
+        insertar.agregarSubArea(idarea, nombre);
     }
     
-    public List getDepartamentolist() {
-        System.out.println("Entro al metodo de listados de departamentos agregar ciudad");
-        
-        if (departamentolist == null) {
-            departamentolist = listas.listaDepartamentos();
-        }
-        return departamentolist;
+    public List getArealist() {
+        List arealist = listas.listaArea();
+        return arealist;
     }
     
-    public List ciudadLista(){
-        Listados lista = new Listados();
-        List ciudades = lista.listaCiudad();
-        return ciudades;
+    public List subareaLista (){
+        Listados listas = new Listados();
+        List subs = listas.listaSubarea();
+        return subs;
     }
     
     public void modificar(RowEditEvent event) {
@@ -88,6 +86,7 @@ public class CiudadBean {
         if(modificar == false){
             modificar = true;
         }else
-            modificar = false;
-    }
+            modificar = false;  
+    }  
+    
 }

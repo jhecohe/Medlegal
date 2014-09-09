@@ -23,10 +23,8 @@ public class Listados implements Serializable{
     public Listados() {
         inicio = new iniciarHibernate();
     }
-
-    // Obtiene los films donde el id de film está entre un cierto rango especificado por las variables startID y endID
+    
     public List listaDepartamentos() {
-        System.out.println("Entro al metodo de listados de departamentos agregar ciudad clase listados");
         List<Departamento> listDepartamento = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
@@ -482,6 +480,18 @@ public class Listados implements Serializable{
         return usua;
     }
     
+    public List listaValoracion(){
+        List valoracion = null;
+        try{
+            org.hibernate.Transaction tx = inicio.session.beginTransaction();
+            Query q = inicio.session.createQuery("from Analisisvaloracion");
+            valoracion = q.list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return valoracion;
+    }
+    
     public Usuario validacionUsuario(String usuario, String password){
         Usuario user = null;
         try{
@@ -547,5 +557,17 @@ public class Listados implements Serializable{
             e.printStackTrace();
         }
         return lrespon;
+    }
+    
+    public List listaTipo (){
+        List tipo = null;
+        try{
+            org.hibernate.Transaction tx = inicio.session.beginTransaction();
+            Query q = inicio.session.createQuery("from Tipo");
+            tipo = q.list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return tipo;
     }
 }

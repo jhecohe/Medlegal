@@ -4,6 +4,7 @@
  */
 package Procesos;
 
+import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import java.util.List;
@@ -77,10 +78,9 @@ public class MejoraBean {
     }
     
     public void modificar(RowEditEvent event) {
-//        System.out.println("Modificar funcionario");
-//        Object riesgo = (Object) event.getObject();
-//        Actualizar actualizar = new Actualizar();
-//        actualizar.funcionarioModificar(riesgo);
+        Object riesgo = (Object) event.getObject();
+        Actualizar actualizar = new Actualizar();
+        actualizar.funcionarioModificar(riesgo);
     }
     
     public void visible() {

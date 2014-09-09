@@ -18,7 +18,7 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <p:panelGrid columns="2" style="width: 400px">
                                 <h:outputLabel value="Nombre del Tipo de Proceso *" />
-                                <p:inputText id="nombre" value="#{tipoProcesoBean.nombre}" required="true">
+                                <p:inputText id="nombre" value="#{tipoProcesoBean.nombre}" required="true" label="nombre de tipo proceso">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
@@ -26,11 +26,10 @@
                             </p:panelGrid>
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">
-                            <p:menuitem id="agregar" value="Agregar Usuario" update="tipoList"  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Usuario" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem id="agregar" value="Agregar Usuario" update="tipoList"  immediate="true" icon="ui-icon-gear"/>                              
                             <p:menuitem value="Actualizar" update="tipoList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
                         </p:menubar>   
-                        <p:message for="nombre" display="" /> 
+                        <p:messages id="notificar" closable="true" showDetail="true"/> 
 
                         <p:dataTable var="tipo" value="#{tipoProcesoBean.tipoprocesoLista()}" id="tipoList" editable="true" style="width: 300px">  
 
@@ -54,8 +53,8 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{tipoProcesoBean.modificar}" >  
-                                <p:rowEditor/>  
+                            <p:column headerText="Editar" style="width:20px">  
+                                <p:rowEditor/>
                             </p:column>  
                         </p:dataTable> 
                     </h:form>

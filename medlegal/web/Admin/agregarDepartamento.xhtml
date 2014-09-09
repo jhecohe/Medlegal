@@ -7,7 +7,6 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-
         <ui:composition template="./plantillaAdmin.xhtml">
 
             <ui:define name="content">
@@ -19,17 +18,19 @@
                         <p:menubar >
                             <p:menuitem id="agregar" value="Agregar Departamento" icon="ui-icon-gear"/>
                             <p:menuitem id="actualizar" value="Actualizar" actionListener="#{departamentoBean.visible()}" 
-                                        update="departaList" icon="ui-icon-arrowrefresh-1-w"/>
+                                        ajax="false" update="departaList" icon="ui-icon-arrowrefresh-1-w"/>
                         </p:menubar>
 
                         <p:overlayPanel for="agregar">
                             <p:panelGrid columns="2">
                                 <h:outputLabel value="Nombre del Departamento *" />
-                                <p:inputText id="nombre" value="#{departamentoBean.nombre}" required="true"/>
-                                <p:commandButton  value="Agregar" actionListener="#{departamentoBean.agregar()}" update="departaList" style="background: white"/>
+                                <p:inputText id="nombre" value="#{departamentoBean.nombre}" required="true" label="nombre"/>
+                                <h:outputLabel value="Codigo del Departamento *" />
+                                <p:inputText id="codigo" value="#{departamentoBean.codigo}" required="true" label="codigo" maxlength="3"/>
+                                <p:commandButton  value="Agregar" actionListener="#{departamentoBean.agregar()}" update="departaList" ajax="false" style="background: white"/>
                             </p:panelGrid>
                         </p:overlayPanel>
-                       
+                        <p:messages closable="true" showDetail="true"/>
                         <p:dataTable var="depar" value="#{departamentoBean.departamentoList()}" id="departaList" 
                                      editable="true" style="width: 600px" scrollable="true" scrollHeight="400">  
                             <p:menubar />
@@ -40,7 +41,7 @@
                             <p:ajax event="rowEdit" listener="#{departamentoBean.modificar}" />
 
                             <p:column headerText="Codigo" style="width:50px">  
-                                <h:outputText value="#{depar.codigo}" />  
+                                <h:outputText value="#{depar.codigoregional}" />  
                             </p:column>  
 
                             <p:column headerText="Nombre" >  
@@ -53,7 +54,7 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{departamentoBean.modificar}" >  
+                            <p:column headerText="Modificar" style="width:20px" >  
                                 <p:rowEditor/>  
                             </p:column>  
                         </p:dataTable>

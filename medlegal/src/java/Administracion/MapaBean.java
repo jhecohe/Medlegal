@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import Persistencia.Panoramaderiesgos;
 import UtilPersistencia.Listados;

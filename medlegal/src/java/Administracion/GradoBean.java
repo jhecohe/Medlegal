@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
@@ -18,23 +18,23 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @RequestScoped
-public class EnfoqueBean {
+public class GradoBean {
 
     /**
-     * Creates a new instance of EnfoqueBean
+     * Creates a new instance of Grado
      */
-    private String descripcion;
+    private String nombre;
     private boolean modificar = false;
     
-    public EnfoqueBean() {
+    public GradoBean() {
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public boolean isModificar() {
@@ -45,15 +45,15 @@ public class EnfoqueBean {
         this.modificar = modificar;
     }
     
-    public void agregar (){
-        Inserciones inser = new Inserciones();
-        inser.agregarEnfoque(descripcion);
+    public void agregar(){
+        Inserciones insertar = new Inserciones();
+        insertar.agregarGrado(nombre);
     }
     
-    public List enfoqueListado(){
-        Listados listas = new Listados();
-        List enfoques = listas.listaEnfoque();
-        return enfoques;
+    public List gradoListado(){
+        Listados lista = new Listados();
+        List grados = lista.listaGrado();
+        return grados;
     }
     
     public void modificar(RowEditEvent event) {
@@ -67,6 +67,6 @@ public class EnfoqueBean {
         if(modificar == false){
             modificar = true;
         }else
-            modificar = false;     
+            modificar = false;
     }
 }

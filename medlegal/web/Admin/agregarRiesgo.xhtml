@@ -20,24 +20,33 @@
                     <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                         <p:panelGrid columns="2">
                             <h:outputLabel value="Nombre del Riesgo*" />
-                            <p:inputText id="nombre" value="#{riesgoBean.nombre}"/>
+                            <p:inputText id="nombre" value="#{riesgoBean.nombre}" required="true" label="nombre"/>
                             <h:outputLabel value="Descripcion del Riesgo*" />
-                            <p:inputText id="descripcion" value="#{riesgoBean.descripcion}"/>
+                            <p:inputText id="descripcion" value="#{riesgoBean.descripcion}" required="true" label="descripcion"/>
                             <h:outputLabel value="Seleccione la clasificacion *" />
-                            <p:selectOneMenu value="#{riesgoBean.idclasificacion}" style="width: 180px">
-                                <f:selectItems value="#{riesgoBean.listadoClasificacion()}" var="cla"
+                            <p:selectOneMenu value="#{riesgoBean.idclasificacion}" style="width: 180px" rendered="true">
+                                <f:selectItem itemLabel="Seleccione Clasificacion" noSelectionOption="true"/>
+                                <f:selectItems value="#{riesgoBean.listadoClasificacion()}" var="cla"                                               
                                                itemLabel="#{cla.descclasificacion}" itemValue="#{cla.idclasificacion}"/>
                             </p:selectOneMenu>
                             <h:outputLabel value="Seleccione el enfoque       *" />
-                            <p:selectOneMenu value="#{riesgoBean.enfoque}" style="width: 180px">
+                            <p:selectOneMenu value="#{riesgoBean.enfoque}" style="width: 180px" required="true">
+                                <f:selectItem itemLabel="Seleccione Enfoque" noSelectionOption="true"/>
                                 <f:selectItems value="#{riesgoBean.listadoEnfoque()}" var="enfo"
                                                itemLabel="#{enfo.descenfoque}" itemValue="#{enfo.idenfoque}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="Seleccione el tipo       *" />
+                            <p:selectOneMenu value="#{riesgoBean.idtipo}" style="width: 180px" required="true">
+                                <f:selectItem itemLabel="Seleccione Tipo" noSelectionOption="true"/>
+                                <f:selectItems value="#{riesgoBean.listadoTipo()}" var="tipo"
+                                               itemLabel="#{tipo.desctiporiesgo}" itemValue="#{tipo.idtipo}"/>
                             </p:selectOneMenu>
                             <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
                             <p:commandButton  value="Agregar" actionListener="#{riesgoBean.agregar()}" update="riesgoList" ajax="false"/>
                         </p:panelGrid>
                         <br/>
                     </p:overlayPanel>
+                    <p:messages closable="true" showDetail="true"/>
                     <p:dataTable var="ries" value="#{riesgoBean.riesgoLista()}" id="riesgoList" editable="true" 
                                  paginator="true" rows="12"  
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  

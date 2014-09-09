@@ -10,14 +10,6 @@
 
         <ui:composition template="./plantillaAdmin.xhtml">
 
-            <ui:define name="top">
-                top
-            </ui:define>
-
-            <ui:define name="menu">
-                
-            </ui:define>
-
             <ui:define name="content">
                 <f:view>
                     <h1><h:outputText value="Estado" /></h1>
@@ -26,7 +18,7 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <p:panelGrid columns="2" style="width: 400px">
                                 <h:outputLabel value="Nombre del Estado *" />
-                                <p:inputText id="nombre" value="#{estadoBean.nombre}" required="true">
+                                <p:inputText id="nombre" value="#{estadoBean.nombre}" required="true" label="nombre">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
@@ -34,11 +26,10 @@
                             </p:panelGrid>
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">
-                            <p:menuitem id="agregar" value="Agregar Estado" update=""  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Estado" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem id="agregar" value="Agregar Estado" update=""  immediate="true" icon="ui-icon-gear"/>                               
                             <p:menuitem value="Actualizar" update="estadoList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
                         </p:menubar>   
-                        <p:message for="nombre" display="" /> 
+                        <p:messages closable="true" showDetail="true"/> 
 
                         <p:dataTable var="estado" value="#{estadoBean.estadoLista()}" id="estadoList" editable="true" style="width: 300px">  
 
@@ -62,7 +53,7 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{estadoBean.modificar}" >  
+                            <p:column headerText="Editar" style="width:20px">  
                                 <p:rowEditor/>  
                             </p:column>  
                         </p:dataTable>

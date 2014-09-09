@@ -31,6 +31,7 @@ public class RiesgoBean {
     private int idriesgo;
     private int idclasificacion;
     private int enfoque;
+    private int idtipo;
     private List causas;
     private Map<String, String> riesgomap;
     private boolean modificar = true;
@@ -50,7 +51,7 @@ public class RiesgoBean {
     public void agregar() {
         System.out.println("riesgo bean agregar: " + nombre + ""+enfoque+""+idclasificacion);
         Inserciones insertar = new Inserciones();
-        insertar.agregarRiesgo(idclasificacion, enfoque, nombre, descripcion);
+        insertar.agregarRiesgo(idclasificacion, enfoque, nombre, descripcion, idtipo);
 
     }
 
@@ -69,14 +70,12 @@ public class RiesgoBean {
         for (int i = 0; i < listado.size(); i++) {
             Riesgo riesgo = (Riesgo) listado.get(i);
             riesgomap.put(riesgo.getDescripcion(), "" + riesgo.getIdriesgo());
-            //System.out.println("listado de causas:  " + riesgo.getDescripcion() + " y " + riesgo.getIdriesgo());
         }
         return riesgomap;
     }
 
     public void modificar(RowEditEvent event) {
         Riesgo riesgo = (Riesgo) event.getObject();
-        //System.out.println("Codigo del riesgo:  " + riesgo.getIdriesgo() + "  Descripcion:  " + riesgo.getDescripcion());
         Actualizar actualizar = new Actualizar();
         actualizar.riesgoModificar(riesgo , idestado);
     }
@@ -93,13 +92,11 @@ public class RiesgoBean {
         return enfoque;
     }
     
-//    public void visible(){
-//        modificar = true;
-//        if(modificar == false){
-//            modificar = true;
-//        }else
-//            modificar = false;   
-//    }
+    public List listadoTipo(){
+        Listados listas = new Listados();
+        List tipo = listas.listaTipo();
+        return tipo;
+    }
     
     public String getNombre() {
         return nombre;
@@ -155,5 +152,13 @@ public class RiesgoBean {
 
     public void setIdestado(int idestado) {
         this.idestado = idestado;
+    }
+
+    public int getIdtipo() {
+        return idtipo;
+    }
+
+    public void setIdtipo(int idtipo) {
+        this.idtipo = idtipo;
     }
 }

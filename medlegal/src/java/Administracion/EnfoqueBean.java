@@ -2,14 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package General;
+package Administracion;
 
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -18,16 +20,15 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @RequestScoped
-public class ClasificacionBean {
+public class EnfoqueBean {
 
     /**
-     * Creates a new instance of ClasificacionBean
+     * Creates a new instance of EnfoqueBean
      */
-    
     private String descripcion;
     private boolean modificar = false;
     
-    public ClasificacionBean() {
+    public EnfoqueBean() {
     }
 
     public String getDescripcion() {
@@ -46,28 +47,26 @@ public class ClasificacionBean {
         this.modificar = modificar;
     }
     
-    public void agregar(){
+    public void agregar (){
+        boolean respuesta;
         Inserciones inser = new Inserciones();
-        inser.agregarClasificacion(descripcion);
+        respuesta = inser.agregarEnfoque(descripcion);
+        if(respuesta == false){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "'El enfoque "+ descripcion +"' ya a sido  creado"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", descripcion +" a sido creada correctamente."));
+        }
     }
     
-    public List clasificacionListado (){
+    public List enfoqueListado(){
         Listados listas = new Listados();
-        List clasificaciones = listas.listaClasificacion();
-        return clasificaciones;
+        List enfoques = listas.listaEnfoque();
+        return enfoques;
     }
     
     public void modificar(RowEditEvent event) {
-        Object riesgo = (Object) event.getObject();
-        //System.out.println("Codigo del riesgo:  " + riesgo.getIdriesgo() + "  Descripcion:  " + riesgo.getDescripcion());
+        Object enfoque = (Object) event.getObject();
         Actualizar actualizar = new Actualizar();
-        //actualizar.riesgoModificar(riesgo);
-    }
-    
-    public void visible(){
-        if(modificar == false){
-            modificar = true;
-        }else
-            modificar = false;  
+        actualizar.enfoqueModificar(enfoque);
     }
 }

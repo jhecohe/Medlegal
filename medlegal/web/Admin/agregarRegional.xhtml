@@ -18,16 +18,16 @@
                     <h:form>   
                         <p:menubar style="max-height: 26px; padding-right: 1%">
                             <p:menuitem id="agregar" value="Agregar" icon="ui-icon-gear"/>
-                            <p:menuitem id="actualizar" value="Actualizar" icon="ui-icon-arrowrefresh-1-w"/>
+                            <p:menuitem id="actualizar" value="Actualizar" icon="ui-icon-arrowrefresh-1-w" update="regionalList" ajax="false"/>
                         </p:menubar>
                         <p:overlayPanel for="agregar">
                             <p:panelGrid columns="2">
                                 <h:outputLabel value="Nombre de la Regional" />
-                                <p:inputText value="#{regionalBean.nombre}"/>
-                                <p:commandButton action="#{regionalBean.agregar()}" value="Enviar" style="background: white"/>
+                                <p:inputText id="nombre" value="#{regionalBean.nombre}" required="true" label="nombre"/>
+                                <p:commandButton action="#{regionalBean.agregar()}" value="Agregar" style="background: white" update="regionalList" ajax="false"/>
                             </p:panelGrid>
                         </p:overlayPanel>
-                        
+                        <p:messages id="messages" showDetail="true" closable="true" />
                         <p:dataTable id="regionalList" var="reg" value="#{regionalBean.listadoRegional()}"  
                                      style="width: 600px">
                             <f:facet name="header">  
@@ -39,7 +39,7 @@
                             <p:column headerText="Codigo" style="width:50px">  
                                 <h:outputText value="#{reg.idregional}" />  
                             </p:column>  
-
+                            <p:messages closable="true" showDetail="true"/>
                             <p:column headerText="Nombre" >  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
@@ -50,7 +50,7 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{regionalBean.modificar()}" >  
+                            <p:column headerText="Modificar" style="width:20px">  
                                 <p:rowEditor/>  
                             </p:column> 
                         </p:dataTable>

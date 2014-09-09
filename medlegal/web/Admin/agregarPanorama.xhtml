@@ -19,7 +19,7 @@
                             <p:menuitem id="agregar" value="Agregar Panorama de Riesgo" immediate="true" icon="ui-icon-gear"/>    
                             <p:menuitem value="Borrar Panorama de Riesgo" action="#{panoramaBean.eliminarPanorama()}" update="panorama" ajax="false" icon="ui-icon-close"/>
                             <p:menuitem value="Actualizar" update="panorama, informacion" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
-                            <p:menuitem value="Agregar Riesgo" action="/Admin/agregarRiesgo" icon="ui-icon-gear" />   
+                            <p:menuitem id="riesgo" value="Agregar Riesgo" icon="ui-icon-gear" />   
                         </p:menubar>
 
                         <p:overlayPanel id="datos" for="agregar" style="background-color: scrollbar" >
@@ -39,15 +39,44 @@
                                 <p:commandButton action="#{panoramaBean.panoramaAgregar()}" value="agregar" update="panorama" />
                             </p:panelGrid>
                         </p:overlayPanel>
-
+                        
+                        <p:overlayPanel id="datos2" for="riesgo" hideEffect="fade" style="background-color: scrollbar">
+                        <p:panelGrid columns="2">
+                            <h:outputLabel value="Nombre del Riesgo*" />
+                            <p:inputText id="nombre" value="#{riesgoBean.nombre}" required="true" label="nombre"/>
+                            <h:outputLabel value="Descripcion del Riesgo*" />
+                            <p:inputText id="descripcion" value="#{riesgoBean.descripcion}" required="true" label="descripcion"/>
+                            <h:outputLabel value="Seleccione la clasificacion *" />
+                            <p:selectOneMenu value="#{riesgoBean.idclasificacion}" style="width: 180px" rendered="true">
+                                <f:selectItem itemLabel="Seleccione Clasificacion" noSelectionOption="true"/>
+                                <f:selectItems value="#{riesgoBean.listadoClasificacion()}" var="cla"                                               
+                                               itemLabel="#{cla.descclasificacion}" itemValue="#{cla.idclasificacion}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="Seleccione el enfoque       *" />
+                            <p:selectOneMenu value="#{riesgoBean.enfoque}" style="width: 180px" required="true">
+                                <f:selectItem itemLabel="Seleccione Enfoque" noSelectionOption="true"/>
+                                <f:selectItems value="#{riesgoBean.listadoEnfoque()}" var="enfo"
+                                               itemLabel="#{enfo.descenfoque}" itemValue="#{enfo.idenfoque}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="Seleccione el tipo       *" />
+                            <p:selectOneMenu value="#{riesgoBean.idtipo}" style="width: 180px" required="true">
+                                <f:selectItem itemLabel="Seleccione Tipo" noSelectionOption="true"/>
+                                <f:selectItems value="#{riesgoBean.listadoTipo()}" var="tipo"
+                                               itemLabel="#{tipo.desctiporiesgo}" itemValue="#{tipo.idtipo}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
+                            <p:commandButton  value="Agregar" actionListener="#{riesgoBean.agregar()}" ajax="false"/>
+                        </p:panelGrid>
+                        <br/>
+                    </p:overlayPanel>
+                        <p:messages id="messages" showDetail="true" closable="true" />
                         <h:outputText value="Proceso  " style="width: 140" />  
                         <p:selectOneMenu id="proceso" value="#{panoramaBean.idproceso}" style="width: 200px" >
                             <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
                             <f:selectItems value="#{panoramaBean.procesoList()}" var="p"
-                                           itemLabel="#{p.codigo}" itemValue="#{p.idproceso}" />
+                                           itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}" />
                             <p:ajax update="informacion, panorama"/>
                         </p:selectOneMenu>
-                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         <br/><br/>
                         <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro">
                             <p:column headerText="Codigo" width="40">
@@ -76,10 +105,10 @@
                             <p:column headerText="Codigo" width="70"  rendered="false">
                                 <h:outputText value="#{efe.idpanoramariesgos}"/>
                             </p:column>
-                            <p:column headerText="Nombre Riesgo" width="170" >
+                            <p:column headerText="Nombre Causa" width="170" >
                                 <h:outputText value="#{efe.riesgoByIdriesgo.nombre}"/>
                             </p:column>
-                            <p:column headerText="Descripcion Riesgo" width="200">
+                            <p:column headerText="Descripcion Causa" width="200">
                                 <h:outputText value="#{efe.riesgoByIdriesgo.descripcion}"/>
                             </p:column>
                             <p:column headerText="Nombre Efecto" width="170">
