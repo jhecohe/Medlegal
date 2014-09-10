@@ -7,6 +7,7 @@ package Procesos;
 import UtilPersistencia.Actualizar;
 import UtilPersistencia.Inserciones;
 import UtilPersistencia.Listados;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -27,18 +28,19 @@ public class MejoraBean {
     private int idproceso;
     private int idriesgo;
     private int idpanorama;
-    private int cronograma;
+    private int idestado;
+    private Date revision;
+    private Date actual = new Date();
     private String mejora;
     private int calificacion;
     private int idfuncionario;
-    private boolean modificar;
     
     public MejoraBean() {
     }
 
     public void agregar(){
         Inserciones insertar = new Inserciones();
-        insertar.agregarMejoramiento(cronograma, idriesgo, idfuncionario, calificacion, mejora);
+        insertar.agregarMejoramiento(idestado, idriesgo, idfuncionario, calificacion, mejora, revision);
     }
     
     public List procesoList() {
@@ -77,20 +79,6 @@ public class MejoraBean {
         return mejoras;
     }
     
-    public void modificar(RowEditEvent event) {
-        Object riesgo = (Object) event.getObject();
-        Actualizar actualizar = new Actualizar();
-        actualizar.funcionarioModificar(riesgo);
-    }
-    
-    public void visible() {
-        if (modificar == false) {
-            modificar = true;
-        } else {
-            modificar = false;
-        }
-    }
-    
     public int getIdproceso() {
         return idproceso;
     }
@@ -113,14 +101,6 @@ public class MejoraBean {
 
     public void setMejora(String mejora) {
         this.mejora = mejora;
-    }
-
-    public int getCronograma() {
-        return cronograma;
-    }
-
-    public void setCronograma(int cronograma) {
-        this.cronograma = cronograma;
     }
 
     public int getCalificacion() {
@@ -147,11 +127,27 @@ public class MejoraBean {
         this.idfuncionario = idfuncionario;
     }
 
-    public boolean isModificar() {
-        return modificar;
+    public int getIdestado() {
+        return idestado;
     }
 
-    public void setModificar(boolean modificar) {
-        this.modificar = modificar;
+    public void setIdestado(int idestado) {
+        this.idestado = idestado;
+    }
+
+    public Date getRevision() {
+        return revision;
+    }
+
+    public void setRevision(Date revision) {
+        this.revision = revision;
+    }
+
+    public Date getActual() {
+        return actual;
+    }
+
+    public void setActual(Date actual) {
+        this.actual = actual;
     }
 }

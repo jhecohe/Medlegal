@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -13,25 +13,25 @@ public class Seccional  implements java.io.Serializable {
 
      private int idseccional;
      private Regional regional;
-     private String descseccional;
      private String codigoseccional;
+     private String descseccional;
      private Set areas = new HashSet(0);
 
     public Seccional() {
     }
 
 	
-    public Seccional(int idseccional, Regional regional, String descseccional, String codigoseccional) {
+    public Seccional(int idseccional, Regional regional, String codigoseccional, String descseccional) {
         this.idseccional = idseccional;
         this.regional = regional;
-        this.descseccional = descseccional;
         this.codigoseccional = codigoseccional;
+        this.descseccional = descseccional;
     }
-    public Seccional(int idseccional, Regional regional, String descseccional, String codigoseccional, Set areas) {
+    public Seccional(int idseccional, Regional regional, String codigoseccional, String descseccional, Set areas) {
        this.idseccional = idseccional;
        this.regional = regional;
-       this.descseccional = descseccional;
        this.codigoseccional = codigoseccional;
+       this.descseccional = descseccional;
        this.areas = areas;
     }
    
@@ -49,19 +49,19 @@ public class Seccional  implements java.io.Serializable {
     public void setRegional(Regional regional) {
         this.regional = regional;
     }
-    public String getDescseccional() {
-        return this.descseccional;
-    }
-    
-    public void setDescseccional(String descseccional) {
-        this.descseccional = descseccional;
-    }
     public String getCodigoseccional() {
         return this.codigoseccional;
     }
     
     public void setCodigoseccional(String codigoseccional) {
         this.codigoseccional = codigoseccional;
+    }
+    public String getDescseccional() {
+        return this.descseccional;
+    }
+    
+    public void setDescseccional(String descseccional) {
+        this.descseccional = descseccional;
     }
     public Set getAreas() {
         return this.areas;

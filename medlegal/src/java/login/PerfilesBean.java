@@ -18,15 +18,14 @@ import org.primefaces.event.RowEditEvent;
  */
 @ManagedBean
 @RequestScoped
-public class RolesBean {
+public class PerfilesBean {
 
     /**
      * Creates a new instance of Grado
      */
     private String nombre;
-    private boolean modificar = false;
     
-    public RolesBean() {
+    public PerfilesBean() {
     }
 
     public String getNombre() {
@@ -36,23 +35,15 @@ public class RolesBean {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public boolean isModificar() {
-        return modificar;
-    }
-
-    public void setModificar(boolean modificar) {
-        this.modificar = modificar;
-    }
     
     public void agregar(){
         Inserciones insertar = new Inserciones();
-        insertar.agregarRoles(nombre);
+        insertar.agregarPerfil(nombre);
     }
     
     public List roloesLista(){
         Listados listas = new Listados();
-        List roles = listas.listaRoles();
+        List roles = listas.listaPerfiles();
         return roles;
     }
     
@@ -61,13 +52,5 @@ public class RolesBean {
         //System.out.println("Codigo del riesgo:  " + riesgo.getIdriesgo() + "  Descripcion:  " + riesgo.getDescripcion());
         Actualizar actualizar = new Actualizar();
         //actualizar.riesgoModificar(riesgo);
-    }
-    
-    public void visible(){
-        if(modificar == false){
-            modificar = true;
-        }else
-            modificar = false;
-    }
-    
+    }    
 }

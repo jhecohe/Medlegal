@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Estado" table="estado" schema="public">
         <id name="idestado" type="int" unsaved-value="0">
@@ -19,11 +19,11 @@
             </key>
             <one-to-many class="Persistencia.Proceso" />
         </set>
-        <set name="rols" table="rol" inverse="true" lazy="true" fetch="select">
+        <set name="perfils" table="perfil" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idestado" not-null="true" />
             </key>
-            <one-to-many class="Persistencia.Rol" />
+            <one-to-many class="Persistencia.Perfil" />
         </set>
         <set name="riesgos" table="riesgo" inverse="true" lazy="true" fetch="select">
             <key>

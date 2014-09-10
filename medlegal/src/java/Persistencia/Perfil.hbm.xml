@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="Persistencia.Rol" table="rol" schema="public">
-        <id name="idrol" type="int" unsaved-value="0">
-            <column name="idrol" unique="true" sql-type="int"/>
+    <class name="Persistencia.Perfil" table="perfil" schema="public">
+        <id name="idperfil" type="int" unsaved-value="0">
+            <column name="idperfil" unique="true" sql-type="int"/>
             <generator class="native" >
-                <param name="sequence">rol_idrol_seq</param>
+                <param name="sequence">perfil_idperfil_seq</param>
             </generator>
         </id>
         <many-to-one name="estado" class="Persistencia.Estado" fetch="select">
             <column name="idestado" not-null="true" />
         </many-to-one>
-        <property name="descrol" type="string">
-            <column name="descrol" length="100" not-null="true" />
+        <property name="descperfil" type="string">
+            <column name="descperfil" length="100" not-null="true" />
         </property>
         <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idrol" not-null="true" />
+                <column name="idperfil" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Usuario" />
         </set>

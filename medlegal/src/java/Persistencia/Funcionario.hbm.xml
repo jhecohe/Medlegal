@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Funcionario" table="funcionario" schema="public">
         <id name="idfuncionario" type="int" unsaved-value="0">
             <column name="idfuncionario" unique="true" sql-type="int"/>
             <generator class="native" >
-                <param name="sequence">funcionario_idfincionario_seq</param>
+                <param name="sequence">funcionario_idfuncionario_seq</param>
             </generator>
         </id>
         <many-to-one name="grado" class="Persistencia.Grado" fetch="select">
@@ -72,12 +72,6 @@
                 <column name="idfuncionario" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Usuario" />
-        </set>
-        <set name="logs" table="log" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idfuncionario" not-null="true" />
-            </key>
-            <one-to-many class="Persistencia.Log" />
         </set>
         <set name="procesos" table="proceso" inverse="true" lazy="true" fetch="select">
             <key>

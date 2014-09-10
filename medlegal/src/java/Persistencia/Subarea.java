@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -13,8 +13,8 @@ public class Subarea  implements java.io.Serializable {
 
      private int idsubarea;
      private Area area;
-     private String descsubarea;
      private String codigosubarea;
+     private String descsubarea;
      private Set procesos = new HashSet(0);
      private Set funcionarios = new HashSet(0);
 
@@ -22,17 +22,17 @@ public class Subarea  implements java.io.Serializable {
     }
 
 	
-    public Subarea(int idsubarea, Area area, String descsubarea, String codigosubarea) {
+    public Subarea(int idsubarea, Area area, String codigosubarea, String descsubarea) {
         this.idsubarea = idsubarea;
         this.area = area;
-        this.descsubarea = descsubarea;
         this.codigosubarea = codigosubarea;
+        this.descsubarea = descsubarea;
     }
-    public Subarea(int idsubarea, Area area, String descsubarea, String codigosubarea, Set procesos, Set funcionarios) {
+    public Subarea(int idsubarea, Area area, String codigosubarea, String descsubarea, Set procesos, Set funcionarios) {
        this.idsubarea = idsubarea;
        this.area = area;
-       this.descsubarea = descsubarea;
        this.codigosubarea = codigosubarea;
+       this.descsubarea = descsubarea;
        this.procesos = procesos;
        this.funcionarios = funcionarios;
     }
@@ -51,19 +51,19 @@ public class Subarea  implements java.io.Serializable {
     public void setArea(Area area) {
         this.area = area;
     }
-    public String getDescsubarea() {
-        return this.descsubarea;
-    }
-    
-    public void setDescsubarea(String descsubarea) {
-        this.descsubarea = descsubarea;
-    }
     public String getCodigosubarea() {
         return this.codigosubarea;
     }
     
     public void setCodigosubarea(String codigosubarea) {
         this.codigosubarea = codigosubarea;
+    }
+    public String getDescsubarea() {
+        return this.descsubarea;
+    }
+    
+    public void setDescsubarea(String descsubarea) {
+        this.descsubarea = descsubarea;
     }
     public Set getProcesos() {
         return this.procesos;

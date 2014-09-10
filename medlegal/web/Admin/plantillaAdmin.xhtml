@@ -39,16 +39,17 @@
             <h:form id="fmenu">
                 <p:menubar>  
                     <p:submenu label="Proceso" >  
+                        <p:menuitem value="Riesgo" action="/Admin/agregarRiesgo" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Procesos" action="/Admin/agregarProceso" icon="ui-icon-document" ajax="false"/>
-                        <p:menuitem value="Panorama de Riesgos" action="/Admin/agregarPanorama" icon="ui-icon-document" ajax="false"/> 
-                        <p:menuitem value="Mejoramiento" action="/Admin/agregarMejoramiento" icon="ui-icon-document" ajax="false" />
+                        <p:menuitem value="Panorama de Riesgos" action="/Admin/agregarPanorama" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Valoracion" action="/Admin/agregarValoracion" icon="ui-icon-document" ajax="false"/>                           
+                        <p:menuitem value="Mejoramiento" action="/Admin/agregarMejoramiento" icon="ui-icon-document" ajax="false" />                        
                     </p:submenu> 
 
                     <p:submenu label="Funcionarios" >  
                         <p:menuitem value="Funcionario" action="/Admin/agregarFuncionario" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Usuario" action="/Admin/agregarUsuario" icon="ui-icon-document" ajax="false"/>
-                        <p:menuitem value="Roles" action="/Admin/agregarRoles" icon="ui-icon-document" ajax="false"/> 
+                        <p:menuitem value="Perfiles" action="/Admin/agregarPerfil" icon="ui-icon-document" ajax="false"/> 
                         <p:menuitem value="Cargo" action="/Admin/agregarCargo" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Grado" action="/Admin/agregarGrado" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Clase" action="/Admin/agregarClase" icon="ui-icon-document" ajax="false"/>
@@ -58,8 +59,7 @@
                         <p:menuitem value="Clasificacion" action="/Admin/agregarClasificacion" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Enfoque" action="/Admin/agregarEnfoque" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Estado" action="/Admin/agregarEstado" icon="ui-icon-document" ajax="false"/>
-                        <p:menuitem value="Nombre Proceso" action="/Admin/agregarNombreProceso" icon="ui-icon-document" ajax="false"/>
-                        <p:menuitem value="Riesgo" action="/Admin/agregarRiesgo" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Nombre Proceso" action="/Admin/agregarNombreProceso" icon="ui-icon-document" ajax="false"/>                        
                         <p:menuitem value="Tipo Proceso" action="/Admin/agregarTipoProceso" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Area" action="/Admin/agregarArea" icon="ui-icon-document" ajax="false"/>
                         <p:menuitem value="Ciudad" action="/Admin/agregarCiudad" icon="ui-icon-document" ajax="false"/> 

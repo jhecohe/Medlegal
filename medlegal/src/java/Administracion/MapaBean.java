@@ -34,7 +34,7 @@ public class MapaBean {
         root = new DefaultMindmapNode("Proceso22", "Proceso", "FFCC00", false);
         for (int i = 0; i < riesgos.size(); i++) {
             Panoramaderiesgos panora = (Panoramaderiesgos) riesgos.get(i);
-            root.addNode(new DefaultMindmapNode(panora.getRiesgoByIdriesgo().getDescripcion(), panora.getRiesgoByIdcausa().getIdriesgo(), "6e9ebf", true));
+            root.addNode(new DefaultMindmapNode(panora.getRiesgoByIdriesgo().getDescriesgo(), panora.getRiesgoByRieIdriesgo().getIdriesgo(), "6e9ebf", true));
         }
 
     }

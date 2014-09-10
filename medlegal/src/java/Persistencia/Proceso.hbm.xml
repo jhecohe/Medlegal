@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Proceso" table="proceso" schema="public">
         <id name="idproceso" type="int" unsaved-value="0">
@@ -22,8 +22,8 @@
         <many-to-one name="funcionario" class="Persistencia.Funcionario" fetch="select">
             <column name="idfuncionario" not-null="true" />
         </many-to-one>
-        <property name="codigo" type="string">
-            <column name="codigo" length="20" not-null="true" />
+        <property name="codigoproceso" type="string">
+            <column name="codigoproceso" length="20" not-null="true" />
         </property>
         <property name="creado" type="date">
             <column name="creado" length="13" not-null="true" />
@@ -31,17 +31,17 @@
         <property name="modificado" type="date">
             <column name="modificado" length="13" />
         </property>
-        <set name="logs" table="log" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idproceso" not-null="true" />
-            </key>
-            <one-to-many class="Persistencia.Log" />
-        </set>
         <set name="panoramaderiesgoses" table="panoramaderiesgos" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idproceso" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Panoramaderiesgos" />
+        </set>
+        <set name="trazaprocesos" table="trazaproceso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproceso" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Trazaproceso" />
         </set>
     </class>
 </hibernate-mapping>

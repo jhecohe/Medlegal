@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 
@@ -10,6 +10,7 @@ public class Analisisvaloracion  implements java.io.Serializable {
 
 
      private int idanalisisvaloracion;
+     private Trazavaloracion trazavaloracion;
      private Panoramaderiesgos panoramaderiesgos;
      private int origen;
      private int probabilidad;
@@ -20,8 +21,9 @@ public class Analisisvaloracion  implements java.io.Serializable {
     public Analisisvaloracion() {
     }
 
-    public Analisisvaloracion(int idanalisisvaloracion, Panoramaderiesgos panoramaderiesgos, int origen, int probabilidad, int impacto, int control, String color) {
+    public Analisisvaloracion(int idanalisisvaloracion, Trazavaloracion trazavaloracion, Panoramaderiesgos panoramaderiesgos, int origen, int probabilidad, int impacto, int control, String color) {
        this.idanalisisvaloracion = idanalisisvaloracion;
+       this.trazavaloracion = trazavaloracion;
        this.panoramaderiesgos = panoramaderiesgos;
        this.origen = origen;
        this.probabilidad = probabilidad;
@@ -36,6 +38,13 @@ public class Analisisvaloracion  implements java.io.Serializable {
     
     public void setIdanalisisvaloracion(int idanalisisvaloracion) {
         this.idanalisisvaloracion = idanalisisvaloracion;
+    }
+    public Trazavaloracion getTrazavaloracion() {
+        return this.trazavaloracion;
+    }
+    
+    public void setTrazavaloracion(Trazavaloracion trazavaloracion) {
+        this.trazavaloracion = trazavaloracion;
     }
     public Panoramaderiesgos getPanoramaderiesgos() {
         return this.panoramaderiesgos;

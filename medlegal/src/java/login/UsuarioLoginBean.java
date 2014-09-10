@@ -85,9 +85,9 @@ public class UsuarioLoginBean {
         System.out.println(usuario+ "  /  " + password);
         Usuario user = listas.validacionUsuario(usuario, password);
         if(user != null){
-            System.out.println(user.getRol().getDescrol()+ " if nombre usuario  ");
+            System.out.println(user.getPerfil().getDescperfil()+ " if nombre usuario  ");
             validacion = true;
-            setRol(user.getRol().getDescrol());
+            setRol(user.getPerfil().getDescperfil());
         }
         //Aqui se puede validar hacia una base de datos
         return validacion;

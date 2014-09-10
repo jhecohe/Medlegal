@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -32,7 +32,6 @@ public class Funcionario  implements java.io.Serializable {
      private String direccion;
      private Set plandemejoramientos = new HashSet(0);
      private Set usuarios = new HashSet(0);
-     private Set logs = new HashSet(0);
      private Set procesos = new HashSet(0);
 
     public Funcionario() {
@@ -54,7 +53,7 @@ public class Funcionario  implements java.io.Serializable {
         this.identificacion = identificacion;
         this.fechanacimiento = fechanacimiento;
     }
-    public Funcionario(int idfuncionario, Grado grado, Estado estado, Ciudad ciudadByCiuIdciudad2, Cargo cargo, Ciudad ciudadByCiuIdciudad, Ciudad ciudadByIdciudad, Subarea subarea, Clase clase, String nombre, String segnombre, String apellido, String segapellido, int identificacion, Date fechanacimiento, String telefono, String correo, String direccion, Set plandemejoramientos, Set usuarios, Set logs, Set procesos) {
+    public Funcionario(int idfuncionario, Grado grado, Estado estado, Ciudad ciudadByCiuIdciudad2, Cargo cargo, Ciudad ciudadByCiuIdciudad, Ciudad ciudadByIdciudad, Subarea subarea, Clase clase, String nombre, String segnombre, String apellido, String segapellido, int identificacion, Date fechanacimiento, String telefono, String correo, String direccion, Set plandemejoramientos, Set usuarios, Set procesos) {
        this.idfuncionario = idfuncionario;
        this.grado = grado;
        this.estado = estado;
@@ -75,7 +74,6 @@ public class Funcionario  implements java.io.Serializable {
        this.direccion = direccion;
        this.plandemejoramientos = plandemejoramientos;
        this.usuarios = usuarios;
-       this.logs = logs;
        this.procesos = procesos;
     }
    
@@ -218,13 +216,6 @@ public class Funcionario  implements java.io.Serializable {
     
     public void setUsuarios(Set usuarios) {
         this.usuarios = usuarios;
-    }
-    public Set getLogs() {
-        return this.logs;
-    }
-    
-    public void setLogs(Set logs) {
-        this.logs = logs;
     }
     public Set getProcesos() {
         return this.procesos;

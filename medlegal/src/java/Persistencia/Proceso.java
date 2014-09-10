@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -17,49 +17,48 @@ public class Proceso  implements java.io.Serializable {
      private Subarea subarea;
      private Procesoasociado procesoasociado;
      private Funcionario funcionario;
-     private String codigo;
+     private String codigoproceso;
      private Date creado;
      private Date modificado;
-     private Set logs = new HashSet(0);
      private Set panoramaderiesgoses = new HashSet(0);
+     private Set trazaprocesos = new HashSet(0);
 
     public Proceso() {
     }
 
 	
-    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoregional, Date creado) {
+    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoproceso, Date creado) {
         this.idproceso = idproceso;
         this.estado = estado;
         this.subarea = subarea;
         this.procesoasociado = procesoasociado;
         this.funcionario = funcionario;
-        this.codigo = codigoregional;
+        this.codigoproceso = codigoproceso;
         this.creado = creado;
     }
-    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoregional, Date creado, Date modificado, Set logs, Set panoramaderiesgoses) {
+    public Proceso(int idproceso, Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoproceso, Date creado, Date modificado, Set panoramaderiesgoses, Set trazaprocesos) {
        this.idproceso = idproceso;
        this.estado = estado;
        this.subarea = subarea;
        this.procesoasociado = procesoasociado;
        this.funcionario = funcionario;
-       this.codigo = codigoregional;
+       this.codigoproceso = codigoproceso;
        this.creado = creado;
        this.modificado = modificado;
-       this.logs = logs;
        this.panoramaderiesgoses = panoramaderiesgoses;
+       this.trazaprocesos = trazaprocesos;
     }
-
-    public Proceso(Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoregional, Date creado) {
+    public Proceso(Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoproceso, Date creado) {
        this.idproceso = idproceso;
        this.estado = estado;
        this.subarea = subarea;
        this.procesoasociado = procesoasociado;
        this.funcionario = funcionario;
-       this.codigo = codigoregional;
+       this.codigoproceso = codigoproceso;
        this.creado = creado;
        this.modificado = modificado;
-       this.logs = logs;
        this.panoramaderiesgoses = panoramaderiesgoses;
+       this.trazaprocesos = trazaprocesos;
     }
    
     public int getIdproceso() {
@@ -97,12 +96,12 @@ public class Proceso  implements java.io.Serializable {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-    public String getCodigo() {
-        return this.codigo;
+    public String getCodigoproceso() {
+        return this.codigoproceso;
     }
     
-    public void setCodigo(String codigoregional) {
-        this.codigo = codigoregional;
+    public void setCodigoproceso(String codigoproceso) {
+        this.codigoproceso = codigoproceso;
     }
     public Date getCreado() {
         return this.creado;
@@ -118,19 +117,19 @@ public class Proceso  implements java.io.Serializable {
     public void setModificado(Date modificado) {
         this.modificado = modificado;
     }
-    public Set getLogs() {
-        return this.logs;
-    }
-    
-    public void setLogs(Set logs) {
-        this.logs = logs;
-    }
     public Set getPanoramaderiesgoses() {
         return this.panoramaderiesgoses;
     }
     
     public void setPanoramaderiesgoses(Set panoramaderiesgoses) {
         this.panoramaderiesgoses = panoramaderiesgoses;
+    }
+    public Set getTrazaprocesos() {
+        return this.trazaprocesos;
+    }
+    
+    public void setTrazaprocesos(Set trazaprocesos) {
+        this.trazaprocesos = trazaprocesos;
     }
 
 

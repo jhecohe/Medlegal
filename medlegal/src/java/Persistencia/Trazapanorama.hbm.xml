@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Trazapanorama" table="trazapanorama" schema="public">
+        <id name="idtrazapanorama" type="int" unsaved-value="0">
+            <column name="idtrazapanorama" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">trazapanorama_idtrazapanorama_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="panoramaderiesgos" class="Persistencia.Panoramaderiesgos" fetch="select">
+            <column name="idpanoramariesgos" />
+        </many-to-one>
+        <property name="trazacausa" type="string">
+            <column name="trazacausa" length="50" not-null="true" />
+        </property>
+        <property name="trazaefecto" type="string">
+            <column name="trazaefecto" length="50" not-null="true" />
+        </property>
+        <property name="usuariooperacion" type="string">
+            <column name="usuariooperacion" length="20" not-null="true" />
+        </property>
+        <property name="fechaoperacion" type="date">
+            <column name="fechaoperacion" length="13" not-null="true" />
+        </property>
+        <property name="tipooperacion" type="string">
+            <column name="tipooperacion" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

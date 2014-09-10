@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class Estado  implements java.io.Serializable {
      private int idestado;
      private String descestado;
      private Set procesos = new HashSet(0);
-     private Set rols = new HashSet(0);
+     private Set perfils = new HashSet(0);
      private Set riesgos = new HashSet(0);
      private Set funcionarios = new HashSet(0);
 
@@ -26,11 +26,11 @@ public class Estado  implements java.io.Serializable {
         this.idestado = idestado;
         this.descestado = descestado;
     }
-    public Estado(int idestado, String descestado, Set procesos, Set rols, Set riesgos, Set funcionarios) {
+    public Estado(int idestado, String descestado, Set procesos, Set perfils, Set riesgos, Set funcionarios) {
        this.idestado = idestado;
        this.descestado = descestado;
        this.procesos = procesos;
-       this.rols = rols;
+       this.perfils = perfils;
        this.riesgos = riesgos;
        this.funcionarios = funcionarios;
     }
@@ -56,12 +56,12 @@ public class Estado  implements java.io.Serializable {
     public void setProcesos(Set procesos) {
         this.procesos = procesos;
     }
-    public Set getRols() {
-        return this.rols;
+    public Set getPerfils() {
+        return this.perfils;
     }
     
-    public void setRols(Set rols) {
-        this.rols = rols;
+    public void setPerfils(Set perfils) {
+        this.perfils = perfils;
     }
     public Set getRiesgos() {
         return this.riesgos;

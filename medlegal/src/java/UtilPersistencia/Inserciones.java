@@ -25,7 +25,7 @@ public class Inserciones {
         try {
             Departamento departamento = new Departamento();
             departamento.setDescdepartamento(nombre);
-            departamento.setCodigoregional(codigo);
+            departamento.setCodigodepartamento(codigo);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Departamento where descdepartamento = :descripcion");
             q.setParameter("descripcion", nombre);
@@ -60,7 +60,7 @@ public class Inserciones {
             Ciudad ciudad = new Ciudad();
             Departamento departamento = new Departamento();
             ciudad.setDescciudad(nombre);
-            ciudad.setCodigoregional(codigo);
+            ciudad.setCodigociudad(codigo);
             departamento.setIddepartamento(iddepartamento);
             ciudad.setDepartamento(departamento);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
@@ -152,51 +152,37 @@ public class Inserciones {
         }
     }
 
-    public void agregarRoles(String nombre) {
+    public void agregarPerfil(String nombre) {
         try {
-            Rol roles = new Rol();
-            roles.setDescrol(nombre);
+            Perfil perfil = new Perfil();
+            perfil.setDescperfil(nombre);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(roles);
+            inicio.getSession().persist(perfil);
             inicio.getSession().getTransaction().commit();
-            inicio.getSession().close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void agregarUsuario(int idfuncionario, int idroles, String nombre, String clave) {
+    public void agregarUsuario(int idfuncionario, int idperfil, String nombre, String clave) {
         try {
             Funcionario funcionario = new Funcionario();
             funcionario.setIdfuncionario(idfuncionario);
-            Rol roles = new Rol();
-            roles.setIdrol(idroles);
+            Perfil roles = new Perfil();
+            roles.setIdperfil(idperfil);
             Usuario usuario = new Usuario();
             usuario.setClave(clave);
             usuario.setFuncionario(funcionario);
             usuario.setNombreusuario(nombre);
-            usuario.setRol(roles);
+            usuario.setPerfil(roles);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(usuario);
             inicio.getSession().getTransaction().commit();
-            inicio.getSession().close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-//    public int idfuncionario (){
-//        int id = -1;
-//        try {
-//            org.hibernate.Transaction tx = inicio.session.beginTransaction();
-//            Query q = inicio.session.createQuery("select max(idfuncionario) from Funcionario");
-//            id = (Integer) q.uniqueResult();
-//            inicio.getSession().close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return id;
-//    }
     public boolean agregarEnfoque(String descripcion) {
         boolean respuesta = true;
         try {
@@ -244,16 +230,16 @@ public class Inserciones {
             clasi.setIdclasificacion(idclasificacion);
             Enfoque enfoque = new Enfoque();
             enfoque.setIdenfoque(idenfoque);
-            Tipo tipo = new Tipo();
+            Tiporiesgo tipo = new Tiporiesgo();
             tipo.setIdtipo(idtipo);
             Estado estado = new Estado();
             estado.setIdestado(1);
             Riesgo riesgo = new Riesgo();
             riesgo.setNombre(nombre);
-            riesgo.setDescripcion(descripcion);
+            riesgo.setDescriesgo(descripcion);
             riesgo.setEnfoque(enfoque);
             riesgo.setClasificacion(clasi);
-            riesgo.setTipo(tipo);
+            riesgo.setTiporiesgo(tipo);
             riesgo.setEstado(estado);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(riesgo);
@@ -451,7 +437,7 @@ public class Inserciones {
             Panoramaderiesgos panorama = new Panoramaderiesgos();
             panorama.setRiesgoByIdriesgo(riesgo);
             panorama.setProceso(proceso);
-            panorama.setRiesgoByIdcausa(causa);
+            panorama.setRiesgoByRieIdriesgo(causa);
             inicio.getSession().persist(panorama);
             inicio.getSession().getTransaction().commit();
         } catch (Exception e) {
@@ -479,20 +465,21 @@ public class Inserciones {
         }
     }
 
-    public void agregarMejoramiento(int idcronograma, int idpanorama, int idfuncionario, int reslutado, String mejora) {
+    public void agregarMejoramiento(int idestado, int idpanorama, int idfuncionario, int reslutado, String mejora, Date revision) {
         try {
-            Cronograma cronogra = new Cronograma();
-            cronogra.setIdcronograma(idcronograma);
             Panoramaderiesgos panora = new Panoramaderiesgos();
             panora.setIdpanoramariesgos(idpanorama);
             Funcionario funcio = new Funcionario();
             funcio.setIdfuncionario(idfuncionario);
+            Estadomejoramiento estado = new Estadomejoramiento();
+            estado.setIdestadomejoramiento(idestado);
             Plandemejoramiento mejoramiento = new Plandemejoramiento();
-            mejoramiento.setCronograma(cronogra);
             mejoramiento.setPanoramaderiesgos(panora);
             mejoramiento.setFuncionario(funcio);
             mejoramiento.setResultado(reslutado);
             mejoramiento.setMejoramiento(mejora);
+            mejoramiento.setFechainicio(new Date());
+            mejoramiento.setFecharevision(revision);
             System.out.println("Agregar Mejorameinto aqui");
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(mejoramiento);
@@ -502,21 +489,4 @@ public class Inserciones {
             e.printStackTrace();
         }
     }
-    
-//    public int buscarMejoramientoUltimoRegistro() {
-//        int id = 0;
-//        try {
-//            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-//            Query q = inicio.getSession().createQuery("select max(p.idmejoramiento) from Plandemejoramiento p");
-//            //Query q = inicio.getSession().createQuery("from Proceso order by idproceso desc");
-//            if (q.uniqueResult() == null) {
-//                id = 1;
-//            } else {
-//                id = (Integer) q.uniqueResult();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return id;
-//    }
 }

@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,41 +14,41 @@ public class Riesgo  implements java.io.Serializable {
      private int idriesgo;
      private Estado estado;
      private Enfoque enfoque;
-     private Tipo tipo;
+     private Tiporiesgo tiporiesgo;
      private Clasificacion clasificacion;
      private String nombre;
-     private String descripcion;
+     private String descriesgo;
      private int entrada;
-     private Set panoramaderiesgosesForIdcausa = new HashSet(0);
+     private Set panoramaderiesgosesForRieIdriesgo = new HashSet(0);
      private Set panoramaderiesgosesForIdriesgo = new HashSet(0);
-     private Set logs = new HashSet(0);
+     private Set trazariesgos = new HashSet(0);
 
     public Riesgo() {
     }
 
 	
-    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tipo tipo, Clasificacion clasificacion, String nombre, String descripcion, int entrada) {
+    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tiporiesgo tiporiesgo, Clasificacion clasificacion, String nombre, String descriesgo, int entrada) {
         this.idriesgo = idriesgo;
         this.estado = estado;
         this.enfoque = enfoque;
-        this.tipo = tipo;
+        this.tiporiesgo = tiporiesgo;
         this.clasificacion = clasificacion;
         this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.descriesgo = descriesgo;
         this.entrada = entrada;
     }
-    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tipo tipo, Clasificacion clasificacion, String nombre, String descripcion, int entrada, Set panoramaderiesgosesForIdcausa, Set panoramaderiesgosesForIdriesgo, Set logs) {
+    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tiporiesgo tiporiesgo, Clasificacion clasificacion, String nombre, String descriesgo, int entrada, Set panoramaderiesgosesForRieIdriesgo, Set panoramaderiesgosesForIdriesgo, Set trazariesgos) {
        this.idriesgo = idriesgo;
        this.estado = estado;
        this.enfoque = enfoque;
-       this.tipo = tipo;
+       this.tiporiesgo = tiporiesgo;
        this.clasificacion = clasificacion;
        this.nombre = nombre;
-       this.descripcion = descripcion;
+       this.descriesgo = descriesgo;
        this.entrada = entrada;
-       this.panoramaderiesgosesForIdcausa = panoramaderiesgosesForIdcausa;
+       this.panoramaderiesgosesForRieIdriesgo = panoramaderiesgosesForRieIdriesgo;
        this.panoramaderiesgosesForIdriesgo = panoramaderiesgosesForIdriesgo;
-       this.logs = logs;
+       this.trazariesgos = trazariesgos;
     }
    
     public int getIdriesgo() {
@@ -72,12 +72,12 @@ public class Riesgo  implements java.io.Serializable {
     public void setEnfoque(Enfoque enfoque) {
         this.enfoque = enfoque;
     }
-    public Tipo getTipo() {
-        return this.tipo;
+    public Tiporiesgo getTiporiesgo() {
+        return this.tiporiesgo;
     }
     
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setTiporiesgo(Tiporiesgo tiporiesgo) {
+        this.tiporiesgo = tiporiesgo;
     }
     public Clasificacion getClasificacion() {
         return this.clasificacion;
@@ -93,12 +93,12 @@ public class Riesgo  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getDescripcion() {
-        return this.descripcion;
+    public String getDescriesgo() {
+        return this.descriesgo;
     }
     
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescriesgo(String descriesgo) {
+        this.descriesgo = descriesgo;
     }
     public int getEntrada() {
         return this.entrada;
@@ -107,12 +107,12 @@ public class Riesgo  implements java.io.Serializable {
     public void setEntrada(int entrada) {
         this.entrada = entrada;
     }
-    public Set getPanoramaderiesgosesForIdcausa() {
-        return this.panoramaderiesgosesForIdcausa;
+    public Set getPanoramaderiesgosesForRieIdriesgo() {
+        return this.panoramaderiesgosesForRieIdriesgo;
     }
     
-    public void setPanoramaderiesgosesForIdcausa(Set panoramaderiesgosesForIdcausa) {
-        this.panoramaderiesgosesForIdcausa = panoramaderiesgosesForIdcausa;
+    public void setPanoramaderiesgosesForRieIdriesgo(Set panoramaderiesgosesForRieIdriesgo) {
+        this.panoramaderiesgosesForRieIdriesgo = panoramaderiesgosesForRieIdriesgo;
     }
     public Set getPanoramaderiesgosesForIdriesgo() {
         return this.panoramaderiesgosesForIdriesgo;
@@ -121,12 +121,12 @@ public class Riesgo  implements java.io.Serializable {
     public void setPanoramaderiesgosesForIdriesgo(Set panoramaderiesgosesForIdriesgo) {
         this.panoramaderiesgosesForIdriesgo = panoramaderiesgosesForIdriesgo;
     }
-    public Set getLogs() {
-        return this.logs;
+    public Set getTrazariesgos() {
+        return this.trazariesgos;
     }
     
-    public void setLogs(Set logs) {
-        this.logs = logs;
+    public void setTrazariesgos(Set trazariesgos) {
+        this.trazariesgos = trazariesgos;
     }
 
 

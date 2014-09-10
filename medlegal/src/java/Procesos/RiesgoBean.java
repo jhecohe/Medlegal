@@ -69,7 +69,7 @@ public class RiesgoBean {
         listado = listados.listaRiesgo();
         for (int i = 0; i < listado.size(); i++) {
             Riesgo riesgo = (Riesgo) listado.get(i);
-            riesgomap.put(riesgo.getDescripcion(), "" + riesgo.getIdriesgo());
+            riesgomap.put(riesgo.getNombre(), "" + riesgo.getIdriesgo());
         }
         return riesgomap;
     }

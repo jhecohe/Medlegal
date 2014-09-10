@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -13,25 +13,25 @@ public class Area  implements java.io.Serializable {
 
      private int idarea;
      private Seccional seccional;
-     private String descarea;
      private String codigoarea;
+     private String descarea;
      private Set subareas = new HashSet(0);
 
     public Area() {
     }
 
 	
-    public Area(int idarea, Seccional seccional, String descarea, String codigoarea) {
+    public Area(int idarea, Seccional seccional, String codigoarea, String descarea) {
         this.idarea = idarea;
         this.seccional = seccional;
-        this.descarea = descarea;
         this.codigoarea = codigoarea;
+        this.descarea = descarea;
     }
-    public Area(int idarea, Seccional seccional, String descarea, String codigoarea, Set subareas) {
+    public Area(int idarea, Seccional seccional, String codigoarea, String descarea, Set subareas) {
        this.idarea = idarea;
        this.seccional = seccional;
-       this.descarea = descarea;
        this.codigoarea = codigoarea;
+       this.descarea = descarea;
        this.subareas = subareas;
     }
    
@@ -49,19 +49,19 @@ public class Area  implements java.io.Serializable {
     public void setSeccional(Seccional seccional) {
         this.seccional = seccional;
     }
-    public String getDescarea() {
-        return this.descarea;
-    }
-    
-    public void setDescarea(String descarea) {
-        this.descarea = descarea;
-    }
     public String getCodigoarea() {
         return this.codigoarea;
     }
     
     public void setCodigoarea(String codigoarea) {
         this.codigoarea = codigoarea;
+    }
+    public String getDescarea() {
+        return this.descarea;
+    }
+    
+    public void setDescarea(String descarea) {
+        this.descarea = descarea;
     }
     public Set getSubareas() {
         return this.subareas;

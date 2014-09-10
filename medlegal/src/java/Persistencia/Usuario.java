@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 
@@ -10,18 +10,18 @@ public class Usuario  implements java.io.Serializable {
 
 
      private int idusuario;
+     private Perfil perfil;
      private Funcionario funcionario;
-     private Rol rol;
      private String nombreusuario;
      private String clave;
 
     public Usuario() {
     }
 
-    public Usuario(int idusuario, Funcionario funcionario, Rol rol, String nombreusuario, String clave) {
+    public Usuario(int idusuario, Perfil perfil, Funcionario funcionario, String nombreusuario, String clave) {
        this.idusuario = idusuario;
+       this.perfil = perfil;
        this.funcionario = funcionario;
-       this.rol = rol;
        this.nombreusuario = nombreusuario;
        this.clave = clave;
     }
@@ -33,19 +33,19 @@ public class Usuario  implements java.io.Serializable {
     public void setIdusuario(int idusuario) {
         this.idusuario = idusuario;
     }
+    public Perfil getPerfil() {
+        return this.perfil;
+    }
+    
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
     public Funcionario getFuncionario() {
         return this.funcionario;
     }
     
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-    }
-    public Rol getRol() {
-        return this.rol;
-    }
-    
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
     public String getNombreusuario() {
         return this.nombreusuario;

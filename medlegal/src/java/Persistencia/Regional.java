@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -12,23 +12,23 @@ public class Regional  implements java.io.Serializable {
 
 
      private int idregional;
-     private String descregional;
      private String codigoregional;
+     private String descregional;
      private Set seccionals = new HashSet(0);
 
     public Regional() {
     }
 
 	
-    public Regional(int idregional, String descregional, String codigoregional) {
+    public Regional(int idregional, String codigoregional, String descregional) {
         this.idregional = idregional;
-        this.descregional = descregional;
         this.codigoregional = codigoregional;
+        this.descregional = descregional;
     }
-    public Regional(int idregional, String descregional, String codigoregional, Set seccionals) {
+    public Regional(int idregional, String codigoregional, String descregional, Set seccionals) {
        this.idregional = idregional;
-       this.descregional = descregional;
        this.codigoregional = codigoregional;
+       this.descregional = descregional;
        this.seccionals = seccionals;
     }
    
@@ -39,19 +39,19 @@ public class Regional  implements java.io.Serializable {
     public void setIdregional(int idregional) {
         this.idregional = idregional;
     }
-    public String getDescregional() {
-        return this.descregional;
-    }
-    
-    public void setDescregional(String descregional) {
-        this.descregional = descregional;
-    }
     public String getCodigoregional() {
         return this.codigoregional;
     }
     
     public void setCodigoregional(String codigoregional) {
         this.codigoregional = codigoregional;
+    }
+    public String getDescregional() {
+        return this.descregional;
+    }
+    
+    public void setDescregional(String descregional) {
+        this.descregional = descregional;
     }
     public Set getSeccionals() {
         return this.seccionals;

@@ -26,7 +26,6 @@ public class UsuarioBean {
     String clave;
     String reclave;
     Listados listas;
-    private boolean modificar = false;
 
     /**
      * Creates a new instance of Ciudad
@@ -74,14 +73,6 @@ public class UsuarioBean {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public boolean isModificar() {
-        return modificar;
-    }
-
-    public void setModificar(boolean modificar) {
-        this.modificar = modificar;
-    }
     
     public void agregar(){
         System.out.println("Estamos en el bean " + idfuncionario + " + " + idroles);
@@ -95,7 +86,7 @@ public class UsuarioBean {
     }
     
     public List getRoles() {
-        List roleslist = listas.listaRoles();
+        List roleslist = listas.listaPerfiles();
         return roleslist;
     }
     
@@ -115,12 +106,5 @@ public class UsuarioBean {
         //System.out.println("Codigo del riesgo:  " + riesgo.getIdriesgo() + "  Descripcion:  " + riesgo.getDescripcion());
         Actualizar actualizar = new Actualizar();
         //actualizar.riesgoModificar(riesgo);
-    }
-    
-    public void visible(){
-        if(modificar == false){
-            modificar = true;
-        }else
-            modificar = false;
     }
 }

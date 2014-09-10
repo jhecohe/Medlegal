@@ -36,12 +36,7 @@
                                     <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                     <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
                                                    itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
-                                </p:selectOneMenu>
-                                <h:outputLabel value="Cronograma:" />
-                                <p:selectOneMenu id="cronograma" value="#{mejoraBean.cronograma}" style="width: 240px" >
-                                    <f:selectItems value="#{mejoraBean.cronogramaList()}" var="c"
-                                                   itemLabel="#{c.desccronograma}" itemValue="#{c.idcronograma}"/>
-                                </p:selectOneMenu>
+                                </p:selectOneMenu> 
 
                                 <h:outputLabel value="Mejoramiento:" />
                                 <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy"/>
@@ -51,6 +46,12 @@
                                     <f:selectItems value="#{mejoraBean.funcionarioList()}" var="f"
                                                    itemLabel="(#{f.identificacion}) #{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}"/>
                                 </p:selectOneMenu>
+                                
+                                <h:outputLabel value="Proxima Evaluacion:" />
+                                <p:calendar value="#{mejoraBean.revision}" id="revision" pattern="yyyy/M/d" navigator="true" required="true"
+                                            showButtonPanel="true" yearRange="2014:2100" label="revision" size="34" mindate="#{mejoraBean.actual}"> 
+                                    <f:convertDateTime pattern="yyyy/M/d"/>
+                                </p:calendar>
 
                                 <h:outputLabel value="Calificacion:" />
                                 <p:inputText id="calificacion" value="#{mejoraBean.calificacion}" style="width: 230px"/>
@@ -117,10 +118,10 @@
                             <p:column headerText="Periodo" width="25">  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
-                                        <h:outputText value="#{m.cronograma.desccronograma}" />  
+                                        <h:outputText value="#{m.revision}" />  
                                     </f:facet>  
                                     <f:facet name="input">  
-                                        <p:inputText value="#{m.cronograma.desccronograma}" />  
+                                        <p:inputText value="#{m.revision}" />  
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>

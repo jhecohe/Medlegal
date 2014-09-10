@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Ciudad" table="ciudad" schema="public">
         <id name="idciudad" type="int" unsaved-value="0">
@@ -13,8 +13,8 @@
         <many-to-one name="departamento" class="Persistencia.Departamento" fetch="select">
             <column name="iddepartamento" not-null="true" />
         </many-to-one>
-        <property name="codigoregional" type="string">
-            <column name="codigoregional" length="20" not-null="true" />
+        <property name="codigociudad" type="string">
+            <column name="codigociudad" length="20" not-null="true" />
         </property>
         <property name="descciudad" type="string">
             <column name="descciudad" length="80" not-null="true" />

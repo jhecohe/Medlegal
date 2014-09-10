@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2014 10:05:30 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated 8/09/2014 11:38:18 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Riesgo" table="riesgo" schema="public">
         <id name="idriesgo" type="int" unsaved-value="0">
             <column name="idriesgo" unique="true" sql-type="int"/>
-            <generator class="native" >
+            <generator class="native">
                 <param name="sequence">riesgo_idriesgo_seq</param>
             </generator>
         </id>
@@ -16,7 +16,7 @@
         <many-to-one name="enfoque" class="Persistencia.Enfoque" fetch="select">
             <column name="idenfoque" not-null="true" />
         </many-to-one>
-        <many-to-one name="tipo" class="Persistencia.Tipo" fetch="select">
+        <many-to-one name="tiporiesgo" class="Persistencia.Tiporiesgo" fetch="select">
             <column name="idtipo" not-null="true" />
         </many-to-one>
         <many-to-one name="clasificacion" class="Persistencia.Clasificacion" fetch="select">
@@ -25,15 +25,15 @@
         <property name="nombre" type="string">
             <column name="nombre" length="60" not-null="true" />
         </property>
-        <property name="descripcion" type="string">
-            <column name="descripcion" length="300" not-null="true" />
+        <property name="descriesgo" type="string">
+            <column name="descriesgo" length="500" not-null="true" />
         </property>
         <property name="entrada" type="int">
             <column name="entrada" not-null="true" />
         </property>
-        <set name="panoramaderiesgosesForIdcausa" table="panoramaderiesgos" inverse="true" lazy="true" fetch="select">
+        <set name="panoramaderiesgosesForRieIdriesgo" table="panoramaderiesgos" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idcausa" not-null="true" />
+                <column name="rie_idriesgo" not-null="true" />
             </key>
             <one-to-many class="Persistencia.Panoramaderiesgos" />
         </set>
@@ -43,11 +43,11 @@
             </key>
             <one-to-many class="Persistencia.Panoramaderiesgos" />
         </set>
-        <set name="logs" table="log" inverse="true" lazy="true" fetch="select">
+        <set name="trazariesgos" table="trazariesgo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idriesgo" not-null="true" />
             </key>
-            <one-to-many class="Persistencia.Log" />
+            <one-to-many class="Persistencia.Trazariesgo" />
         </set>
     </class>
 </hibernate-mapping>

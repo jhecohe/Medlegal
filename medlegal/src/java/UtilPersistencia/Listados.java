@@ -122,16 +122,16 @@ public class Listados implements Serializable{
         return funcionario;
     }
     
-    public List listaRoles() {
-        List<Rol> listRoles = null;
+    public List listaPerfiles() {
+        List<Perfil> listPerfiles = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
-            Query q = inicio.session.createQuery("from Rol");
-            listRoles = (List<Rol>) q.list();
+            Query q = inicio.session.createQuery("from Perfil");
+            listPerfiles = (List<Perfil>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listRoles;
+        return listPerfiles;
     }
     
     public List listaPanoramabyProceso(int proceso) {

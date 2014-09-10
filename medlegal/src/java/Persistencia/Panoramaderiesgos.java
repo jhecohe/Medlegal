@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 21/07/2014 10:05:29 AM by Hibernate Tools 3.6.0
+// Generated 8/09/2014 11:38:16 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -13,29 +13,29 @@ public class Panoramaderiesgos  implements java.io.Serializable {
 
      private int idpanoramariesgos;
      private Proceso proceso;
-     private Riesgo riesgoByIdcausa;
+     private Riesgo riesgoByRieIdriesgo;
      private Riesgo riesgoByIdriesgo;
+     private Set trazapanoramas = new HashSet(0);
      private Set analisisvaloracions = new HashSet(0);
-     private Set logs = new HashSet(0);
      private Set plandemejoramientos = new HashSet(0);
 
     public Panoramaderiesgos() {
     }
 
 	
-    public Panoramaderiesgos(int idpanoramariesgos, Proceso proceso, Riesgo riesgoByIdcausa, Riesgo riesgoByIdriesgo) {
+    public Panoramaderiesgos(int idpanoramariesgos, Proceso proceso, Riesgo riesgoByRieIdriesgo, Riesgo riesgoByIdriesgo) {
         this.idpanoramariesgos = idpanoramariesgos;
         this.proceso = proceso;
-        this.riesgoByIdcausa = riesgoByIdcausa;
+        this.riesgoByRieIdriesgo = riesgoByRieIdriesgo;
         this.riesgoByIdriesgo = riesgoByIdriesgo;
     }
-    public Panoramaderiesgos(int idpanoramariesgos, Proceso proceso, Riesgo riesgoByIdcausa, Riesgo riesgoByIdriesgo, Set analisisvaloracions, Set logs, Set plandemejoramientos) {
+    public Panoramaderiesgos(int idpanoramariesgos, Proceso proceso, Riesgo riesgoByRieIdriesgo, Riesgo riesgoByIdriesgo, Set trazapanoramas, Set analisisvaloracions, Set plandemejoramientos) {
        this.idpanoramariesgos = idpanoramariesgos;
        this.proceso = proceso;
-       this.riesgoByIdcausa = riesgoByIdcausa;
+       this.riesgoByRieIdriesgo = riesgoByRieIdriesgo;
        this.riesgoByIdriesgo = riesgoByIdriesgo;
+       this.trazapanoramas = trazapanoramas;
        this.analisisvaloracions = analisisvaloracions;
-       this.logs = logs;
        this.plandemejoramientos = plandemejoramientos;
     }
    
@@ -53,12 +53,12 @@ public class Panoramaderiesgos  implements java.io.Serializable {
     public void setProceso(Proceso proceso) {
         this.proceso = proceso;
     }
-    public Riesgo getRiesgoByIdcausa() {
-        return this.riesgoByIdcausa;
+    public Riesgo getRiesgoByRieIdriesgo() {
+        return this.riesgoByRieIdriesgo;
     }
     
-    public void setRiesgoByIdcausa(Riesgo riesgoByIdcausa) {
-        this.riesgoByIdcausa = riesgoByIdcausa;
+    public void setRiesgoByRieIdriesgo(Riesgo riesgoByRieIdriesgo) {
+        this.riesgoByRieIdriesgo = riesgoByRieIdriesgo;
     }
     public Riesgo getRiesgoByIdriesgo() {
         return this.riesgoByIdriesgo;
@@ -67,19 +67,19 @@ public class Panoramaderiesgos  implements java.io.Serializable {
     public void setRiesgoByIdriesgo(Riesgo riesgoByIdriesgo) {
         this.riesgoByIdriesgo = riesgoByIdriesgo;
     }
+    public Set getTrazapanoramas() {
+        return this.trazapanoramas;
+    }
+    
+    public void setTrazapanoramas(Set trazapanoramas) {
+        this.trazapanoramas = trazapanoramas;
+    }
     public Set getAnalisisvaloracions() {
         return this.analisisvaloracions;
     }
     
     public void setAnalisisvaloracions(Set analisisvaloracions) {
         this.analisisvaloracions = analisisvaloracions;
-    }
-    public Set getLogs() {
-        return this.logs;
-    }
-    
-    public void setLogs(Set logs) {
-        this.logs = logs;
     }
     public Set getPlandemejoramientos() {
         return this.plandemejoramientos;
