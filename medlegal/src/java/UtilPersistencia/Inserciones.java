@@ -7,6 +7,7 @@ package UtilPersistencia;
 import Persistencia.*;
 import java.util.Date;
 import org.hibernate.Query;
+import tools.UsuarioActivo;
 
 /**
  *
@@ -400,8 +401,26 @@ public class Inserciones {
             String id = "" + codigo + buscarProcesoUltimoRegistro() + 1;
             Date fechainicio = new Date();
             Proceso proceso = new Proceso(estado, subarea, asociado, funcionario, id, fechainicio);
+            
+            //Traza de la creacion de proceso
+            
+            Trazaproceso traza = new Trazaproceso();
+            System.out.println(asociado.getDescasociado()+"/"+asociado.getNombreproceso().getDescnombre()
+                    +"/"+asociado.getNombreproceso().getTipoproceso().getDesctipo());
+            traza.setProcesoasociado(asociado.getDescasociado());
+            traza.setNombreproceso(asociado.getNombreproceso().getDescnombre());
+            traza.setTipoproceso(asociado.getNombreproceso().getTipoproceso().getDesctipo());
+            traza.setSubarea(subarea.getDescsubarea());
+            traza.setFuncionarioasociado(funcionario.getNombre()+funcionario.getApellido()+""+ funcionario.getIdentificacion());
+            traza.setEstado("activo");
+            UsuarioActivo usuario = new UsuarioActivo();
+            traza.setUsuariooperacion(usuario.getUsuarioNombre());
+            traza.setFechaoperacion(fechainicio);
+            traza.setTipooperacion("Creado");
+            
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(proceso);
+            inicio.getSession().persist(traza);
             inicio.getSession().getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -434,10 +453,10 @@ public class Inserciones {
             riesgo.setIdriesgo(idriesgo);
             Riesgo causa = new Riesgo();
             causa.setIdriesgo(idcausa);
-            Panoramaderiesgos panorama = new Panoramaderiesgos();
-            panorama.setRiesgoByIdriesgo(riesgo);
+            Panorama panorama = new Panorama();
+            panorama.setRiesgoByIdcausa(riesgo);
             panorama.setProceso(proceso);
-            panorama.setRiesgoByRieIdriesgo(causa);
+            panorama.setRiesgoByIdefecto(causa);
             inicio.getSession().persist(panorama);
             inicio.getSession().getTransaction().commit();
         } catch (Exception e) {
@@ -448,10 +467,10 @@ public class Inserciones {
     public void agregarValoracion(int idpanorama, int origen, int probabilidad, int impacto, int calificacion, String color) {
         System.out.println("agregar valoracion   "+idpanorama+"/"+ origen+"/"+ probabilidad+"/"+ impacto+"/"+ calificacion+"/"+color);
         try {
-            Panoramaderiesgos panorama = new Panoramaderiesgos();
-            panorama.setIdpanoramariesgos(idpanorama);
+            Panorama panorama = new Panorama();
+            panorama.setIdpanorama(idpanorama);
             Analisisvaloracion valoracion = new Analisisvaloracion();
-            valoracion.setPanoramaderiesgos(panorama);
+            valoracion.setPanorama(panorama);
             valoracion.setOrigen(origen);
             valoracion.setProbabilidad(probabilidad);
             valoracion.setImpacto(impacto);
@@ -467,14 +486,14 @@ public class Inserciones {
 
     public void agregarMejoramiento(int idestado, int idpanorama, int idfuncionario, int reslutado, String mejora, Date revision) {
         try {
-            Panoramaderiesgos panora = new Panoramaderiesgos();
-            panora.setIdpanoramariesgos(idpanorama);
+            Panorama panora = new Panorama();
+            panora.setIdpanorama(idpanorama);
             Funcionario funcio = new Funcionario();
             funcio.setIdfuncionario(idfuncionario);
-            Estadomejoramiento estado = new Estadomejoramiento();
-            estado.setIdestadomejoramiento(idestado);
-            Plandemejoramiento mejoramiento = new Plandemejoramiento();
-            mejoramiento.setPanoramaderiesgos(panora);
+            Estadomejora estado = new Estadomejora();
+            estado.setIdestadomejora(idestado);
+            Planmejoramiento mejoramiento = new Planmejoramiento();
+            mejoramiento.setPanorama(panora);
             mejoramiento.setFuncionario(funcio);
             mejoramiento.setResultado(reslutado);
             mejoramiento.setMejoramiento(mejora);

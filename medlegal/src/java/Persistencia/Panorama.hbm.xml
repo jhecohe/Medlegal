@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Panorama" table="panorama" schema="public">
+        <id name="idpanorama" type="int">
+            <column name="idpanorama" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="riesgoByIdefecto" class="Persistencia.Riesgo" fetch="select">
+            <column name="idefecto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proceso" class="Persistencia.Proceso" fetch="select">
+            <column name="idproceso" not-null="true" />
+        </many-to-one>
+        <many-to-one name="riesgoByIdcausa" class="Persistencia.Riesgo" fetch="select">
+            <column name="idcausa" not-null="true" />
+        </many-to-one>
+        <set name="analisisvaloracions" table="analisisvaloracion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpanorama" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Analisisvaloracion" />
+        </set>
+        <set name="planmejoramientos" table="planmejoramiento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpanorama" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Planmejoramiento" />
+        </set>
+        <set name="trazapanoramas" table="trazapanorama" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idpanorama" />
+            </key>
+            <one-to-many class="Persistencia.Trazapanorama" />
+        </set>
+    </class>
+</hibernate-mapping>

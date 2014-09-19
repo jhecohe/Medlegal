@@ -136,28 +136,28 @@ public class Listados implements Serializable{
     
     public List listaPanoramabyProceso(int proceso) {
     //public List listaPanoramabyProceso() {
-        List<Panoramaderiesgos> listPanoramaRiesgo = null;
+        List<Panorama> listPanoramaRiesgo = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             //Query q = inicio.session.createQuery("select pr.idpanoramariesgos, pr.proceso.idproceso, pr.riesgo.idriesgo, pr.causa  from Panoramariesgos pr where proceso.idproceso = :proceso");
             Query q = inicio.session.createQuery("from Panoramaderiesgos pr where pr.proceso.idproceso = :proceso");
             q.setParameter("proceso", proceso);
-            listPanoramaRiesgo = (List<Panoramaderiesgos>) q.list();
+            listPanoramaRiesgo = (List<Panorama>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listPanoramaRiesgo;
     }
     
-    public Panoramaderiesgos panoramabyProceso(int proceso) {
+    public Panorama panoramabyProceso(int proceso) {
     //public List listaPanoramabyProceso() {
-        Panoramaderiesgos panora = null;
+        Panorama panora = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             //Query q = inicio.session.createQuery("select pr.idpanoramariesgos, pr.proceso.idproceso, pr.riesgo.idriesgo, pr.causa  from Panoramariesgos pr where proceso.idproceso = :proceso");
             Query q = inicio.session.createQuery("from Panoramaderiesgos pr where proceso.idproceso = :proceso");
             q.setParameter("proceso", proceso);
-            panora = (Panoramaderiesgos)q.list();
+            panora = (Panorama)q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,13 +226,13 @@ public class Listados implements Serializable{
     }
     
     public List listaRiesgoValoracion(int idproceso) {
-        List<Panoramaderiesgos> listRiesgo = null;
+        List<Panorama> listRiesgo = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             //Query q = inicio.session.createQuery("select p.riesgo from Panoramariesgos p where p.proceso.idproceso = :proceso");
             Query q = inicio.session.createQuery("from Panoramaderiesgos p where p.proceso.idproceso = :proceso");
             q.setParameter("proceso", idproceso);
-            listRiesgo = (List<Panoramaderiesgos>) q.list();
+            listRiesgo = (List<Panorama>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -240,13 +240,13 @@ public class Listados implements Serializable{
     }
     
     public List listaMejoramiento(int idriesgo) {
-        List<Plandemejoramiento> listRiesgo = null;
+        List<Planmejoramiento> listRiesgo = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             //Query q = inicio.session.createQuery("select p.riesgo from Panoramariesgos p where p.proceso.idproceso = :proceso");
             Query q = inicio.session.createQuery("from Panoramaderiesgos p where p.riesgoByIdriesgo.idriesgo = :riesgo");
             q.setParameter("riesgo", idriesgo);
-            listRiesgo = (List<Plandemejoramiento>) q.list();
+            listRiesgo = (List<Planmejoramiento>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -428,11 +428,11 @@ public class Listados implements Serializable{
     }
     
     public List listaPanorama() {
-        List<Panoramaderiesgos> listPanorama = null;
+        List<Panorama> listPanorama = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             Query q = inicio.session.createQuery("from Panoramaderiesgos");
-            listPanorama = (List<Panoramaderiesgos>) q.list();
+            listPanorama = (List<Panorama>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -440,14 +440,14 @@ public class Listados implements Serializable{
     }
     
     public List listaPanormaValidacionRiesgo(int idproceso, int idriesgo){
-        List<Panoramaderiesgos> listaRiesgos = null;
+        List<Panorama> listaRiesgos = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             Query q = inicio.session.createQuery("from Panoramaderiesgos p  "
                     + "where p.proceso.idproceso = :idproceso and p.riesgoByIdriesgo.idriesgo = :idriesgo");
             q.setParameter("idproceso", idproceso);
             q.setParameter("idriesgo", idriesgo);
-            listaRiesgos = (List<Panoramaderiesgos>) q.list();
+            listaRiesgos = (List<Panorama>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
         }

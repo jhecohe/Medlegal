@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Trazamejora" table="trazamejora" schema="public">
+        <id name="idtrazamejora" type="int">
+            <column name="idtrazamejora" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="planmejoramiento" class="Persistencia.Planmejoramiento" fetch="select">
+            <column name="idmejoramiento" not-null="true" />
+        </many-to-one>
+        <property name="proceso" type="string">
+            <column name="proceso" length="100" not-null="true" />
+        </property>
+        <property name="riesgo" type="string">
+            <column name="riesgo" length="200" not-null="true" />
+        </property>
+        <property name="responsable" type="string">
+            <column name="responsable" length="50" not-null="true" />
+        </property>
+        <property name="fechainicio" type="date">
+            <column name="fechainicio" length="13" not-null="true" />
+        </property>
+        <property name="fecharevision" type="date">
+            <column name="fecharevision" length="13" not-null="true" />
+        </property>
+        <property name="calificacion" type="int">
+            <column name="calificacion" not-null="true" />
+        </property>
+        <property name="estadomejoramiento" type="string">
+            <column name="estadomejoramiento" length="20" not-null="true" />
+        </property>
+        <property name="usuariooperacion" type="string">
+            <column name="usuariooperacion" length="20" not-null="true" />
+        </property>
+        <property name="fechaoperacion" type="date">
+            <column name="fechaoperacion" length="13" not-null="true" />
+        </property>
+        <property name="tipooperacion" type="string">
+            <column name="tipooperacion" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

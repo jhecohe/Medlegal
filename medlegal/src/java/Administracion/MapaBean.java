@@ -4,7 +4,7 @@
  */
 package Administracion;
 
-import Persistencia.Panoramaderiesgos;
+import Persistencia.Panorama;
 import UtilPersistencia.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -33,8 +33,8 @@ public class MapaBean {
         List riesgos = lista.listaPanoramabyProceso(2);
         root = new DefaultMindmapNode("Proceso22", "Proceso", "FFCC00", false);
         for (int i = 0; i < riesgos.size(); i++) {
-            Panoramaderiesgos panora = (Panoramaderiesgos) riesgos.get(i);
-            root.addNode(new DefaultMindmapNode(panora.getRiesgoByIdriesgo().getDescriesgo(), panora.getRiesgoByRieIdriesgo().getIdriesgo(), "6e9ebf", true));
+            Panorama panora = (Panorama) riesgos.get(i);
+            root.addNode(new DefaultMindmapNode(panora.getRiesgoByIdcausa().getDescriesgo(), panora.getRiesgoByIdefecto().getIdriesgo(), "6e9ebf", true));
         }
 
     }

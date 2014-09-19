@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Usuario" table="usuario" schema="public">
+        <id name="idusuario" type="int">
+            <column name="idusuario" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="perfil" class="Persistencia.Perfil" fetch="select">
+            <column name="idperfil" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="Persistencia.Funcionario" fetch="select">
+            <column name="idfuncionario" not-null="true" />
+        </many-to-one>
+        <property name="nombreusuario" type="string">
+            <column name="nombreusuario" length="15" not-null="true" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="40" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

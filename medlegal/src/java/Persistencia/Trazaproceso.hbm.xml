@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Trazaproceso" table="trazaproceso" schema="public">
+        <id name="idtraza" type="int">
+            <column name="idtraza" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="proceso" class="Persistencia.Proceso" fetch="select">
+            <column name="idproceso" not-null="true" />
+        </many-to-one>
+        <property name="tipoproceso" type="string">
+            <column name="tipoproceso" length="20" not-null="true" />
+        </property>
+        <property name="nombreproceso" type="string">
+            <column name="nombreproceso" length="20" not-null="true" />
+        </property>
+        <property name="procesoasociado" type="string">
+            <column name="procesoasociado" length="20" not-null="true" />
+        </property>
+        <property name="subarea" type="string">
+            <column name="subarea" length="20" not-null="true" />
+        </property>
+        <property name="funcionarioasociado" type="string">
+            <column name="funcionarioasociado" length="20" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="20" not-null="true" />
+        </property>
+        <property name="usuariooperacion" type="string">
+            <column name="usuariooperacion" length="20" not-null="true" />
+        </property>
+        <property name="fechaoperacion" type="date">
+            <column name="fechaoperacion" length="13" not-null="true" />
+        </property>
+        <property name="tipooperacion" type="string">
+            <column name="tipooperacion" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

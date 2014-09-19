@@ -4,7 +4,7 @@
  */
 package Procesos;
 
-import Persistencia.Panoramaderiesgos;
+import Persistencia.Panorama;
 import Persistencia.Riesgo;
 import UtilPersistencia.Eliminar;
 import UtilPersistencia.Inserciones;
@@ -40,7 +40,7 @@ public class PanoramaBean {
     private Riesgo riesg;
     Inserciones agregar;
     Eliminar eliminar;
-    Panoramaderiesgos panoSelec;
+    Panorama panoSelec;
 
     public PanoramaBean() {
         agregar = new Inserciones();
@@ -54,11 +54,11 @@ public class PanoramaBean {
         this.idriesgo = idriesgo;
     }
 
-    public Panoramaderiesgos getPanoSelec() {
+    public Panorama getPanoSelec() {
         return panoSelec;
     }
 
-    public void setPanoSelec(Panoramaderiesgos panoSelec) {
+    public void setPanoSelec(Panorama panoSelec) {
         this.panoSelec = panoSelec;
     }
 
@@ -212,8 +212,8 @@ public class PanoramaBean {
     }
     
     public void eliminarPanorama(){
-        int id = (Integer)panoSelec.getIdpanoramariesgos();
-        System.out.println("A ver que salio a ver si vamos por buen camino "+ panoSelec.getIdpanoramariesgos());
+        int id = (Integer)panoSelec.getIdpanorama();
+        System.out.println("A ver que salio a ver si vamos por buen camino "+ panoSelec.getIdpanorama());
         eliminar = new Eliminar();
         eliminar.panorama(id);
     }

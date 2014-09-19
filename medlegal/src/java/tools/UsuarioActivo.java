@@ -18,12 +18,12 @@ import static login.UsuarioLoginBean.USER_KEY;
  */
 @ManagedBean
 @RequestScoped
-public class Usuario {
+public class UsuarioActivo {
 
     /**
      * Creates a new instance of Usuario
      */
-    public Usuario() {
+    public UsuarioActivo() {
     }
     
     public String getUsuarioNombre(){

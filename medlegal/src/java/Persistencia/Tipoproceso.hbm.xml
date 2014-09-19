@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Tipoproceso" table="tipoproceso" schema="public">
+        <id name="idtipoproceso" type="int">
+            <column name="idtipoproceso" />
+            <generator class="assigned" />
+        </id>
+        <property name="desctipo" type="string">
+            <column name="desctipo" length="200" not-null="true" />
+        </property>
+        <set name="nombreprocesos" table="nombreproceso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idtipoproceso" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Nombreproceso" />
+        </set>
+    </class>
+</hibernate-mapping>

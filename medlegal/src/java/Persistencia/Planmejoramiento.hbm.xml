@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Planmejoramiento" table="planmejoramiento" schema="public">
+        <id name="idmejoramiento" type="int">
+            <column name="idmejoramiento" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estadomejora" class="Persistencia.Estadomejora" fetch="select">
+            <column name="idestadomejora" not-null="true" />
+        </many-to-one>
+        <many-to-one name="panorama" class="Persistencia.Panorama" fetch="select">
+            <column name="idpanorama" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="Persistencia.Funcionario" fetch="select">
+            <column name="idfuncionario" not-null="true" />
+        </many-to-one>
+        <property name="resultado" type="int">
+            <column name="resultado" not-null="true" />
+        </property>
+        <property name="mejoramiento" type="string">
+            <column name="mejoramiento" length="800" not-null="true" />
+        </property>
+        <property name="fechainicio" type="date">
+            <column name="fechainicio" length="13" not-null="true" />
+        </property>
+        <property name="fecharevision" type="date">
+            <column name="fecharevision" length="13" not-null="true" />
+        </property>
+        <set name="trazamejoras" table="trazamejora" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idmejoramiento" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Trazamejora" />
+        </set>
+    </class>
+</hibernate-mapping>

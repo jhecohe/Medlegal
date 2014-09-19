@@ -171,7 +171,7 @@ public class Actualizar {
     }
     
     public void mejoramientoModificar(Object objeto){
-        Plandemejoramiento obje = (Plandemejoramiento) objeto;
+        Planmejoramiento obje = (Planmejoramiento) objeto;
         Query query = inicio.session.createQuery("update Plandemejoramiento set mejoramiento = :descrip"
                 + " where idmejoramiento = :id");
         query.setParameter("descrip", obje.getMejoramiento());

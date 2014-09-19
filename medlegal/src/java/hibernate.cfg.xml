@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/medlegal</property>
+    <property name="hibernate.connection.username">postgres</property>
+    <property name="hibernate.connection.password">medlegal</property>
+    <property name="hibernate.transaction.auto_close_session">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="Persistencia/Estadomejora.hbm.xml"/>
+    <mapping resource="Persistencia/Tipoproceso.hbm.xml"/>
+    <mapping resource="Persistencia/Clase.hbm.xml"/>
+    <mapping resource="Persistencia/Grado.hbm.xml"/>
+    <mapping resource="Persistencia/Seccional.hbm.xml"/>
+    <mapping resource="Persistencia/Estado.hbm.xml"/>
+    <mapping resource="Persistencia/Regional.hbm.xml"/>
+    <mapping resource="Persistencia/Tiporiesgo.hbm.xml"/>
+    <mapping resource="Persistencia/Nombreproceso.hbm.xml"/>
+    <mapping resource="Persistencia/Proceso.hbm.xml"/>
+    <mapping resource="Persistencia/Departamento.hbm.xml"/>
+    <mapping resource="Persistencia/Clasificacion.hbm.xml"/>
+    <mapping resource="Persistencia/Panorama.hbm.xml"/>
+    <mapping resource="Persistencia/Procesoasociado.hbm.xml"/>
+    <mapping resource="Persistencia/Trazavaloracion.hbm.xml"/>
+    <mapping resource="Persistencia/Cargo.hbm.xml"/>
+    <mapping resource="Persistencia/Trazamejora.hbm.xml"/>
+    <mapping resource="Persistencia/Area.hbm.xml"/>
+    <mapping resource="Persistencia/Ciudad.hbm.xml"/>
+    <mapping resource="Persistencia/Perfil.hbm.xml"/>
+    <mapping resource="Persistencia/Subarea.hbm.xml"/>
+    <mapping resource="Persistencia/Trazapanorama.hbm.xml"/>
+    <mapping resource="Persistencia/Planmejoramiento.hbm.xml"/>
+    <mapping resource="Persistencia/Riesgo.hbm.xml"/>
+    <mapping resource="Persistencia/Analisisvaloracion.hbm.xml"/>
+    <mapping resource="Persistencia/Trazariesgo.hbm.xml"/>
+    <mapping resource="Persistencia/Funcionario.hbm.xml"/>
+    <mapping resource="Persistencia/Usuario.hbm.xml"/>
+    <mapping resource="Persistencia/Trazaproceso.hbm.xml"/>
+    <mapping resource="Persistencia/Enfoque.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

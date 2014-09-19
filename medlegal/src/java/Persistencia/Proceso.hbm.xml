@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Proceso" table="proceso" schema="public">
+        <id name="idproceso" type="int">
+            <column name="idproceso" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estado" class="Persistencia.Estado" fetch="select">
+            <column name="idestado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="subarea" class="Persistencia.Subarea" fetch="select">
+            <column name="idsubarea" not-null="true" />
+        </many-to-one>
+        <many-to-one name="procesoasociado" class="Persistencia.Procesoasociado" fetch="select">
+            <column name="idprocesoasociado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="funcionario" class="Persistencia.Funcionario" fetch="select">
+            <column name="idfuncionario" not-null="true" />
+        </many-to-one>
+        <property name="codigoproceso" type="string">
+            <column name="codigoproceso" length="20" not-null="true" />
+        </property>
+        <property name="creado" type="date">
+            <column name="creado" length="13" not-null="true" />
+        </property>
+        <property name="modificado" type="date">
+            <column name="modificado" length="13" />
+        </property>
+        <set name="panoramas" table="panorama" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproceso" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Panorama" />
+        </set>
+        <set name="trazaprocesos" table="trazaproceso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idproceso" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Trazaproceso" />
+        </set>
+    </class>
+</hibernate-mapping>

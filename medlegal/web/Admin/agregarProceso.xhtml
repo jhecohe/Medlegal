@@ -20,59 +20,67 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <p:panelGrid columns="2" style="width: 600px">
                                 <h:outputLabel value="Tipo de Proceso" />
-                                <p:selectOneMenu id="tipo" value="#{procesoBean.idtipoproceso}" style="width: 160px">
+                                <p:selectOneMenu id="tipo" value="#{procesoBean.idtipoproceso}" 
+                                                 style="width: 160px" required="true" label="Tipo proceso">
                                     <f:selectItem itemLabel="Seleccione el tipo" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.tipoprocesolist}" var="t"
                                                    itemLabel="#{t.desctipo}" itemValue="#{t.idtipoproceso}" />
                                     <p:ajax update="nombre" />
                                 </p:selectOneMenu>
                                 <h:outputLabel value="Nombre del Proceso" />
-                                <p:selectOneMenu id="nombre" value="#{procesoBean.idnombreproceso}" style="width: 160px">
+                                <p:selectOneMenu id="nombre" value="#{procesoBean.idnombreproceso}" 
+                                                 style="width: 160px" required="true" label="Nombre Proceso">
                                     <f:selectItem itemLabel="Seleccione el nombre" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.nombreprocesolist}" var="n"
                                                    itemLabel="#{n.descnombre}" itemValue="#{n.idnombreproceso}" />
                                     <p:ajax update="asociado" />
                                 </p:selectOneMenu>
                                 <h:outputLabel value="Proceso Asociado" />
-                                <p:selectOneMenu id="asociado" value="#{procesoBean.idasociado}" style="width: 160px">
+                                <p:selectOneMenu id="asociado" value="#{procesoBean.idasociado}" 
+                                                 style="width: 160px" required="true" label="Proceso Asociado">
                                     <f:selectItem itemLabel="Seleccione asociado" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.procesoasociadolist}" var="a"
                                                    itemLabel="#{a.descasociado}" itemValue="#{a.idprocesoasociado}" />
                                 </p:selectOneMenu>
                                 <h:outputLabel value="Seleccione la Region" />
-                                <p:selectOneMenu id="region" value="#{procesoBean.idregion}" style="width: 160px">
-                                    <f:selectItem itemLabel="Seleccione Region" itemValue=""/>
+                                <p:selectOneMenu id="region" value="#{procesoBean.idregion}" 
+                                                 style="width: 160px" required="true" label="Region">
+                                    <f:selectItem itemLabel="Seleccione Region" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.regionlist}" var="r"
                                                    itemLabel="#{r.descregional}" itemValue="#{r.idregional}"/>
                                     <p:ajax update="seccional" />
                                 </p:selectOneMenu>
 
                                 <h:outputLabel value="Seleccione la Seccional" />
-                                <p:selectOneMenu id="seccional" value="#{procesoBean.idseccional}" style="width: 160px">
-                                    <f:selectItem itemLabel="Seleccione Seccional" itemValue=""/>
+                                <p:selectOneMenu id="seccional" value="#{procesoBean.idseccional}" 
+                                                 style="width: 160px" required="true" label="Seccional">
+                                    <f:selectItem itemLabel="Seleccione Seccional" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.seccionallist}" var="s"
                                                    itemLabel="#{s.descseccional}" itemValue="#{s.idseccional}"/>
                                     <p:ajax update="area" />
                                 </p:selectOneMenu>
 
                                 <h:outputLabel value="Seleccione la Area" />
-                                <p:selectOneMenu id="area" value="#{procesoBean.idarea}" style="width: 160px">
-                                    <f:selectItem itemLabel="Seleccione Area" itemValue=""/>
+                                <p:selectOneMenu id="area" value="#{procesoBean.idarea}" 
+                                                 style="width: 160px" required="true" label="Area">
+                                    <f:selectItem itemLabel="Seleccione Area" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.arealist}" var="a"
                                                    itemLabel="#{a.descarea}" itemValue="#{a.idarea}"/>
                                     <p:ajax update="subarea"/>
                                 </p:selectOneMenu>
 
                                 <h:outputLabel value="Seleccione la Subarea" />
-                                <p:selectOneMenu id="subarea" value="#{procesoBean.idsubarea}" style="width: 160px">
-                                    <f:selectItem itemLabel="Seleccione Subarea" itemValue=""/>
+                                <p:selectOneMenu id="subarea" value="#{procesoBean.idsubarea}" 
+                                                 style="width: 160px" required="true" label="Sub Area">
+                                    <f:selectItem itemLabel="Seleccione Subarea" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.subarealist}" var="sub"
                                                    itemLabel="#{sub.descsubarea}" itemValue="#{sub.idsubarea}"/>
                                     <p:ajax update="encargado"/>
                                 </p:selectOneMenu>
                                 <h:outputLabel value="Encargado del proceso" />
-                                <p:selectOneMenu id="encargado" value="#{procesoBean.idfuncionario}" style="width: 160px">
-                                    <f:selectItem itemLabel="Seleccione Funcionario" itemValue=""/>
+                                <p:selectOneMenu id="encargado" value="#{procesoBean.idfuncionario}" 
+                                                 style="width: 160px" required="true" label="Encargado">
+                                    <f:selectItem itemLabel="Seleccione Funcionario" noSelectionOption="true"/>
                                     <f:selectItems value="#{procesoBean.funcionariolist}" var="f" 
                                                    itemLabel="#{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}" />
                                 </p:selectOneMenu>
@@ -83,6 +91,8 @@
                             <p:menuitem id="agregar" value="Agregar Proceso" update=""  immediate="true" icon="ui-icon-gear"/>   
                             <p:menuitem value="Actualizar" update="procesoList" icon="ui-icon-arrowrefresh-1-w"/> 
                         </p:menubar>   
+                        
+                        <p:messages closable="true" showSummary="true"/>
 
                         <p:dataTable id="procesoList" var="pro" value="#{procesoBean.procesoList()}"  
                                      paginator="true" rows="10" editable="true" 

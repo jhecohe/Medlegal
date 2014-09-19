@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Perfil" table="perfil" schema="public">
+        <id name="idperfil" type="int">
+            <column name="idperfil" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estado" class="Persistencia.Estado" fetch="select">
+            <column name="idestado" not-null="true" />
+        </many-to-one>
+        <property name="descperfil" type="string">
+            <column name="descperfil" length="100" not-null="true" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idperfil" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

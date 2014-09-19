@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Persistencia.Subarea" table="subarea" schema="public">
+        <id name="idsubarea" type="int">
+            <column name="idsubarea" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="ciudad" class="Persistencia.Ciudad" fetch="select">
+            <column name="idciudad" not-null="true" />
+        </many-to-one>
+        <many-to-one name="area" class="Persistencia.Area" fetch="select">
+            <column name="idarea" not-null="true" />
+        </many-to-one>
+        <property name="codigosubarea" type="string">
+            <column name="codigosubarea" length="20" not-null="true" />
+        </property>
+        <property name="descsubarea" type="string">
+            <column name="descsubarea" length="100" not-null="true" />
+        </property>
+        <set name="procesos" table="proceso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idsubarea" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Proceso" />
+        </set>
+        <set name="funcionarios" table="funcionario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idsubarea" not-null="true" />
+            </key>
+            <one-to-many class="Persistencia.Funcionario" />
+        </set>
+    </class>
+</hibernate-mapping>
