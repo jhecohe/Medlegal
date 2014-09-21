@@ -140,7 +140,7 @@ public class Listados implements Serializable{
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             //Query q = inicio.session.createQuery("select pr.idpanoramariesgos, pr.proceso.idproceso, pr.riesgo.idriesgo, pr.causa  from Panoramariesgos pr where proceso.idproceso = :proceso");
-            Query q = inicio.session.createQuery("from Panoramaderiesgos pr where pr.proceso.idproceso = :proceso");
+            Query q = inicio.session.createQuery("from Panorama pr where pr.proceso.idproceso = :proceso");
             q.setParameter("proceso", proceso);
             listPanoramaRiesgo = (List<Panorama>) q.list();
         } catch (Exception e) {
@@ -155,7 +155,7 @@ public class Listados implements Serializable{
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
             //Query q = inicio.session.createQuery("select pr.idpanoramariesgos, pr.proceso.idproceso, pr.riesgo.idriesgo, pr.causa  from Panoramariesgos pr where proceso.idproceso = :proceso");
-            Query q = inicio.session.createQuery("from Panoramaderiesgos pr where proceso.idproceso = :proceso");
+            Query q = inicio.session.createQuery("from Panorama pr where proceso.idproceso = :proceso");
             q.setParameter("proceso", proceso);
             panora = (Panorama)q.list();
         } catch (Exception e) {
@@ -431,7 +431,7 @@ public class Listados implements Serializable{
         List<Panorama> listPanorama = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
-            Query q = inicio.session.createQuery("from Panoramaderiesgos");
+            Query q = inicio.session.createQuery("from Panorama");
             listPanorama = (List<Panorama>) q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -443,7 +443,7 @@ public class Listados implements Serializable{
         List<Panorama> listaRiesgos = null;
         try {
             org.hibernate.Transaction tx = inicio.session.beginTransaction();
-            Query q = inicio.session.createQuery("from Panoramaderiesgos p  "
+            Query q = inicio.session.createQuery("from Panorama p  "
                     + "where p.proceso.idproceso = :idproceso and p.riesgoByIdriesgo.idriesgo = :idriesgo");
             q.setParameter("idproceso", idproceso);
             q.setParameter("idriesgo", idriesgo);

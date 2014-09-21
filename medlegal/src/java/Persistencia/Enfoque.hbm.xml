@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Enfoque" table="enfoque" schema="public">
-        <id name="idenfoque" type="int">
-            <column name="idenfoque" />
-            <generator class="assigned" />
+        <id name="idenfoque" type="int" unsaved-value="0">
+            <column name="idenfoque" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">enfoque_idenfoque_seq</param>
+            </generator>
         </id>
         <property name="descenfoque" type="string">
             <column name="descenfoque" length="60" not-null="true" />

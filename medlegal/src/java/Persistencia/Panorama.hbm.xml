@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Panorama" table="panorama" schema="public">
-        <id name="idpanorama" type="int">
-            <column name="idpanorama" />
-            <generator class="assigned" />
+        <id name="idpanorama" type="int" unsaved-value="0">
+            <column name="idpanorama" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">panorama_idpanorama_seq</param>
+            </generator>
         </id>
         <many-to-one name="riesgoByIdefecto" class="Persistencia.Riesgo" fetch="select">
             <column name="idefecto" not-null="true" />

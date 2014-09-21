@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Procesoasociado" table="procesoasociado" schema="public">
-        <id name="idprocesoasociado" type="int">
-            <column name="idprocesoasociado" />
-            <generator class="assigned" />
+        <id name="idprocesoasociado" type="int" unsaved-value="0">
+            <column name="idprocesoasociado" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">procesoasociado_idprocesoasociado_seq</param>
+            </generator>
         </id>
         <many-to-one name="nombreproceso" class="Persistencia.Nombreproceso" fetch="select">
             <column name="idnombreproceso" not-null="true" />

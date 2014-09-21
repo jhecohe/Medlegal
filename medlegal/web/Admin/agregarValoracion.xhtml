@@ -18,14 +18,16 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <h:panelGrid columns="2" style="width: 68%;" >
                                 <h:outputLabel value="Proceso:" for="proceso" />  
-                                <p:selectOneMenu id="proceso" value="#{valoracionBean.idproceso}" style="width: 240px" >
+                                <p:selectOneMenu id="proceso" value="#{valoracionBean.idproceso}" style="width: 240px" 
+                                                 required="true" label="Proceso">
                                     <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
                                     <f:selectItems value="#{valoracionBean.procesoList()}" var="p"
-                                                   itemLabel="#{p.codigo}" itemValue="#{p.idproceso}"/>
+                                                   itemLabel="#{p.codigoproceso}" itemValue="#{p.idproceso}"/>
                                     <p:ajax update="panorama"/>
                                 </p:selectOneMenu>
                                 <h:outputLabel value="Riesgo:" />
-                                <p:selectOneMenu id="panorama" value="#{valoracionBean.idpanorama}" style="width: 240px" >
+                                <p:selectOneMenu id="panorama" value="#{valoracionBean.idpanorama}" style="width: 240px" 
+                                                 label="Riesgo" required="true">
                                     <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                     <f:selectItems value="#{valoracionBean.riesgosList()}" var="pr"
                                                    itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
@@ -33,14 +35,14 @@
                             </h:panelGrid>
                             <h:panelGrid id="color" columns="2" style="width: 80%; #{valoracionBean.color()}">     
                                 <h:outputLabel value="Origen:         " />
-                                <p:selectOneRadio value="#{valoracionBean.origen}" >
+                                <p:selectOneRadio value="#{valoracionBean.origen}" required="true" label="Origen">
                                     <f:selectItem itemLabel="Externo" itemValue="2"/>
                                     <f:selectItem itemLabel="Interno" itemValue="1"/>
                                     <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
                                 </p:selectOneRadio>
 
                                 <h:outputLabel value="Probabilidad:   " />
-                                <p:selectOneRadio value="#{valoracionBean.probabilidad}">
+                                <p:selectOneRadio value="#{valoracionBean.probabilidad}" required="true" label="Probabilidad">
                                     <f:selectItem itemLabel="Alto" itemValue="20" />
                                     <f:selectItem itemLabel="Medio" itemValue="10"/>
                                     <f:selectItem itemLabel="Bajo" itemValue="5"/>
@@ -48,7 +50,7 @@
                                 </p:selectOneRadio>
 
                                 <h:outputLabel value="Impacto:        " />
-                                <p:selectOneRadio value="#{valoracionBean.impacto}">
+                                <p:selectOneRadio value="#{valoracionBean.impacto}" required="true" label="Impacto">
                                     <f:selectItem itemLabel="Alto" itemValue="3"/>
                                     <f:selectItem itemLabel="Medio" itemValue="2"/>
                                     <f:selectItem itemLabel="Bajo" itemValue="1"/>
@@ -58,7 +60,8 @@
                                 <br/>
                                 <h:outputLabel id="calificacion1" value="Calificacion:#{valoracionBean.calificacion1}" />
                                 <br/>
-                                <p:selectOneMenu value="#{valoracionBean.calificacion}" >
+                                <p:selectOneMenu value="#{valoracionBean.calificacion}" required="true" label="Control">
+                                    <f:selectItem itemLabel="Controles" noSelectionOption="true"/>
                                     <f:selectItem itemLabel="No existen controles" itemValue="4"/>
                                     <f:selectItem itemLabel="Los controles existentes no son efectivos" itemValue="3"/>
                                     <f:selectItem itemLabel="Los controles existentes son efectivos, pero no están documentados" itemValue="2"/>
@@ -77,9 +80,7 @@
                             <p:menuitem id="agregar" value="Agregar Valoracion" update=""  immediate="true" icon="ui-icon-gear"/>   
                             <p:menuitem value="Actualizar" update="valoracionList" ajax="true" icon="ui-icon-arrowrefresh-1-w"/> 
                         </p:menubar>  
-                        
-                        
-                        
+                        <p:messages closable="true" showSummary="true"/>
                         
                         <p:dataTable id="valoracionList" var="val" value="#{valoracionBean.valoracionList()}"  
                                      paginator="true" rows="10" editable="true" 

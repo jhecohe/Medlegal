@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Estadomejora" table="estadomejora" schema="public">
-        <id name="idestadomejora" type="int">
-            <column name="idestadomejora" />
-            <generator class="assigned" />
+        <id name="idestadomejora" type="int" unsaved-value="0">
+            <column name="idestadomejora" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">estadomejora_idestadomejora_seq</param>
+            </generator>
         </id>
         <property name="descestadomejo" type="string">
             <column name="descestadomejo" length="40" not-null="true" />

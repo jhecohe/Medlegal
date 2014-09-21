@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Trazamejora" table="trazamejora" schema="public">
-        <id name="idtrazamejora" type="int">
-            <column name="idtrazamejora" />
-            <generator class="assigned" />
+        <id name="idtrazamejora" type="int" unsaved-value="0">
+            <column name="idtrazamejora" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">trazamejora_idtrazamejora_seq</param>
+            </generator>
         </id>
         <many-to-one name="planmejoramiento" class="Persistencia.Planmejoramiento" fetch="select">
             <column name="idmejoramiento" not-null="true" />

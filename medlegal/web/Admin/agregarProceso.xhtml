@@ -8,7 +8,6 @@
       >
 
     <body>
-
         <ui:composition template="./plantillaAdmin.xhtml">
 
             <ui:define name="content">
@@ -162,6 +161,13 @@
                                     <h:outputText value="Creado" />  
                                 </f:facet>  
                                 <h:outputText value="#{pro.creado}" />  
+                            </p:column> 
+                            
+                            <p:column width="125">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Ultima Modificacion" />  
+                                </f:facet>  
+                                <h:outputText value="#{pro.modificado}" />  
                             </p:column>  
 
                             <p:column headerText="Editar" width="25">  

@@ -5,7 +5,9 @@
 package UtilPersistencia;
 
 import Persistencia.*;
+import java.util.Date;
 import org.hibernate.Query;
+import tools.UsuarioActivo;
 
 /**
  *
@@ -78,6 +80,7 @@ public class Actualizar {
     
     public void procesoModificar(Object objeto, int estado, int funcionario) {
         Proceso proceso = (Proceso) objeto;
+        
         if(estado == 0){
             estado = proceso.getEstado().getIdestado();
         }
@@ -85,16 +88,36 @@ public class Actualizar {
             funcionario = proceso.getFuncionario().getIdfuncionario();
         }
         try {
+            //traza modificacion de prcoeso            
+            Trazaproceso traza = new Trazaproceso();
+            traza.setProceso(proceso);
+            traza.setProcesoasociado(proceso.getProcesoasociado().getDescasociado());
+            traza.setNombreproceso(proceso.getProcesoasociado().getNombreproceso().getDescnombre());
+            traza.setTipoproceso(proceso.getProcesoasociado().getNombreproceso().getTipoproceso().getDesctipo());
+            traza.setSubarea(proceso.getSubarea().getDescsubarea());
+            traza.setFuncionarioasociado(proceso.getFuncionario().getNombre()+" "+proceso.getFuncionario().getApellido()
+                    +"("+ proceso.getFuncionario().getIdentificacion()+")");
+            traza.setEstado(proceso.getEstado().getDescestado());
+            UsuarioActivo usuario = new UsuarioActivo();
+            traza.setUsuariooperacion(usuario.getUsuarioNombre());
+            Date fechamodi = new Date();
+            traza.setFechaoperacion(fechamodi);
+            traza.setTipooperacion("Modificado");
+            
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            Query query = inicio.session.createQuery("update Proceso set idestado = :estado , idfuncionario = :funcionario"
-                    + " where idproceso = :id");
+            inicio.getSession().persist(traza);
+            
+            Query query = inicio.session.createQuery("update Proceso set idestado = :estado , idfuncionario = :funcionario, "
+                    + "modificado = :modificado where idproceso = :id");
             query.setParameter("estado", estado);
             query.setParameter("funcionario", funcionario);
             query.setParameter("id", proceso.getIdproceso());
+            query.setParameter("modificado", fechamodi);
             System.out.println("CLASE ACTUALIZAR " + estado + funcionario + proceso.getIdproceso());
             int result = query.executeUpdate();
             inicio.getSession().getTransaction().commit();
             System.out.println("Actualizar proceso resultado de la modificacion: " + result);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

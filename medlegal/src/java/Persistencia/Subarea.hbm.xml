@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Subarea" table="subarea" schema="public">
-        <id name="idsubarea" type="int">
-            <column name="idsubarea" />
-            <generator class="assigned" />
+        <id name="idsubarea" type="int" unsaved-value="0">
+            <column name="idsubarea" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">subarea_idsubarea_seq</param>
+            </generator>
         </id>
         <many-to-one name="ciudad" class="Persistencia.Ciudad" fetch="select">
             <column name="idciudad" not-null="true" />

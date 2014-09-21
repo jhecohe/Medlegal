@@ -24,7 +24,7 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
                             <h:panelGrid columns="2">
                                 <h:outputLabel value="Proceso:" for="idproceso" />  
-                                <p:selectOneMenu id="procesos" value="#{mejoraBean.idproceso}" style="width: 240px" >
+                                <p:selectOneMenu id="procesos" value="#{mejoraBean.idproceso}" style="width: 240px" label="Proceso" required="true">
                                     <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
                                     <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
                                                    itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
@@ -32,35 +32,35 @@
                                 </p:selectOneMenu>
 
                                 <h:outputLabel value="Riesgo:" />
-                                <p:selectOneMenu id="riesgo" value="#{mejoraBean.idriesgo}" style="width: 240px" >
+                                <p:selectOneMenu id="riesgo" value="#{mejoraBean.idriesgo}" style="width: 240px" required="true" label="Riesgo">
                                     <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                     <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
                                                    itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
                                 </p:selectOneMenu> 
 
                                 <h:outputLabel value="Mejoramiento:" />
-                                <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy"/>
+                                <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy" required="true"/>
 
                                 <h:outputLabel value="Responsable:" />
-                                <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" >
+                                <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" required="true" label="Responsable">
                                     <f:selectItems value="#{mejoraBean.funcionarioList()}" var="f"
                                                    itemLabel="(#{f.identificacion}) #{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}"/>
                                 </p:selectOneMenu>
                                 
                                 <h:outputLabel value="Proxima Evaluacion:" />
-                                <p:calendar value="#{mejoraBean.revision}" id="revision" pattern="yyyy/M/d" navigator="true" required="true"
-                                            showButtonPanel="true" yearRange="2014:2100" label="revision" size="34" mindate="#{mejoraBean.actual}"> 
+                                <p:calendar value="#{mejoraBean.revision}" id="revision" pattern="yyyy/M/d" navigator="true" required="true" 
+                                            showButtonPanel="true" yearRange="2014:2100" label="Evaluacion" size="34" mindate="#{mejoraBean.actual}"> 
                                     <f:convertDateTime pattern="yyyy/M/d"/>
                                 </p:calendar>
 
                                 <h:outputLabel value="Calificacion:" />
-                                <p:inputText id="calificacion" value="#{mejoraBean.calificacion}" style="width: 230px"/>
+                                <p:inputText id="calificacion" value="#{mejoraBean.calificacion}" style="width: 230px" required="true" label="Calificacion"/>
                                 <p:commandButton value="Aceptar" actionListener="#{mejoraBean.agregar()}" update="mejoramientoList" ajax="false"/>
                             </h:panelGrid>
                         </p:overlayPanel>
                         <h:panelGrid columns="2" style="width: 68%;" >
                             <h:outputLabel value="Procesos:" for="idproceso" />  
-                            <p:selectOneMenu id="proceso" value="#{mejoraBean.idproceso}" style="width: 240px" >
+                            <p:selectOneMenu id="proceso" value="#{mejoraBean.idproceso}" style="width: 240px" required="true" label="Proceso">
                                 <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
                                 <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
                                                itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
@@ -68,14 +68,14 @@
                             </p:selectOneMenu>
 
                             <h:outputLabel value="Riesgo:" />
-                            <p:selectOneMenu id="panorama" value="#{mejoraBean.idpanorama}" style="width: 240px" >
+                            <p:selectOneMenu id="panorama" value="#{mejoraBean.idpanorama}" style="width: 240px" required="true" label="Riesgo">
                                 <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                 <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
                                                itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.riesgoByIdriesgo.idriesgo}"/>
                                 <p:ajax update="mejoramientoList"/>
                             </p:selectOneMenu>
                         </h:panelGrid> 
-
+                        <p:messages closable="true" showSummary="true"/>
                         <p:dataTable id="mejoramientoList" var="m" value="#{mejoraBean.mejorameintoList()}"  
                                      paginator="true" rows="10"  editable="true"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  

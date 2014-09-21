@@ -25,13 +25,15 @@
                         <p:overlayPanel id="datos" for="agregar" style="background-color: scrollbar" >
                             <p:panelGrid columns="4">
                                 <h:outputText value="Causa  " style="width: 140" />  
-                                <p:selectOneMenu id="cuasa" value="#{panoramaBean.idriesgo}" style="width: 200px" filter="true" filterMatchMode="startsWith">
+                                <p:selectOneMenu id="cuasa" value="#{panoramaBean.idriesgo}" style="width: 200px" 
+                                                 filter="true" filterMatchMode="startsWith" label="Causa">
                                     <f:selectItem itemLabel="Seleccione la causa" itemValue=""/>
                                     <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
                                                    itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
                                 </p:selectOneMenu>
                                 <h:outputText value="Efecto  " style="width: 140" />  
-                                <p:selectOneMenu id="efecto" value="#{panoramaBean.causa}" style="width: 200px" filter="true" filterMatchMode="startsWith">
+                                <p:selectOneMenu id="efecto" value="#{panoramaBean.causa}" style="width: 200px" 
+                                                 filter="true" filterMatchMode="startsWith" label="Efecto">
                                     <f:selectItem itemLabel="Seleccione el efecto" itemValue=""/>
                                     <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
                                                    itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
@@ -53,13 +55,13 @@
                                                itemLabel="#{cla.descclasificacion}" itemValue="#{cla.idclasificacion}"/>
                             </p:selectOneMenu>
                             <h:outputLabel value="Seleccione el enfoque       *" />
-                            <p:selectOneMenu value="#{riesgoBean.enfoque}" style="width: 180px" required="true">
+                            <p:selectOneMenu value="#{riesgoBean.enfoque}" style="width: 180px" required="true" label="Enfoque">
                                 <f:selectItem itemLabel="Seleccione Enfoque" noSelectionOption="true"/>
                                 <f:selectItems value="#{riesgoBean.listadoEnfoque()}" var="enfo"
                                                itemLabel="#{enfo.descenfoque}" itemValue="#{enfo.idenfoque}"/>
                             </p:selectOneMenu>
                             <h:outputLabel value="Seleccione el tipo       *" />
-                            <p:selectOneMenu value="#{riesgoBean.idtipo}" style="width: 180px" required="true">
+                            <p:selectOneMenu value="#{riesgoBean.idtipo}" style="width: 180px" required="true" label="Tipo">
                                 <f:selectItem itemLabel="Seleccione Tipo" noSelectionOption="true"/>
                                 <f:selectItems value="#{riesgoBean.listadoTipo()}" var="tipo"
                                                itemLabel="#{tipo.desctiporiesgo}" itemValue="#{tipo.idtipo}"/>
@@ -69,7 +71,7 @@
                         </p:panelGrid>
                         <br/>
                     </p:overlayPanel>
-                        <p:messages id="messages" showDetail="true" closable="true" />
+                        <p:messages id="messages" showSummary="true" closable="true" />
                         <h:outputText value="Proceso  " style="width: 140" />  
                         <p:selectOneMenu id="proceso" value="#{panoramaBean.idproceso}" style="width: 200px" >
                             <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
@@ -78,13 +80,20 @@
                             <p:ajax update="informacion, panorama"/>
                         </p:selectOneMenu>
                         <br/><br/>
-                        <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro">
+                        <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro"
+                                     scrollable="true">
                             <p:column headerText="Codigo" width="40">
-                                <h:outputText value="#{pro.codigo}"/>
+                                <h:outputText value="#{pro.codigoproceso}"/>
+                            </p:column>
+                            <p:column headerText="Tipo Proceso" width="200">
+                                <h:outputText value="#{pro.procesoasociado.nombreproceso.tipoproceso.desctipo}"/>
+                            </p:column>
+                            <p:column headerText="Nombre Proceso" width="200">
+                                <h:outputText value="#{pro.procesoasociado.nombreproceso.descnombre}"/>
                             </p:column>
                             <p:column headerText="Proceso Asociado" width="200">
                                 <h:outputText value="#{pro.procesoasociado.descasociado}"/>
-                            </p:column>
+                            </p:column>                            
                             <p:column headerText="Subarea" width="120">
                                 <h:outputText value="#{pro.subarea.descsubarea}"/>
                             </p:column>

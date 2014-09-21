@@ -4,9 +4,11 @@
 <!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Regional" table="regional" schema="public">
-        <id name="idregional" type="int">
-            <column name="idregional" />
-            <generator class="assigned" />
+        <id name="idregional" type="int" unsaved-value="0">
+            <column name="idregional" unique="true" sql-type="int"/>
+            <generator class="native" >
+                <param name="sequence">regional_idregional_seq</param>
+            </generator>
         </id>
         <property name="codigoregional" type="string">
             <column name="codigoregional" length="20" not-null="true" />

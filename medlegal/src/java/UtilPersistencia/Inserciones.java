@@ -404,23 +404,23 @@ public class Inserciones {
             
             //Traza de la creacion de proceso
             
-            Trazaproceso traza = new Trazaproceso();
-            System.out.println(asociado.getDescasociado()+"/"+asociado.getNombreproceso().getDescnombre()
-                    +"/"+asociado.getNombreproceso().getTipoproceso().getDesctipo());
-            traza.setProcesoasociado(asociado.getDescasociado());
-            traza.setNombreproceso(asociado.getNombreproceso().getDescnombre());
-            traza.setTipoproceso(asociado.getNombreproceso().getTipoproceso().getDesctipo());
-            traza.setSubarea(subarea.getDescsubarea());
-            traza.setFuncionarioasociado(funcionario.getNombre()+funcionario.getApellido()+""+ funcionario.getIdentificacion());
-            traza.setEstado("activo");
-            UsuarioActivo usuario = new UsuarioActivo();
-            traza.setUsuariooperacion(usuario.getUsuarioNombre());
-            traza.setFechaoperacion(fechainicio);
-            traza.setTipooperacion("Creado");
+//            Trazaproceso traza = new Trazaproceso();
+//            System.out.println(asociado.getDescasociado()+"/"+asociado.getNombreproceso().getDescnombre()
+//                    +"/"+asociado.getNombreproceso().getTipoproceso().getDesctipo());
+//            traza.setProcesoasociado(asociado.getDescasociado());
+//            traza.setNombreproceso(asociado.getNombreproceso().getDescnombre());
+//            traza.setTipoproceso(asociado.getNombreproceso().getTipoproceso().getDesctipo());
+//            traza.setSubarea(subarea.getDescsubarea());
+//            traza.setFuncionarioasociado(funcionario.getNombre()+funcionario.getApellido()+""+ funcionario.getIdentificacion());
+//            traza.setEstado("activo");
+//            UsuarioActivo usuario = new UsuarioActivo();
+//            traza.setUsuariooperacion(usuario.getUsuarioNombre());
+//            traza.setFechaoperacion(fechainicio);
+//            traza.setTipooperacion("Creado");
             
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(proceso);
-            inicio.getSession().persist(traza);
+//            inicio.getSession().persist(traza);
             inicio.getSession().getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
