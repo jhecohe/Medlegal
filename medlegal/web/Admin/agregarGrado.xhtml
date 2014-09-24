@@ -13,13 +13,13 @@
 
             <ui:define name="content">
                 <f:view>
-                    <h1><h:outputText value="Agregar Grado" /></h1>
+                    <h1><h:outputText value="Grado" /></h1>
 
                     <h:form>  
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <p:panelGrid columns="2" style="width: 400px">
                                 <h:outputLabel value="Nombre del grado:*" />
-                                <p:inputText id="nombre" value="#{gradoBean.nombre}" required="true">
+                                <p:inputText id="nombre" value="#{gradoBean.nombre}" required="true" label="Grado">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
@@ -27,13 +27,13 @@
                             </p:panelGrid>
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">
-                            <p:menuitem id="agregar" value="Agregar Grado" update=""  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Grado" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
+                            <p:menuitem id="agregar" value="Agregar Grado" update=""  immediate="true" icon="ui-icon-gear"/>
                             <p:menuitem value="Actualizar" update="gradoList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
                         </p:menubar>   
-                        <p:message for="nombre" display="" /> 
+                        <p:messages closable="true"  showSummary="true"/> 
 
-                        <p:dataTable var="gra" value="#{gradoBean.gradoListado()}" id="gradoList" editable="true" style="width: 350px" scrollable="true" scrollHeight="300">  
+                        <p:dataTable var="gra" value="#{gradoBean.gradoListado()}" id="gradoList" editable="true" 
+                                     style="width: 350px" scrollHeight="300">  
                             <p:menubar />
                             <f:facet name="header">  
                                 Listado de Grados
@@ -55,19 +55,13 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{gradoBean.modificar}" >  
+                            <p:column headerText="Modificar" style="width:20px">  
                                 <p:rowEditor/>  
                             </p:column>  
-                        </p:dataTable> <br/>
-                        <h:commandLink value="volver al menu" action="/Admin/menuAdmin" immediate="true"/><br></br>
+                        </p:dataTable>
                     </h:form>
                 </f:view>
             </ui:define>
-
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
-
         </ui:composition>
 
     </body>

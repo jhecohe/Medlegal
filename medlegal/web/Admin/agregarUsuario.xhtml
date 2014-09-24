@@ -19,25 +19,28 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
                             <h:panelGrid columns="3" style="width: 500px">
                                 <h:outputLabel value="Funcionario *" />
-                                <p:selectOneMenu value="#{usuarioBean.idfuncionario}" style="width: 160px" id="selecfuncionarios"
-                                                 label="funcionarios">
+                                <p:selectOneMenu value="#{usuarioBean.idfuncionario}" style="width: 180px" id="selecfuncionarios"
+                                                 label="Funcionario" required="true">
+                                    <f:selectItem itemLabel="Funcionario" noSelectionOption="true"/>
                                     <f:selectItems value="#{usuarioBean.funcionariolist}" var="rol"
                                                    itemLabel="#{rol.nombre}" itemValue="#{rol.idfuncionario}" />
                                 </p:selectOneMenu> 
                                 <p:message for="selecfuncionarios" display="icon"/>
                                 <h:outputLabel value="Nombre de Usuario *" />
-                                <p:inputText value="#{usuarioBean.nombre}" id="campousuario" required="true" label="Nombre de Usuario"/>
+                                <p:inputText value="#{usuarioBean.nombre}" id="campousuario" required="true" label="Usuario" style="width: 170px"/>
                                 <p:message for="campousuario" display="icon"/>
                                 <h:outputLabel value="Digite Clave *" />
-                                <p:password value="#{usuarioBean.clave}" id="clave1" required="true" label="clave"/>
+                                <p:password value="#{usuarioBean.clave}" id="clave1" required="true" label="Clave" style="width: 170px"/>
                                 <p:message for="clave1" display="icon"/>
                                 <h:outputLabel value="Vuelva a digitar la clave *" />
-                                <h:inputSecret value="#{usuarioBean.reclave}" id="clave2" required="true" label="clave"/>
+                                <p:password value="#{usuarioBean.reclave}" id="clave2" required="true" label="Repetir clave" style="width: 170px"/>
                                 <p:message for="clave1" display="icon"/>
-                                <h:outputLabel value="seleccione el rol *" />
-                                <p:selectOneMenu value="#{usuarioBean.idroles}" style="width: 160px" id="selecrol" label="roles">
+                                <h:outputLabel value="seleccione el Perfil *" />
+                                <p:selectOneMenu value="#{usuarioBean.idroles}" style="width: 180px" id="selecrol" label="Perfil"
+                                                 required="true">
+                                    <f:selectItem itemLabel="Perfil" noSelectionOption="true"/>
                                     <f:selectItems value="#{usuarioBean.roles}" var="rol"
-                                                   itemLabel="#{rol.nombre}" itemValue="#{rol.idrol}" />
+                                                   itemLabel="#{rol.descperfil}" itemValue="#{rol.idperfil}" />
                                 </p:selectOneMenu>  
                                 <p:message for="selecrol" display="icon"/>
                                 <h:outputLabel value="Los campos con * son obligatorios"  style="color: red"/>
@@ -46,12 +49,11 @@
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">
                             <p:menuitem id="agregar" value="Agregar Usuario" update=""  immediate="true" icon="ui-icon-gear"/>   
-                            <p:menuitem id="modificar" value="Modificar Datos del Usuario" actionListener="#{usuarioBean.visible()}" immediate="true" icon="ui-icon-pencil"/> 
                             <p:menuitem value="Actualizar" update="usuarioList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
                         </p:menubar>                   
-                        
-                        <p:messages id="mensajes" />
-                        
+
+                        <p:messages id="mensajes" closable="true" showSummary="true"/>
+
                         <p:dataTable var="usua" value="#{usuarioBean.usuarioList()}" id="usuarioList" 
                                      editable="true" style="width: 500px" scrollable="true" scrollHeight="300">  
                             <p:menubar />
@@ -75,11 +77,10 @@
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>
-                            <p:column headerText="Modificar" style="width:20px" rendered="#{usuarioBean.modificar}" >  
+                            <p:column headerText="Editar" style="width:30px">  
                                 <p:rowEditor/>  
                             </p:column>  
-                        </p:dataTable> <br/>
-                        <h:commandLink value="volver al menu" action="/Admin/menuAdmin" immediate="true"/><br></br>
+                        </p:dataTable> 
                     </h:form>
                 </f:view>
             </ui:define>

@@ -22,7 +22,7 @@
                         <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
                             <h:panelGrid columns="6" id="body">
                                 <h:outputLabel value="Nombre:                       *" />
-                                <p:inputText id="nombre" value="#{funcionarioBean.nombre}" required="true" label="nombre">
+                                <p:inputText id="nombre" value="#{funcionarioBean.nombre}" required="true" label="Nombre">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <p:message for="nombre" display="icon"/>
@@ -30,7 +30,7 @@
                                 <p:inputText id="snombre" value="#{funcionarioBean.segnombre}"/>
                                 <p:message for="snombre" display="icon"/>
                                 <h:outputLabel value="Apellido: *" />
-                                <p:inputText id="apellido" value="#{funcionarioBean.apellido}" required="true" label="apellido">
+                                <p:inputText id="apellido" value="#{funcionarioBean.apellido}" required="true" label="Apellido">
                                     <f:validateLength minimum="2"/>
                                 </p:inputText>
                                 <p:message for="apellido" display="icon"/>  
@@ -150,7 +150,7 @@
 
                         </p:overlayPanel>
                         
-                        <p:messages id="mensajes" />
+                        <p:messages id="mensajes" closable="true" showSummary="true" />
                         
                         <p:dataTable id="funcionarioList" var="func" value="#{funcionarioBean.funcionarioslist}"  
                                      paginator="true" rows="10"  editable="true"

@@ -26,21 +26,21 @@
                             <p:panelGrid columns="4">
                                 <h:outputText value="Causa  " style="width: 140" />  
                                 <p:selectOneMenu id="cuasa" value="#{panoramaBean.idriesgo}" style="width: 200px" 
-                                                 filter="true" filterMatchMode="startsWith" label="Causa">
-                                    <f:selectItem itemLabel="Seleccione la causa" itemValue=""/>
+                                                 filter="true" filterMatchMode="startsWith" label="Causa" required="true">
+                                    <f:selectItem itemLabel="Seleccione la causa" noSelectionOption="true"/>
                                     <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
                                                    itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
                                 </p:selectOneMenu>
                                 <h:outputText value="Efecto  " style="width: 140" />  
                                 <p:selectOneMenu id="efecto" value="#{panoramaBean.causa}" style="width: 200px" 
-                                                 filter="true" filterMatchMode="startsWith" label="Efecto">
-                                    <f:selectItem itemLabel="Seleccione el efecto" itemValue=""/>
+                                                 filter="true" filterMatchMode="startsWith" label="Efecto" required="true">
+                                    <f:selectItem itemLabel="Seleccione el efecto" noSelectionOption="true"/>
                                     <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
                                                    itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
                                 </p:selectOneMenu>
                                 <p:commandButton action="#{panoramaBean.panoramaAgregar()}" value="agregar" update="panorama" />
                             </p:panelGrid>
-                        </p:overlayPanel>
+                        </p:overlayPanel> 
                         
                         <p:overlayPanel id="datos2" for="riesgo" hideEffect="fade" style="background-color: scrollbar">
                         <p:panelGrid columns="2">
@@ -73,8 +73,9 @@
                     </p:overlayPanel>
                         <p:messages id="messages" showSummary="true" closable="true" />
                         <h:outputText value="Proceso  " style="width: 140" />  
-                        <p:selectOneMenu id="proceso" value="#{panoramaBean.idproceso}" style="width: 200px" >
-                            <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
+                        <p:selectOneMenu id="proceso" value="#{panoramaBean.idproceso}" style="width: 200px" 
+                                         label="Proceso" required="true">
+                            <f:selectItem itemLabel="Seleccione el proceso" noSelectionOption="true"/>
                             <f:selectItems value="#{panoramaBean.procesoList()}" var="p"
                                            itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}" />
                             <p:ajax update="informacion, panorama"/>

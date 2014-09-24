@@ -24,7 +24,7 @@
                             <h:outputLabel value="Descripcion del Riesgo*" />
                             <p:inputText id="descripcion" value="#{riesgoBean.descripcion}" required="true" label="Descripcion"/>
                             <h:outputLabel value="Seleccione la clasificacion *" />
-                            <p:selectOneMenu value="#{riesgoBean.idclasificacion}" style="width: 180px" rendered="true" label="clasificacion">
+                            <p:selectOneMenu value="#{riesgoBean.idclasificacion}" style="width: 180px" required="true" label="Clasificacion">
                                 <f:selectItem itemLabel="Seleccione Clasificacion" noSelectionOption="true"/>
                                 <f:selectItems value="#{riesgoBean.listadoClasificacion()}" var="cla"                                               
                                                itemLabel="#{cla.descclasificacion}" itemValue="#{cla.idclasificacion}"/>
