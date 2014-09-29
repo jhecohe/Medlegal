@@ -26,7 +26,7 @@ public class Eliminar implements Serializable {
         try {
             Transaction tx = inicio.getSession().beginTransaction();
             Query query = inicio.session.createQuery("delete from Panoramaderiesgos where "
-                    + "idpanoramariesgos = :idpanorama");
+                    + "idpanorama = :idpanorama");
             query.setParameter("idpanorama", codigo);
             int result = query.executeUpdate();
             tx.commit();

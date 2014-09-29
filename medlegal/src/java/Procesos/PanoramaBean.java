@@ -212,8 +212,8 @@ public class PanoramaBean {
     }
     
     public void eliminarPanorama(){
-        int id = (Integer)panoSelec.getIdpanorama();
         System.out.println("A ver que salio a ver si vamos por buen camino "+ panoSelec.getIdpanorama());
+        int id = (Integer)panoSelec.getIdpanorama();
         eliminar = new Eliminar();
         eliminar.panorama(id);
     }
