@@ -35,8 +35,6 @@ public class PanoramaBean {
     private String personas;
     private int idriesgo;
     private int causa;
-    Riesgo risk;
-    private int temp;
     private Riesgo riesg;
     Inserciones agregar;
     Eliminar eliminar;
@@ -134,14 +132,6 @@ public class PanoramaBean {
         this.causa = causa;
     }
 
-    public Riesgo getRisk() {
-        return risk;
-    }
-
-    public void setRisk(Riesgo risk) {
-        this.risk = risk;
-    }
-
     public Riesgo getRiesg() {
         return riesg;
     }
@@ -192,16 +182,20 @@ public class PanoramaBean {
         }
     }
     
-    public boolean validacion (){
+    public boolean validacion(){
         boolean validado = true;
         Listados lista = new Listados();
         List panora = lista.listaPanormaValidacionRiesgo(idproceso, idriesgo);
         if(panora != null){
-            validado = true;
+            validado = false;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
         (FacesMessage.SEVERITY_INFO, "Info", "Este riesgo ya es una causa, una causa no puede ser efecto"));
-
-        }
+        }       
+        if(idriesgo == causa){
+            validado = false;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        (FacesMessage.SEVERITY_INFO, "Info", "Un riesgo no puede ser causa y efecto"));
+        }       
         return validado;
     }
     

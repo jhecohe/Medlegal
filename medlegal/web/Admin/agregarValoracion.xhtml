@@ -22,7 +22,7 @@
                                                  required="true" label="Proceso">
                                     <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
                                     <f:selectItems value="#{valoracionBean.procesoList()}" var="p"
-                                                   itemLabel="#{p.codigoproceso}" itemValue="#{p.idproceso}"/>
+                                                   itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
                                     <p:ajax update="panorama"/>
                                 </p:selectOneMenu>
                                 <h:outputLabel value="Riesgo:" />
@@ -30,7 +30,7 @@
                                                  label="Riesgo" required="true">
                                     <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
                                     <f:selectItems value="#{valoracionBean.riesgosList()}" var="pr"
-                                                   itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
+                                                   itemLabel="#{pr.riesgoByIdcausa.descriesgo}" itemValue="#{pr.idpanorama}"/>
                                 </p:selectOneMenu>
                             </h:panelGrid>
                             <h:panelGrid id="color" columns="2" style="width: 80%; #{valoracionBean.color()}">     
@@ -97,7 +97,7 @@
                                 <f:facet name="header">  
                                     <h:outputText value="Proceso Asociado" />  
                                 </f:facet>  
-                                <h:outputText value="#{val.panoramaderiesgos.riesgoByIdriesgo.descripcion}" />  
+                                <h:outputText value="#{val.panoramaderiesgos.riesgoByIdriesgo.descriesgo}" />  
                             </p:column>  
 
 

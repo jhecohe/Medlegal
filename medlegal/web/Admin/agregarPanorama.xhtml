@@ -20,10 +20,10 @@
                             <p:menuitem value="Borrar Panorama de Riesgo" action="#{panoramaBean.eliminarPanorama()}" 
                                         update="panorama" ajax="false" icon="ui-icon-close" immediate="true" />
                             <p:menuitem value="Actualizar" update="panorama, informacion" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
-                            <p:menuitem id="riesgo" value="Agregar Riesgo" icon="ui-icon-gear" />   
+                            <p:menuitem id="riesgo" value="Agregar Riesgo" icon="ui-icon-gear"  />   
                         </p:menubar>
 
-                        <p:overlayPanel id="datos" for="agregar" style="background-color: scrollbar" >
+                        <p:overlayPanel id="datos" for="agregar" style="background-color: scrollbar" showCloseIcon="true" >
                             <p:panelGrid columns="4">
                                 <h:outputText value="Causa  " style="width: 140" />  
                                 <p:selectOneMenu id="cuasa" value="#{panoramaBean.idriesgo}" style="width: 200px" 
@@ -39,40 +39,17 @@
                                     <f:selectItems value="#{panoramaBean.riesgosList()}" var="r"
                                                    itemLabel="#{r.nombre}" itemValue="#{r.idriesgo}" />
                                 </p:selectOneMenu>
-                                <p:commandButton action="#{panoramaBean.panoramaAgregar()}" value="agregar" update="panorama" immediate="true"/>
+                                <p:commandButton action="#{panoramaBean.panoramaAgregar()}" value="agregar" update="panorama" ajax="false" />
                             </p:panelGrid>
                         </p:overlayPanel> 
-                        
-                        <p:overlayPanel id="datos2" for="riesgo" hideEffect="fade" style="background-color: scrollbar">
-                        <p:panelGrid columns="2">
-                            <h:outputLabel value="Nombre del Riesgo*" />
-                            <p:inputText id="nombre" value="#{riesgoBean.nombre}" required="true" label="nombre"/>
-                            <h:outputLabel value="Descripcion del Riesgo*" />
-                            <p:inputText id="descripcion" value="#{riesgoBean.descripcion}" required="true" label="descripcion"/>
-                            <h:outputLabel value="Seleccione la clasificacion *" />
-                            <p:selectOneMenu value="#{riesgoBean.idclasificacion}" style="width: 180px" rendered="true">
-                                <f:selectItem itemLabel="Seleccione Clasificacion" noSelectionOption="true"/>
-                                <f:selectItems value="#{riesgoBean.listadoClasificacion()}" var="cla"                                               
-                                               itemLabel="#{cla.descclasificacion}" itemValue="#{cla.idclasificacion}"/>
-                            </p:selectOneMenu>
-                            <h:outputLabel value="Seleccione el enfoque       *" />
-                            <p:selectOneMenu value="#{riesgoBean.enfoque}" style="width: 180px" required="true" label="Enfoque">
-                                <f:selectItem itemLabel="Seleccione Enfoque" noSelectionOption="true"/>
-                                <f:selectItems value="#{riesgoBean.listadoEnfoque()}" var="enfo"
-                                               itemLabel="#{enfo.descenfoque}" itemValue="#{enfo.idenfoque}"/>
-                            </p:selectOneMenu>
-                            <h:outputLabel value="Seleccione el tipo       *" />
-                            <p:selectOneMenu value="#{riesgoBean.idtipo}" style="width: 180px" required="true" label="Tipo">
-                                <f:selectItem itemLabel="Seleccione Tipo" noSelectionOption="true"/>
-                                <f:selectItems value="#{riesgoBean.listadoTipo()}" var="tipo"
-                                               itemLabel="#{tipo.desctiporiesgo}" itemValue="#{tipo.idtipo}"/>
-                            </p:selectOneMenu>
-                            <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
-                            <p:commandButton  value="Agregar" actionListener="#{riesgoBean.agregar()}" ajax="false"/>
-                        </p:panelGrid>
-                        <br/>
-                    </p:overlayPanel>
-                        <p:messages id="messages" showSummary="true" closable="true" />
+
+                        <p:overlayPanel id="datos2" for="riesgo" >
+                            <p:lightBox iframe="true">
+                                <p:link outcome="agregarRiesgo" value="Riesgo"/>
+                            </p:lightBox>
+                        </p:overlayPanel>
+
+                        <p:messages id="messages" showDetail="true" closable="true" />
                         <h:outputText value="Proceso  " style="width: 140" />  
                         <p:selectOneMenu id="proceso" value="#{panoramaBean.idproceso}" style="width: 200px" 
                                          label="Proceso" required="true">
@@ -82,7 +59,7 @@
                             <p:ajax update="informacion, panorama"/>
                         </p:selectOneMenu>
                         <br/><br/>
-                        <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro"
+                        <p:dataTable id="informacion" value="#{panoramaBean.informacion()}" var="pro"  
                                      scrollable="true">
                             <p:column headerText="Codigo" width="40">
                                 <h:outputText value="#{pro.codigoproceso}"/>
@@ -112,7 +89,7 @@
                         <p:dataTable id="panorama"  value="#{panoramaBean.panoramabyRiesgo()}" var="efe"
                                      rows="10"  resizableColumns="true" scrollWidth="400"
                                      selection="#{panoramaBean.panoSelec}" rowKey="#{efe.idpanorama}">
-                            
+
                             <p:column headerText="Codigo" width="70"  rendered="false">
                                 <h:outputText value="#{efe.idpanorama}"/>
                             </p:column>

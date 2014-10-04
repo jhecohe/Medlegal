@@ -83,7 +83,8 @@
                                     <f:selectItems value="#{procesoBean.funcionariolist}" var="f" 
                                                    itemLabel="#{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}" />
                                 </p:selectOneMenu>
-                                <p:commandButton value="Aceptar" actionListener="#{procesoBean.agregar()}" update="procesoList" ajax="false"/>
+                                <p:commandButton value="Aceptar" actionListener="#{procesoBean.agregar()}" update="procesoList" 
+                                                 ajax="false" resetValues="true"/>
                             </p:panelGrid>
                         </p:overlayPanel>
                         <p:menubar style="height: 26px; padding-right: 1%">

@@ -130,6 +130,8 @@ public class ProcesoBean {
         idproceso = Integer.parseInt(idpro);
         System.out.println("Agregar proceso " + idproceso + " " + idasociado + " " + idfuncionario + " " + idsubarea);
         insertar.agregarProceso(idproceso, idasociado, idsubarea, idfuncionario);
+        idproceso = 0; idasociado = 0; idsubarea = 0; idfuncionario = 0;
+        
     }
     
     public List procesoList(){

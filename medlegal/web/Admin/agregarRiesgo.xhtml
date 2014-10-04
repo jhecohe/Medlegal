@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <h1><h:outputText value="Agregar Riesgo" /></h1>
-                <h:form> 
+                <h:form id="formulario"> 
                     <p:menubar style="height: 26px; padding-right: 1%">
                         <p:menuitem id="agregar" value="Agregar Riesgo" immediate="true" icon="ui-icon-gear"/> 
                         <p:menuitem value="Actualizar" update="riesgoList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
@@ -42,11 +42,12 @@
                                                itemLabel="#{tipo.desctiporiesgo}" itemValue="#{tipo.idtipo}"/>
                             </p:selectOneMenu>
                             <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
-                            <p:commandButton  value="Agregar" actionListener="#{riesgoBean.agregar()}" update="riesgoList" ajax="false"/>
+                            <p:commandButton  value="Agregar" actionListener="#{riesgoBean.agregar()}" 
+                                              update="riesgoList" ajax="false" resetValues="true"/>
                         </p:panelGrid>
                         <br/>
                     </p:overlayPanel>
-                    <p:messages closable="true" showSummary="true"/>
+                    <p:messages closable="true" showDetail="true"/>
                     <p:dataTable var="ries" value="#{riesgoBean.riesgoLista()}" id="riesgoList" editable="true" 
                                  paginator="true" rows="12"  
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -80,7 +81,7 @@
                                 </f:facet>  
                             </p:cellEditor>  
                         </p:column> 
-                        
+
                         <p:column headerText="Descripcion" width="200">                 
                             <h:outputText value="#{ries.descriesgo}" />                          
                         </p:column>

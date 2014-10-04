@@ -224,7 +224,8 @@ public class Inserciones {
         return respuesta;
     }
 
-    public void agregarRiesgo(int idclasificacion, int idenfoque, String nombre, String descripcion, int idtipo) {
+    public boolean agregarRiesgo(int idclasificacion, int idenfoque, String nombre, String descripcion, int idtipo) {
+        boolean respuesta = true;
         try {
             System.out.println("riesgo insercion agregar: " + nombre + "" + idenfoque + "" + idclasificacion + "" + idtipo);
             Clasificacion clasi = new Clasificacion();
@@ -243,11 +244,18 @@ public class Inserciones {
             riesgo.setTiporiesgo(tipo);
             riesgo.setEstado(estado);
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(riesgo);
-            inicio.getSession().getTransaction().commit();
+            Query q = inicio.session.createQuery("from Riesgo where nombre = :nombre");
+            q.setParameter("nombre", nombre);
+            if(q.uniqueResult() == null){
+                inicio.getSession().persist(riesgo);
+                inicio.getSession().getTransaction().commit();
+            }else
+                respuesta = false;
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return respuesta;
     }
 
     public boolean agregarArea(String nombre, int idseccional) {
@@ -404,23 +412,23 @@ public class Inserciones {
             
             //Traza de la creacion de proceso
             
-//            Trazaproceso traza = new Trazaproceso();
-//            System.out.println(asociado.getDescasociado()+"/"+asociado.getNombreproceso().getDescnombre()
-//                    +"/"+asociado.getNombreproceso().getTipoproceso().getDesctipo());
-//            traza.setProcesoasociado(asociado.getDescasociado());
-//            traza.setNombreproceso(asociado.getNombreproceso().getDescnombre());
-//            traza.setTipoproceso(asociado.getNombreproceso().getTipoproceso().getDesctipo());
-//            traza.setSubarea(subarea.getDescsubarea());
-//            traza.setFuncionarioasociado(funcionario.getNombre()+funcionario.getApellido()+""+ funcionario.getIdentificacion());
-//            traza.setEstado("activo");
-//            UsuarioActivo usuario = new UsuarioActivo();
-//            traza.setUsuariooperacion(usuario.getUsuarioNombre());
-//            traza.setFechaoperacion(fechainicio);
-//            traza.setTipooperacion("Creado");
+            Trazaproceso traza = new Trazaproceso();
+            System.out.println(asociado.getDescasociado()+"/"+asociado.getNombreproceso().getDescnombre()
+                    +"/"+asociado.getNombreproceso().getTipoproceso().getDesctipo());
+            traza.setProcesoasociado(asociado.getDescasociado());
+            traza.setNombreproceso(asociado.getNombreproceso().getDescnombre());
+            traza.setTipoproceso(asociado.getNombreproceso().getTipoproceso().getDesctipo());
+            traza.setSubarea(subarea.getDescsubarea());
+            traza.setFuncionarioasociado(funcionario.getNombre()+funcionario.getApellido()+""+ funcionario.getIdentificacion());
+            traza.setEstado("activo");
+            UsuarioActivo usuario = new UsuarioActivo();
+            traza.setUsuariooperacion(usuario.getUsuarioNombre());
+            traza.setFechaoperacion(fechainicio);
+            traza.setTipooperacion("Creado");
             
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(proceso);
-//            inicio.getSession().persist(traza);
+            inicio.getSession().persist(traza);
             inicio.getSession().getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

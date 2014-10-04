@@ -7,6 +7,7 @@ package login;
 import Persistencia.Usuario;
 import UtilPersistencia.Listados;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -19,11 +20,11 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean
 @SessionScoped
-public class UsuarioLoginBean {
+public class UsuarioLoginBean implements Serializable {
 
     private String usuario;
     private String password;
-    private String rol;
+    private String perfil;
     private String mensaje;
     public final static String USER_KEY="auth_user";
     
@@ -37,6 +38,7 @@ public class UsuarioLoginBean {
         String url = "";
         if(usuario(usuario, password))
         {
+                        System.out.println("Entramos en la validacion if -- usuario --");
             url = extContext.encodeActionURL(
                     context.getApplication().getViewHandler().getActionURL
                     (context, "/Usuario/menuUsuario.jspx"));
@@ -45,13 +47,12 @@ public class UsuarioLoginBean {
             return;
             
         }
-        //if(administrador(usuario, password))
-        if(administrador())
+        if(administrador(usuario, password))
         {
             url = extContext.encodeActionURL(
                     context.getApplication().getViewHandler().getActionURL
                     (context, "/Admin/menuAdmin.jspx"));
-            extContext.getSessionMap().put(USER_KEY, new TipoUsuario(usuario, "rol1"));
+            extContext.getSessionMap().put(USER_KEY, new TipoUsuario(usuario, perfil));
             extContext.redirect(url);
             return;
         }
@@ -77,17 +78,15 @@ public class UsuarioLoginBean {
         //Aqui se puede validar hacia una base de datos
     }
     
-    //private boolean administrador(String usuarior, String password){
-    private boolean administrador(){
+    private boolean administrador(String usuario, String password){
         Listados listas = new Listados();
-        boolean validacion = true;
-        //return user.equals("admin") && password.equals("admin");
+        boolean validacion = false;
         System.out.println(usuario+ "  /  " + password);
         Usuario user = listas.validacionUsuario(usuario, password);
         if(user != null){
             System.out.println(user.getPerfil().getDescperfil()+ " if nombre usuario  ");
             validacion = true;
-            setRol(user.getPerfil().getDescperfil());
+            setPerfil(user.getPerfil().getDescperfil());
         }
         //Aqui se puede validar hacia una base de datos
         return validacion;
@@ -117,12 +116,12 @@ public class UsuarioLoginBean {
         this.usuario = usuario;
     }
 
-    public String getRol() {
-        return rol;
+    public String getPerfil() {
+        return perfil;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
     
 }

@@ -11,8 +11,10 @@ import UtilPersistencia.Listados;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -49,9 +51,14 @@ public class RiesgoBean {
     }
 
     public void agregar() {
-        System.out.println("riesgo bean agregar: " + nombre + ""+enfoque+""+idclasificacion);
+        boolean respuesta;
         Inserciones insertar = new Inserciones();
-        insertar.agregarRiesgo(idclasificacion, enfoque, nombre, descripcion, idtipo);
+        respuesta = insertar.agregarRiesgo(idclasificacion, enfoque, nombre, descripcion, idtipo);
+        if(respuesta == false){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "'El riesgo "+ nombre +"' ya a sido  creado"));
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", nombre +" a sido creada correctamente."));
+        }
 
     }
 

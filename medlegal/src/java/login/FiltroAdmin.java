@@ -31,7 +31,7 @@ public class FiltroAdmin implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (((HttpServletRequest) request).getSession().getAttribute(
                 UsuarioLoginBean.USER_KEY) == null || !((TipoUsuario)((HttpServletRequest) request).getSession().getAttribute(
-                UsuarioLoginBean.USER_KEY)).getRole().equals("rol1") ) {
+                UsuarioLoginBean.USER_KEY)).getRole().equals("administrador") ) {
             ((HttpServletResponse) response).sendRedirect("../index.jspx");
         } else {
             chain.doFilter(request, response);
