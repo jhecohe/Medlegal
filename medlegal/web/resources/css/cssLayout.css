@@ -51,6 +51,11 @@
     padding: 5px;
 }
 
+.error{
+    float: right;
+    max-width: 200px;
+}
+
 #top a:link, #top a:visited {
     color: white;
     font-weight : bold;

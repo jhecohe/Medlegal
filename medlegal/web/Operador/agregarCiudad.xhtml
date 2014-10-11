@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Ciudades" /></h1>
+
+                    <h:form>  
+                        <p:menubar style="max-height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar" icon="ui-icon-gear"/>                            
+                            <p:menuitem id="actualizar" value="Actualizar" update="ciudadList" ajax="false" icon="ui-icon-arrowrefresh-1-w"/>
+                        </p:menubar>
+                        <p:overlayPanel id="datos" for="agregar" style="background: gray">
+                            <p:panelGrid columns="2" >
+                                <h:outputLabel value="Nombre de la ciudad *" />
+                                <p:inputText value="#{ciudadBean.nombre}" required="true" id="nombre" label="nombre">
+                                    <f:validateLength minimum="2"/>
+                                </p:inputText> 
+                                <h:outputLabel value="Codigo de la ciudad *" />
+                                <p:inputText value="#{ciudadBean.codigo}" required="true" id="codigo" label="codigo">
+                                    <f:validateLength minimum="2" maximum="4"/>
+                                </p:inputText> 
+                                <h:outputLabel value="Departamento" />
+                                <p:selectOneMenu value="#{ciudadBean.iddepartamento}" style="width: 180px">
+                                    <f:selectItems value="#{ciudadBean.departamentolist}" var="d"
+                                                   itemLabel="#{d.descdepartamento}" itemValue="#{d.iddepartamento}" />
+                                </p:selectOneMenu>
+                                <p:commandButton actionListener="#{ciudadBean.agregar()}" value="Agregar" 
+                                                 update="ciudadList" ajax="false" style="color: blue; background: white"/>
+                                <h:outputLabel value="!Los campos con * son obligatorios!" style="font-style: italic; color: #045491" />
+                            </p:panelGrid>
+                        </p:overlayPanel>
+                        <p:messages closable="true" showDetail="true"/>
+                        <p:dataTable var="ciu" value="#{ciudadBean.ciudadLista()}" id="ciudadList" editable="true" 
+                                     rows="15" paginator="true" rowsPerPageTemplate="15,20,30" style="width: 700px; height">  
+                            <f:facet name="header">  
+                                Listado de Ciudades
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{ciudadBean.modificar}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{ciu.idciudad}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{ciu.descciudad}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{ciu.descciudad}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Modificar" style="width:20px" >  
+                                <p:rowEditor/>  
+                            </p:column>  
+                        </p:dataTable> <br/>
+
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

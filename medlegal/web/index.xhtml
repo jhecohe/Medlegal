@@ -23,22 +23,20 @@
                             <img alt="triangulo" src="resources/imagenes/triangle.png"/>
                             <h:panelGrid columns="2">      
                                 <h:outputText value="Digite su usuario"/>
-                                <h:inputText id ="usuario" value="#{usuarioLoginBean.usuario}">
+                                <p:inputText id ="usuario" value="#{usuarioLoginBean.usuario}" required="true">
                                     <f:validateRequired/>
-                                </h:inputText>
+                                </p:inputText>
                                 <h:outputText value="Digite su clave"/>
-                                <h:inputSecret id ="password" value="#{usuarioLoginBean.password}">
+                                <p:password id ="password" value="#{usuarioLoginBean.password}" required="true">
                                     <f:validateRequired />
-                                </h:inputSecret>                  
-                                <h:message for ="usuario" />
-                                <h:message for ="password"/>
-                                <h:commandButton value="Aceptar" action="#{usuarioLoginBean.doLogin(e)}">
-                                    <f:ajax execute="@form" render="mensaje"></f:ajax>
-                                </h:commandButton>
-                            </h:panelGrid>
+                                </p:password> 
+                                <p:commandButton value="Aceptar" action="#{usuarioLoginBean.doLogin(e)}" ajax="false"/>
+                                <div class="error">
+                                    <p:messages closable="true" showDetail="true"/>
+                                </div>
+                            </h:panelGrid>                           
                         </h:panelGrid>
                     </p:panel>
-                    <h:outputText value="#{usuarioLoginBean.mensaje}" id="mensaje"></h:outputText>
                 </h:form>
             </ui:define>
 

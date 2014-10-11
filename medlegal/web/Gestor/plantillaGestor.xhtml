@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/defaultAdmin.css"/>
+        <h:outputStylesheet name="./css/cssLayoutAdmin.css"/>
+        <title>S.R.P Gestor</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <div class="logo">
+                <h:graphicImage alt="logo srp" url="../resources/imagenes/logofinal.png" />
+            </div>
+            <div class="titular">
+                <h1>SISTEMA DE RIESGOS POR PROCESO</h1>
+            </div>
+            <div class="logoml">
+                <h:graphicImage alt="logo medicina legal" url="../resources/imagenes/logo-medicina.png" width="130" height="120"/>
+            </div>
+            <ui:insert name="top"></ui:insert>
+        </div>
+
+        <div id="menu">
+            <div class="info">
+                <div class="fecha">
+                    <h:outputText value="#{hora.fecha}" style="color: #65859F; font-weight: bolder"/>
+                </div>
+                <div class="usuario">
+                    <h:outputText value="#{usuarioActivo.usuarioNombre}" style="color: #65859F; font-weight: bolder"/>
+                </div>
+            </div>
+            <h:form id="fmenu">
+                <p:menubar>  
+                    <p:submenu label="Proceso" >  
+                        <p:menuitem value="Riesgo" action="/Admin/agregarRiesgo" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Procesos" action="/Admin/agregarProceso" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Panorama de Riesgos" action="/Admin/agregarPanorama" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Valoracion" action="/Admin/agregarValoracion" icon="ui-icon-document" ajax="false"/>                           
+                        <p:menuitem value="Mejoramiento" action="/Admin/agregarMejoramiento" icon="ui-icon-document" ajax="false" />                        
+                    </p:submenu> 
+
+                    <p:submenu label="Funcionarios" >  
+                        <p:menuitem value="Funcionario" action="/Admin/agregarFuncionario" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Usuario" action="/Admin/agregarUsuario" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Perfiles" action="/Admin/agregarPerfil" icon="ui-icon-document" ajax="false"/> 
+                        <p:menuitem value="Cargo" action="/Admin/agregarCargo" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Grado" action="/Admin/agregarGrado" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Clase" action="/Admin/agregarClase" icon="ui-icon-document" ajax="false"/>
+                    </p:submenu>    
+
+                    <p:submenu label="Administrativo" >  
+                        <p:menuitem value="Clasificacion" action="/Admin/agregarClasificacion" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Enfoque" action="/Admin/agregarEnfoque" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Estado" action="/Admin/agregarEstado" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Nombre Proceso" action="/Admin/agregarNombreProceso" icon="ui-icon-document" ajax="false"/>                        
+                        <p:menuitem value="Tipo Proceso" action="/Admin/agregarTipoProceso" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Area" action="/Admin/agregarArea" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Ciudad" action="/Admin/agregarCiudad" icon="ui-icon-document" ajax="false"/> 
+                        <p:menuitem value="Departamento" action="/Admin/agregarDepartamento" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Regional" action="/Admin/agregarRegional" icon="ui-icon-document" ajax="false"/> 
+                        <p:menuitem value="Seccional" action="/Admin/agregarSeccional" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Sub-Area" action="/Admin/agregarSubarea" icon="ui-icon-document" ajax="false"/>
+                    </p:submenu>
+
+                    <p:submenu label="Reportes">
+                        <p:menuitem value="Funcionarios" action="/reportes/funcionarioReporte" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Riesgos por Proceso" action="/reportes/porProcesoReporte" icon="ui-icon-document" ajax="false"/>
+                        <p:menuitem value="Riesgos por Responsable" action="/reportes/porResponsableReporte" icon="ui-icon-document" ajax="false"/>
+                    </p:submenu>
+                    
+                    <p:menuitem value="Cerrar Sesion" action="#{usuarioLoginBean.logout()}" style="margin-left: 640px" icon="ui-icon-extlink"/>
+                </p:menubar>
+            </h:form>
+            <ui:insert name="menu">
+
+            </ui:insert>  
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Powered by @Jherson A. Cohecha S.</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

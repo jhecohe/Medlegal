@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="menu">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h1><h:outputText value="Agregar Efecto" /></h1>
+
+                    <h:form>                
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nombre de la Efecto" />
+                            <h:inputText value="#{efectoBean.nombre}"/>
+                            <h:selectOneListbox value="#{efectoBean.idcausa}" size="1">
+                                <f:selectItems value="#{efectoBean.causalist}" var="c"
+                                               itemLabel="#{c.descripcion}" itemValue="#{c.idcausa}" />
+                            </h:selectOneListbox>><br/>
+                            <h:commandButton action="#{efectoBean.agregar()}" value="Enviar"/>
+                        </h:panelGrid>
+                        <h:commandLink value="volver al menu" action="/Admin/menuAdmin"/><br></br>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

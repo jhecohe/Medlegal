@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Seccionales" /></h1>
+
+                    <h:form>    
+                        <p:menubar style="max-height: 26px">
+                            <p:menuitem id="agregar" value="Agregar" icon="ui-icon-gear"/>
+                            <p:menuitem id="modificar" value="Modificar" icon="ui-icon-gear"/>
+                            <p:menuitem id="actualizar" value="Actualizar" icon="ui-icon-arrowrefresh-1-w"/>
+                        </p:menubar>
+
+                        <p:overlayPanel for="agregar">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel value="Nombre de la Seccional" />
+                                <p:inputText value="#{seccionalBean.nombre}"/>
+                                <h:outputLabel value="Seleccione la regional" />
+                                <p:selectOneMenu value="#{seccionalBean.idregional}" style="width: 180px">
+                                    <f:selectItems value="#{seccionalBean.regionallist}" var="r"
+                                                   itemLabel="#{r.descregional}" itemValue="#{r.idregional}" />
+                                </p:selectOneMenu>
+                                <p:commandButton action="#{seccionalBean.agregar()}" value="Agregar" style="background: white"/>
+                            </p:panelGrid>
+                        </p:overlayPanel>
+
+                        <p:dataTable id="listadoSeccional" var="sec" value="#{seccionalBean.seccionallist}" scrollable="true"
+                                     scrollHeight="400" style="width: 600px" editable="true">
+                            <f:facet name="header">  
+                                Listado de Seccionales
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{seccionalBean.modificar()}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{sec.idseccional}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{sec.descseccional}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{sec.descseccional}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Modificar" style="width:20px" rendered="#{seccionalBean.modificar()}" >  
+                                <p:rowEditor/>  
+                            </p:column>  
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

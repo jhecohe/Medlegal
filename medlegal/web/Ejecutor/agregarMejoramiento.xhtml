@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Mejoramiento de Riesgo" /></h1>
+                    <br/>
+                    <h:form>   
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Mejoramiento" update=""  immediate="true" icon="ui-icon-gear"/> 
+                            <p:menuitem value="Actualizar" update="mejoramientoList" icon="ui-icon-arrowrefresh-1-w" immediate="true" ajax="false"/> 
+                        </p:menubar> 
+
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Proceso:" for="idproceso" />  
+                                <p:selectOneMenu id="procesos" value="#{mejoraBean.idproceso}" style="width: 240px" label="Proceso" required="true">
+                                    <f:selectItem itemLabel="Seleccione el proceso" itemValue=""/>
+                                    <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
+                                                   itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
+                                    <p:ajax update="riesgo"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel value="Riesgo:" />
+                                <p:selectOneMenu id="riesgo" value="#{mejoraBean.idriesgo}" style="width: 240px" required="true" label="Riesgo">
+                                    <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
+                                    <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
+                                                   itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.idpanoramariesgos}"/>
+                                </p:selectOneMenu> 
+
+                                <h:outputLabel value="Mejoramiento:" />
+                                <p:editor id="texto" value="#{mejoraBean.mejora}" width="400" height="100" controls="undo redo copy" required="true"/>
+
+                                <h:outputLabel value="Responsable:" />
+                                <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" required="true" label="Responsable">
+                                    <f:selectItems value="#{mejoraBean.funcionarioList()}" var="f"
+                                                   itemLabel="(#{f.identificacion}) #{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}"/>
+                                </p:selectOneMenu>
+                                
+                                <h:outputLabel value="Proxima Evaluacion:" />
+                                <p:calendar value="#{mejoraBean.revision}" id="revision" pattern="yyyy/M/d" navigator="true" required="true" 
+                                            showButtonPanel="true" yearRange="2014:2100" label="Evaluacion" size="34" mindate="#{mejoraBean.actual}"> 
+                                    <f:convertDateTime pattern="yyyy/M/d"/>
+                                </p:calendar>
+
+                                <h:outputLabel value="Calificacion:" />
+                                <p:inputText id="calificacion" value="#{mejoraBean.calificacion}" style="width: 230px" required="true" label="Calificacion"/>
+                                <p:commandButton value="Aceptar" actionListener="#{mejoraBean.agregar()}" update="mejoramientoList" ajax="false"/>
+                            </h:panelGrid>
+                        </p:overlayPanel>
+                        <h:panelGrid columns="2" style="width: 68%;" >
+                            <h:outputLabel value="Procesos:" for="idproceso" />  
+                            <p:selectOneMenu id="proceso" value="#{mejoraBean.idproceso}" style="width: 240px" required="true" label="Proceso">
+                                <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
+                                <f:selectItems value="#{mejoraBean.procesoList()}" var="p"
+                                               itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
+                                <p:ajax update="panorama"/>
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Riesgo:" />
+                            <p:selectOneMenu id="panorama" value="#{mejoraBean.idpanorama}" style="width: 240px" required="true" label="Riesgo">
+                                <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
+                                <f:selectItems value="#{mejoraBean.riesgosList()}" var="pr"
+                                               itemLabel="#{pr.riesgoByIdriesgo.nombre}" itemValue="#{pr.riesgoByIdriesgo.idriesgo}"/>
+                                <p:ajax update="mejoramientoList"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid> 
+                        <p:messages closable="true" showSummary="true"/>
+                        <p:dataTable id="mejoramientoList" var="m" value="#{mejoraBean.mejorameintoList()}"  
+                                     paginator="true" rows="10"  editable="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     scrollable="true" scrollWidth="990" resizableColumns="true"  >  
+                            <f:facet name="header">  
+                                Listado de Mejoramientos
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{mejoraBean.modificar}" />
+
+                            <p:column headerText="Riesgo" width="100">  
+                                <h:outputText value="#{m.panoramaderiesgos.riesgoByIdriesgo.descripcion}" />  
+                            </p:column>  
+
+                            <p:column headerText="Identificacion" width="70">  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="(#{m.funcionario.identificacion})#{m.funcionario.nombre}#{m.funcionario.apellido}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:selectOneMenu id="funcionario" value="#{mejoraBean.idfuncionario}" style="width: 240px" >
+                                            <f:selectItems value="#{mejoraBean.funcionarioList()}" var="f"
+                                                           itemLabel="(#{f.identificacion}) #{f.nombre} #{f.apellido}" itemValue="#{f.idfuncionario}"/>
+                                        </p:selectOneMenu> 
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+
+                            <p:column headerText="Accion de Mejora" width="125">  
+                                <p:cellEditor>  
+                                    <f:facet name="output"> 
+                                        <p:inputTextarea value="#{m.mejoramiento}" readonly="true" style="width: 270px" />
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputTextarea value="#{m.mejoramiento}" style="width: 270px"/>  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Periodo" width="25">  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{m.revision}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{m.revision}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+
+                            <p:column headerText="Editar" width="5">  
+                                <p:rowEditor />  
+                            </p:column>  
+
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

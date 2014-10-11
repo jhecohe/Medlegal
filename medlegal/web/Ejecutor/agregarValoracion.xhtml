@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+
+                <f:view>
+                    <h1><h:outputText value="Analisis Y Valoracion de Riesgos" /></h1>
+                    <h:form> 
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
+                            <h:panelGrid columns="2" style="width: 68%;" >
+                                <h:outputLabel value="Proceso:" for="proceso" />  
+                                <p:selectOneMenu id="proceso" value="#{valoracionBean.idproceso}" style="width: 240px" 
+                                                 required="true" label="Proceso">
+                                    <f:selectItem itemLabel="Sellecione el proceso" itemValue=""/>
+                                    <f:selectItems value="#{valoracionBean.procesoList()}" var="p"
+                                                   itemLabel="#{p.procesoasociado.descasociado}" itemValue="#{p.idproceso}"/>
+                                    <p:ajax update="panorama"/>
+                                </p:selectOneMenu>
+                                <h:outputLabel value="Riesgo:" />
+                                <p:selectOneMenu id="panorama" value="#{valoracionBean.idpanorama}" style="width: 240px" 
+                                                 label="Riesgo" required="true">
+                                    <f:selectItem itemLabel="Selecciones el Riesgo" itemValue=""/>
+                                    <f:selectItems value="#{valoracionBean.riesgosList()}" var="pr"
+                                                   itemLabel="#{pr.riesgoByIdcausa.descriesgo}" itemValue="#{pr.idpanorama}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+                            <h:panelGrid id="color" columns="2" style="width: 80%; #{valoracionBean.color()}">     
+                                <h:outputLabel value="Origen:         " />
+                                <p:selectOneRadio value="#{valoracionBean.origen}" required="true" label="Origen">
+                                    <f:selectItem itemLabel="Externo" itemValue="2"/>
+                                    <f:selectItem itemLabel="Interno" itemValue="1"/>
+                                    <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
+                                </p:selectOneRadio>
+
+                                <h:outputLabel value="Probabilidad:   " />
+                                <p:selectOneRadio value="#{valoracionBean.probabilidad}" required="true" label="Probabilidad">
+                                    <f:selectItem itemLabel="Alto" itemValue="20" />
+                                    <f:selectItem itemLabel="Medio" itemValue="10"/>
+                                    <f:selectItem itemLabel="Bajo" itemValue="5"/>
+                                    <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
+                                </p:selectOneRadio>
+
+                                <h:outputLabel value="Impacto:        " />
+                                <p:selectOneRadio value="#{valoracionBean.impacto}" required="true" label="Impacto">
+                                    <f:selectItem itemLabel="Alto" itemValue="3"/>
+                                    <f:selectItem itemLabel="Medio" itemValue="2"/>
+                                    <f:selectItem itemLabel="Bajo" itemValue="1"/>
+                                    <p:ajax update="calificacion1, calificacion2, valoracion" listener="#{valoracionBean.calificacion1}"/>
+                                </p:selectOneRadio>
+                                <br/>
+                                <br/>
+                                <h:outputLabel id="calificacion1" value="Calificacion:#{valoracionBean.calificacion1}" />
+                                <br/>
+                                <p:selectOneMenu value="#{valoracionBean.calificacion}" required="true" label="Control">
+                                    <f:selectItem itemLabel="Controles" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="No existen controles" itemValue="4"/>
+                                    <f:selectItem itemLabel="Los controles existentes no son efectivos" itemValue="3"/>
+                                    <f:selectItem itemLabel="Los controles existentes son efectivos, pero no están documentados" itemValue="2"/>
+                                    <f:selectItem itemLabel="Los controles son efectivos y están documentados" itemValue="1"/>
+                                    <p:ajax update="calificacion2, valoracion, color" listener="#{valoracionBean.calificacion2}"/>
+                                </p:selectOneMenu>
+                                <br/>
+                                <h:outputLabel value="Calificacion:#{valoracionBean.calificacion2}" id="calificacion2" />      
+                                <p>
+                                    <h:outputLabel value="Valor del riesgo #{valoracionBean.valoracion}" id="valoracion" />      
+                                </p>
+                            </h:panelGrid>  
+                            <p:commandButton value="Aceptar" actionListener="#{valoracionBean.agregar()}" update="color" ajax="false"/>
+                        </p:overlayPanel>
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Valoracion" update=""  immediate="true" icon="ui-icon-gear"/>   
+                            <p:menuitem value="Actualizar" update="valoracionList" ajax="true" icon="ui-icon-arrowrefresh-1-w"/> 
+                        </p:menubar>  
+                        <p:messages closable="true" showSummary="true"/>
+                        
+                        <p:dataTable id="valoracionList" var="val" value="#{valoracionBean.valoracionList()}"  
+                                     paginator="true" rows="10" editable="true" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="5,10,15"
+                                     scrollable="true" scrollWidth="990" resizableColumns="true" >  
+                            <f:facet name="header">  
+                                Listado de Valoraciones  
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{procesoBean.modificar}"/>
+
+                            <p:column width="260" style="#{val.color}">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Proceso Asociado" />  
+                                </f:facet>  
+                                <h:outputText value="#{val.panoramaderiesgos.riesgoByIdriesgo.descriesgo}" />  
+                            </p:column>  
+
+
+                            <p:column width="125" style="#{val.color}">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Creado" />  
+                                </f:facet>  
+                                <h:outputText value="#{val.probabilidad}" />  
+                            </p:column>  
+
+                            <p:column headerText="Editar" width="25">  
+                                <p:rowEditor />  
+                            </p:column>  
+
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

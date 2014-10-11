@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h1><h:outputText value="Agregar Area" /></h1>
+                    <h:form>   
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Area" update="areaList"  immediate="true" icon="ui-icon-gear"/>                               
+                            <p:menuitem value="Actualizar" update="areaList" icon="ui-icon-arrowrefresh-1-w" immediate="true"/> 
+                        </p:menubar> 
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: #AFAFAF"> 
+                            <h:panelGrid id="insertar" columns="2" >
+                                <h:outputLabel value="Nombre del Area *" />
+                                <p:inputText id="nombre" value="#{areaBean.nombre}" required="true" label="nombre area">
+                                    <f:validateLength minimum="2"/>
+                                </p:inputText>
+                                <h:outputLabel value="Seleccione la Seccional       *" />
+                                <p:selectOneMenu value="#{areaBean.idseccional}" style="width: 180px" required="true" >
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItems value="#{areaBean.seccionallist}" var="sec"
+                                                   itemLabel="#{sec.descseccional}" itemValue="#{sec.idseccional}" />
+                                </p:selectOneMenu><br/>
+                                <h:outputLabel value="Los campos con * son obligatorios" style="font-style: italic; color: #045491" /><br/><br/>
+                                <p:commandButton value="Aceptar" actionListener="#{areaBean.agregar()}" update="areaList" />
+                            </h:panelGrid>
+                        </p:overlayPanel>  
+                        <p:messages closable="true" showDetail="true"/>
+                        
+                        <p:dataTable var="area" value="#{areaBean.areaLista}" id="areaList" editable="true" style="width: 500px"
+                                     scrollHeight="true" rows="16" paginator="true">  
+
+                            <f:facet name="header">  
+                                Listado de Areas
+                            </f:facet> 
+
+                            <p:ajax event="rowEdit" listener="#{areaBean.modificar}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{area.idarea}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{area.descarea}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{area.descarea}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Editar" style="width:40px" >  
+                                <p:rowEditor/>  
+                            </p:column>  
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

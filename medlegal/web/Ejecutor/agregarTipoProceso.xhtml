@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./plantillaAdmin.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h1><h:outputText value="Tipo Proceso" /></h1>
+
+                    <h:form>               
+                        <p:overlayPanel id="datos" for="agregar" hideEffect="fade" style="background-color: scrollbar">
+                            <p:panelGrid columns="2" style="width: 400px">
+                                <h:outputLabel value="Nombre del Tipo de Proceso *" />
+                                <p:inputText id="nombre" value="#{tipoProcesoBean.nombre}" required="true" label="nombre de tipo proceso">
+                                    <f:validateLength minimum="2"/>
+                                </p:inputText>
+                                <h:outputLabel value="Los campos con * son obligatorios"  style="font-style: italic; color: #045491"/>
+                                <p:commandButton action="#{tipoProcesoBean.agregar()}" value="Agregar" update="tipoList" ajax="false"/>
+                            </p:panelGrid>
+                        </p:overlayPanel>
+                        <p:menubar style="height: 26px; padding-right: 1%">
+                            <p:menuitem id="agregar" value="Agregar Usuario" update="tipoList"  immediate="true" icon="ui-icon-gear"/>                              
+                            <p:menuitem value="Actualizar" update="tipoList" icon="ui-icon-arrowrefresh-1-w" ajax="false"/> 
+                        </p:menubar>   
+                        <p:messages id="notificar" closable="true" showDetail="true"/> 
+
+                        <p:dataTable var="tipo" value="#{tipoProcesoBean.tipoprocesoLista()}" id="tipoList" editable="true" style="width: 300px">  
+
+                            <f:facet name="header">  
+                                Listado de Tipos de Proceso
+                            </f:facet>  
+
+                            <p:ajax event="rowEdit" listener="#{tipoProcesoBean.modificar}" />
+
+                            <p:column headerText="Codigo" style="width:50px">  
+                                <h:outputText value="#{tipo.idtipoproceso}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nombre" >  
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{tipo.desctipo}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{tipo.desctipo}" />  
+                                    </f:facet>  
+                                </p:cellEditor>  
+                            </p:column>
+                            <p:column headerText="Editar" style="width:20px">  
+                                <p:rowEditor/>
+                            </p:column>  
+                        </p:dataTable> 
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
