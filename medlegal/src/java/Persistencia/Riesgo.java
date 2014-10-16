@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0
+// Generated 16/10/2014 07:50:08 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -19,8 +19,8 @@ public class Riesgo  implements java.io.Serializable {
      private String nombre;
      private String descriesgo;
      private int entrada;
-     private Set panoramasForIdcausa = new HashSet(0);
      private Set panoramasForIdefecto = new HashSet(0);
+     private Set panoramasForIdcausa = new HashSet(0);
      private Set trazariesgos = new HashSet(0);
 
     public Riesgo() {
@@ -37,7 +37,7 @@ public class Riesgo  implements java.io.Serializable {
         this.descriesgo = descriesgo;
         this.entrada = entrada;
     }
-    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tiporiesgo tiporiesgo, Clasificacion clasificacion, String nombre, String descriesgo, int entrada, Set panoramasForIdcausa, Set panoramasForIdefecto, Set trazariesgos) {
+    public Riesgo(int idriesgo, Estado estado, Enfoque enfoque, Tiporiesgo tiporiesgo, Clasificacion clasificacion, String nombre, String descriesgo, int entrada, Set panoramasForIdefecto, Set panoramasForIdcausa, Set trazariesgos) {
        this.idriesgo = idriesgo;
        this.estado = estado;
        this.enfoque = enfoque;
@@ -46,8 +46,8 @@ public class Riesgo  implements java.io.Serializable {
        this.nombre = nombre;
        this.descriesgo = descriesgo;
        this.entrada = entrada;
-       this.panoramasForIdcausa = panoramasForIdcausa;
        this.panoramasForIdefecto = panoramasForIdefecto;
+       this.panoramasForIdcausa = panoramasForIdcausa;
        this.trazariesgos = trazariesgos;
     }
    
@@ -107,19 +107,19 @@ public class Riesgo  implements java.io.Serializable {
     public void setEntrada(int entrada) {
         this.entrada = entrada;
     }
-    public Set getPanoramasForIdcausa() {
-        return this.panoramasForIdcausa;
-    }
-    
-    public void setPanoramasForIdcausa(Set panoramasForIdcausa) {
-        this.panoramasForIdcausa = panoramasForIdcausa;
-    }
     public Set getPanoramasForIdefecto() {
         return this.panoramasForIdefecto;
     }
     
     public void setPanoramasForIdefecto(Set panoramasForIdefecto) {
         this.panoramasForIdefecto = panoramasForIdefecto;
+    }
+    public Set getPanoramasForIdcausa() {
+        return this.panoramasForIdcausa;
+    }
+    
+    public void setPanoramasForIdcausa(Set panoramasForIdcausa) {
+        this.panoramasForIdcausa = panoramasForIdcausa;
     }
     public Set getTrazariesgos() {
         return this.trazariesgos;

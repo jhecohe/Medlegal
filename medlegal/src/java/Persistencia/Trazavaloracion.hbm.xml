@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 16/10/2014 07:50:09 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Trazavaloracion" table="trazavaloracion" schema="public">
         <id name="idtrazavaloracion" type="int" unsaved-value="0">
@@ -10,6 +10,9 @@
                 <param name="sequence">trazavaloracion_idtrazavaloracion_seq</param>
             </generator>
         </id>
+        <many-to-one name="analisisvaloracion" class="Persistencia.Analisisvaloracion" fetch="select">
+            <column name="idanalisisvaloracion" not-null="true" />
+        </many-to-one>
         <property name="proceso" type="string">
             <column name="proceso" length="100" not-null="true" />
         </property>
@@ -29,7 +32,7 @@
             <column name="control" not-null="true" />
         </property>
         <property name="usuariooperacion" type="string">
-            <column name="usuariooperacion" length="20" not-null="true" />
+            <column name="usuariooperacion" length="100" not-null="true" />
         </property>
         <property name="fechaoperacion" type="date">
             <column name="fechaoperacion" length="13" not-null="true" />
@@ -37,11 +40,5 @@
         <property name="tipooperacion" type="string">
             <column name="tipooperacion" length="20" not-null="true" />
         </property>
-        <set name="analisisvaloracions" table="analisisvaloracion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="idtrazavaloracion" not-null="true" />
-            </key>
-            <one-to-many class="Persistencia.Analisisvaloracion" />
-        </set>
     </class>
 </hibernate-mapping>

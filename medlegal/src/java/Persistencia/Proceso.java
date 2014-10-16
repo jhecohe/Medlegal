@@ -1,5 +1,5 @@
 package Persistencia;
-// Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0
+// Generated 16/10/2014 07:50:08 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -48,6 +48,7 @@ public class Proceso  implements java.io.Serializable {
        this.panoramas = panoramas;
        this.trazaprocesos = trazaprocesos;
     }
+    
     public Proceso(Estado estado, Subarea subarea, Procesoasociado procesoasociado, Funcionario funcionario, String codigoproceso, Date creado) {
        this.idproceso = idproceso;
        this.estado = estado;

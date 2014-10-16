@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 16/10/2014 07:50:09 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Trazamejora" table="trazamejora" schema="public">
         <id name="idtrazamejora" type="int" unsaved-value="0">
@@ -20,7 +20,7 @@
             <column name="riesgo" length="200" not-null="true" />
         </property>
         <property name="responsable" type="string">
-            <column name="responsable" length="50" not-null="true" />
+            <column name="responsable" length="100" not-null="true" />
         </property>
         <property name="fechainicio" type="date">
             <column name="fechainicio" length="13" not-null="true" />
@@ -35,7 +35,7 @@
             <column name="estadomejoramiento" length="20" not-null="true" />
         </property>
         <property name="usuariooperacion" type="string">
-            <column name="usuariooperacion" length="20" not-null="true" />
+            <column name="usuariooperacion" length="100" not-null="true" />
         </property>
         <property name="fechaoperacion" type="date">
             <column name="fechaoperacion" length="13" not-null="true" />

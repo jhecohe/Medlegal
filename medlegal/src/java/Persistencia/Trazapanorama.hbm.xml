@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/09/2014 10:15:52 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated 16/10/2014 07:50:09 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="Persistencia.Trazapanorama" table="trazapanorama" schema="public">
         <id name="idtrazapanorama" type="int" unsaved-value="0">
@@ -14,13 +14,13 @@
             <column name="idpanorama" />
         </many-to-one>
         <property name="trazacausa" type="string">
-            <column name="trazacausa" length="50" not-null="true" />
+            <column name="trazacausa" length="100" not-null="true" />
         </property>
         <property name="trazaefecto" type="string">
-            <column name="trazaefecto" length="50" not-null="true" />
+            <column name="trazaefecto" length="100" not-null="true" />
         </property>
         <property name="usuariooperacion" type="string">
-            <column name="usuariooperacion" length="20" not-null="true" />
+            <column name="usuariooperacion" length="100" not-null="true" />
         </property>
         <property name="fechaoperacion" type="date">
             <column name="fechaoperacion" length="13" not-null="true" />
