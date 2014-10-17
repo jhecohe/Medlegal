@@ -46,10 +46,10 @@ public class UsuarioLoginBean implements Serializable {
             extContext.redirect(url);
             return;
         }
-        if (dueño(usuario, password)) {
+        if (dueno(usuario, password)) {
             System.out.println("Entramos en la validacion if -- usuario --Dueño");
             url = extContext.encodeActionURL(
-                    context.getApplication().getViewHandler().getActionURL(context, "/Dueño/menuDueño.jspx"));
+                    context.getApplication().getViewHandler().getActionURL(context, "/Dueno/menuDueno.jspx"));
             extContext.getSessionMap().put(USER_KEY, new TipoUsuario(usuario, perfil));
             extContext.redirect(url);
             return;
@@ -118,7 +118,7 @@ public class UsuarioLoginBean implements Serializable {
         return validacion;
     }
 
-    private boolean dueño(String usuario, String password) {
+    private boolean dueno(String usuario, String password) {
         boolean validacion = false;
         Usuario user;
         if (validarUsuario() != null) {

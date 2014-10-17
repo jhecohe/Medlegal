@@ -67,13 +67,21 @@
                                 <h:outputText value="#{usua.idusuario}" />  
                             </p:column>  
 
-                            <p:column headerText="Nombre" >  
+                            <p:column headerText="Nombre" >   
+                                <h:outputText value="#{usua.nombreusuario}" />                                    
+                            </p:column>
+                            <p:column headerText="Perfil" >  
                                 <p:cellEditor>  
                                     <f:facet name="output">  
-                                        <h:outputText value="#{usua.nombreusuario}" />  
+                                        <h:outputText value="#{usua.perfil.descperfil}" />  
                                     </f:facet>  
                                     <f:facet name="input">  
-                                        <p:inputText value="#{usua.nombreusuario}"/> 
+                                        <p:selectOneMenu value="#{usuarioBean.idroles}" style="width: 180px" id="selecrol" label="Perfil"
+                                                         required="true">
+                                            <f:selectItem itemLabel="Perfil" noSelectionOption="true"/>
+                                            <f:selectItems value="#{usuarioBean.roles}" var="rol"
+                                                           itemLabel="#{rol.descperfil}" itemValue="#{rol.idperfil}" />
+                                        </p:selectOneMenu>
                                     </f:facet>  
                                 </p:cellEditor>  
                             </p:column>

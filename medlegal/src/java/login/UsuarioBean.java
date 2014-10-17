@@ -102,9 +102,8 @@ public class UsuarioBean {
     }
     
     public void modificar(RowEditEvent event) {
-        Object riesgo = (Object) event.getObject();
-        //System.out.println("Codigo del riesgo:  " + riesgo.getIdriesgo() + "  Descripcion:  " + riesgo.getDescripcion());
+        Object objeto = (Object) event.getObject();       
         Actualizar actualizar = new Actualizar();
-        //actualizar.riesgoModificar(riesgo);
+        actualizar.usuarioModificar(objeto, idroles);
     }
 }
