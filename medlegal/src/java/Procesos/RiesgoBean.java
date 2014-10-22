@@ -5,9 +5,9 @@
 package Procesos;
 
 import Persistencia.Riesgo;
-import UtilPersistencia.Actualizar;
-import UtilPersistencia.Inserciones;
-import UtilPersistencia.Listados;
+import Logica.Actualizar;
+import Logica.Inserciones;
+import Logica.Listados;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -8,12 +8,12 @@
     <filter>
         <description>Verifica que el usuario esta logueado</description>
         <filter-name>Usuario</filter-name>
-        <filter-class>login.FiltroDueño</filter-class>
+        <filter-class>Seguridad.FiltroDueño</filter-class>
     </filter>
     <filter>
         <description>Verifica que el uasuario este logueado como administrador</description>
         <filter-name>Admin</filter-name>
-        <filter-class>login.FiltroAdmin</filter-class>
+        <filter-class>Seguridad.FiltroAdmin</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>Usuario</filter-name>

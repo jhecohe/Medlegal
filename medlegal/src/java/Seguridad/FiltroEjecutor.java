@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package login;
+package Seguridad;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jhecohe
  */
-public class FiltroGestor implements Filter{
+public class FiltroEjecutor implements Filter{
     private FilterConfig configuracion;
 
     @Override
@@ -32,7 +32,7 @@ public class FiltroGestor implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (((HttpServletRequest) request).getSession().getAttribute(
                 UsuarioLoginBean.USER_KEY) == null || !((TipoUsuario)((HttpServletRequest) request).getSession().getAttribute(
-                UsuarioLoginBean.USER_KEY)).getRole().equals("gestor de riesgo") ) {
+                UsuarioLoginBean.USER_KEY)).getRole().equals("ejecutor de proceso") ) {
             ((HttpServletResponse) response).sendRedirect("../index.jspx");
         } else {
             chain.doFilter(request, response);

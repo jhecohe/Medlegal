@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package UtilPersistencia;
+package Logica;
 
 
 import Persistencia.*;
@@ -27,7 +27,7 @@ public class Listados implements Serializable{
     public List listaDepartamentos() {
         List<Departamento> listDepartamento = null;
         try {
-            org.hibernate.Transaction tx = inicio.session.beginTransaction();
+            inicio.session.beginTransaction();
             Query q = inicio.session.createQuery("from Departamento");
             listDepartamento = (List<Departamento>) q.list();
         } catch (Exception e) {

@@ -1,10 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package login;
+package Seguridad;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -18,9 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jhecohe
+ * @author jacs
  */
-public class FiltroEjecutor implements Filter{
+public class FiltroAdmin implements Filter {
+    
     private FilterConfig configuracion;
 
     @Override
@@ -32,7 +31,7 @@ public class FiltroEjecutor implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (((HttpServletRequest) request).getSession().getAttribute(
                 UsuarioLoginBean.USER_KEY) == null || !((TipoUsuario)((HttpServletRequest) request).getSession().getAttribute(
-                UsuarioLoginBean.USER_KEY)).getRole().equals("ejecutor de proceso") ) {
+                UsuarioLoginBean.USER_KEY)).getRole().equals("administrador") ) {
             ((HttpServletResponse) response).sendRedirect("../index.jspx");
         } else {
             chain.doFilter(request, response);
@@ -41,6 +40,7 @@ public class FiltroEjecutor implements Filter{
 
     @Override
     public void destroy() {
-        configuracion = null;
+        this.configuracion = null;
     }
+    
 }

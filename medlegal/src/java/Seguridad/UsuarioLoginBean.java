@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Seguridad;
 
 import Persistencia.Usuario;
-import UtilPersistencia.Listados;
+import Logica.Listados;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;

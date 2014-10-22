@@ -4,9 +4,9 @@
  */
 package Administracion;
 
-import UtilPersistencia.Actualizar;
-import UtilPersistencia.Inserciones;
-import UtilPersistencia.Listados;
+import Logica.Actualizar;
+import Logica.Inserciones;
+import Logica.Listados;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;

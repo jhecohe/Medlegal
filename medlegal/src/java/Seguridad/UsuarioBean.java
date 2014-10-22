@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package login;
+package Seguridad;
 
-import UtilPersistencia.Actualizar;
-import UtilPersistencia.Inserciones;
-import UtilPersistencia.Listados;
+import Logica.Actualizar;
+import Logica.Inserciones;
+import Logica.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

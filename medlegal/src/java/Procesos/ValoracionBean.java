@@ -4,8 +4,8 @@
  */
 package Procesos;
 
-import UtilPersistencia.Inserciones;
-import UtilPersistencia.Listados;
+import Logica.Inserciones;
+import Logica.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

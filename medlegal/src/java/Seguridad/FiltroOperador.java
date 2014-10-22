@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package login;
+package Seguridad;
 
 import java.io.IOException;
 import javax.servlet.Filter;

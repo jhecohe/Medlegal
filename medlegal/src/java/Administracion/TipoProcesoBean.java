@@ -4,10 +4,10 @@
  */
 package Administracion;
 
-import UtilPersistencia.Actualizar;
-import UtilPersistencia.Inserciones;
-import UtilPersistencia.Listados;
-import UtilPersistencia.iniciarHibernate;
+import Logica.Actualizar;
+import Logica.Inserciones;
+import Logica.Listados;
+import Logica.iniciarHibernate;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

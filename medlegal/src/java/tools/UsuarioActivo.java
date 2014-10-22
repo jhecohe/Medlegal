@@ -9,8 +9,8 @@ package tools;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import login.TipoUsuario;
-import static login.UsuarioLoginBean.USER_KEY;
+import Seguridad.TipoUsuario;
+import static Seguridad.UsuarioLoginBean.USER_KEY;
 
 /**
  *

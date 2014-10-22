@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package UtilPersistencia;
+package Logica;
 
 import Persistencia.*;
 import java.util.Date;
@@ -30,13 +30,13 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Departamento where descdepartamento = :descripcion");
             q.setParameter("descripcion", nombre);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(departamento);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
-            
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,13 +67,13 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Ciudad where descciudad = :descripcion");
             q.setParameter("descripcion", nombre);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(ciudad);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
-            
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -192,12 +192,12 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Enfoque where descenfoque = :descripcion");
             q.setParameter("descripcion", descripcion);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(enfoque);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -212,12 +212,12 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Clasificacion where descclasificacion = :descripcion");
             q.setParameter("descripcion", descripcion);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(clasi);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -246,12 +246,13 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Riesgo where nombre = :nombre");
             q.setParameter("nombre", nombre);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(riesgo);
                 inicio.getSession().getTransaction().commit();
-            }else
+            } else {
                 respuesta = false;
-            
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -269,12 +270,12 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Area where descarea = :descripcion");
             q.setParameter("descripcion", nombre);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(area);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -308,12 +309,12 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Nombreproceso where descnombre = :descripcion");
             q.setParameter("descripcion", nombre);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(nomproceso);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -328,12 +329,12 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Tipoproceso where desctipo = :descripcion");
             q.setParameter("descripcion", nombre);
-            if(q.uniqueResult() == null){
-               inicio.getSession().persist(tipoproceso);
-               inicio.getSession().getTransaction().commit(); 
+            if (q.uniqueResult() == null) {
+                inicio.getSession().persist(tipoproceso);
+                inicio.getSession().getTransaction().commit();
+            } else {
+                respuesta = false;
             }
-            else
-                respuesta = false;            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -345,15 +346,15 @@ public class Inserciones {
         try {
             Estado estado = new Estado();
             estado.setDescestado(descripcion);
-            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();                        
+            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Estado where descestado = :descripcion");
             q.setParameter("descripcion", descripcion);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(estado);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -384,12 +385,12 @@ public class Inserciones {
             org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
             Query q = inicio.session.createQuery("from Regional where descregional = :descripcion");
             q.setParameter("descripcion", nombre);
-            if(q.uniqueResult() == null){
+            if (q.uniqueResult() == null) {
                 inicio.getSession().persist(regional);
                 inicio.getSession().getTransaction().commit();
-            }
-            else
+            } else {
                 respuesta = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -397,6 +398,7 @@ public class Inserciones {
     }
 
     public void agregarProceso(int codigo, int idasociado, int idsubarea, int idfuncionario) {
+        org.hibernate.Transaction tx = null;
         try {
             Subarea subarea = new Subarea();
             subarea.setIdsubarea(idsubarea);
@@ -408,29 +410,49 @@ public class Inserciones {
             estado.setIdestado(1);
             String id = "" + codigo + buscarProcesoUltimoRegistro() + 1;
             Date fechainicio = new Date();
-            Proceso proceso = new Proceso(estado, subarea, asociado, funcionario, id, fechainicio);
             
-            //Traza de la creacion de proceso
-            
+            Proceso proceso = new Proceso();
+            proceso.setEstado(estado);
+            proceso.setSubarea(subarea);
+            proceso.setProcesoasociado(asociado);
+            proceso.setFuncionario(funcionario);
+            proceso.setCodigoproceso(id);
+            proceso.setCreado(fechainicio);
+
+            tx = inicio.getSession().beginTransaction();
+            int llave = (Integer)inicio.getSession().save(proceso);
+            tx.commit();
+            trazaProceso(llave);
+
+        } catch (Exception e) {
+//            tx.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    public void trazaProceso(int llave) {
+        org.hibernate.Transaction tx = null;
+        System.out.println("LA llave " + llave);
+        try {
+            tx = inicio.getSession().beginTransaction();
+            System.out.println("Entramos a traza proceso");
+            Proceso proceso = (Proceso) inicio.getSession().get(Proceso.class, llave);
             Trazaproceso traza = new Trazaproceso();
-            System.out.println(asociado.getDescasociado()+"/"+asociado.getNombreproceso().getDescnombre()
-                    +"/"+asociado.getNombreproceso().getTipoproceso().getDesctipo());
-            traza.setProcesoasociado(asociado.getDescasociado());
-            traza.setNombreproceso(asociado.getNombreproceso().getDescnombre());
-            traza.setTipoproceso(asociado.getNombreproceso().getTipoproceso().getDesctipo());
-            traza.setSubarea(subarea.getDescsubarea());
-            traza.setFuncionarioasociado(funcionario.getNombre()+funcionario.getApellido()+""+ funcionario.getIdentificacion());
+            System.out.println("Funcionario " + proceso.getFuncionario().getIdfuncionario());
+            traza.setProcesoasociado(proceso.getProcesoasociado().getDescasociado());
+            traza.setNombreproceso(proceso.getProcesoasociado().getNombreproceso().getDescnombre());
+            traza.setTipoproceso(proceso.getProcesoasociado().getNombreproceso().getTipoproceso().getDesctipo());
+            traza.setSubarea(proceso.getSubarea().getDescsubarea());
+            traza.setFuncionarioasociado(proceso.getFuncionario().getNombre());
             traza.setEstado("activo");
             UsuarioActivo usuario = new UsuarioActivo();
             traza.setUsuariooperacion(usuario.getUsuarioNombre());
-            traza.setFechaoperacion(fechainicio);
+            traza.setFechaoperacion(proceso.getCreado());
             traza.setTipooperacion("Creado");
-            
-            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(proceso);
-            inicio.getSession().persist(traza);
-            inicio.getSession().getTransaction().commit();
+            inicio.getSession().save(traza);
+            tx.commit();
         } catch (Exception e) {
+            tx.rollback();
             e.printStackTrace();
         }
     }
@@ -438,7 +460,7 @@ public class Inserciones {
     public int buscarProcesoUltimoRegistro() {
         int id = 0;
         try {
-            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
+            inicio.getSession().beginTransaction();
             Query q = inicio.getSession().createQuery("select max(p.idproceso) from Proceso p");
             //Query q = inicio.getSession().createQuery("from Proceso order by idproceso desc");
             if (q.uniqueResult() == null) {
@@ -473,7 +495,7 @@ public class Inserciones {
     }
 
     public void agregarValoracion(int idpanorama, int origen, int probabilidad, int impacto, int calificacion, String color) {
-        System.out.println("agregar valoracion   "+idpanorama+"/"+ origen+"/"+ probabilidad+"/"+ impacto+"/"+ calificacion+"/"+color);
+        System.out.println("agregar valoracion   " + idpanorama + "/" + origen + "/" + probabilidad + "/" + impacto + "/" + calificacion + "/" + color);
         try {
             Panorama panorama = new Panorama();
             panorama.setIdpanorama(idpanorama);
@@ -493,6 +515,7 @@ public class Inserciones {
     }
 
     public void agregarMejoramiento(int idestado, int idpanorama, int idfuncionario, int reslutado, String mejora, Date revision) {
+        org.hibernate.Transaction tx = null;
         try {
             Panorama panora = new Panorama();
             panora.setIdpanorama(idpanorama);
@@ -508,11 +531,12 @@ public class Inserciones {
             mejoramiento.setFechainicio(new Date());
             mejoramiento.setFecharevision(revision);
             System.out.println("Agregar Mejorameinto aqui");
-            org.hibernate.Transaction tx = inicio.getSession().beginTransaction();
+            tx = inicio.getSession().beginTransaction();
             inicio.getSession().persist(mejoramiento);
-            inicio.getSession().getTransaction().commit();
-            
+            tx.commit();
+
         } catch (Exception e) {
+            tx.rollback();
             e.printStackTrace();
         }
     }

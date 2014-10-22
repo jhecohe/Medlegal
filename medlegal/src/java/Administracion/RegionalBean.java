@@ -4,8 +4,8 @@
  */
 package Administracion;
 
-import UtilPersistencia.Inserciones;
-import UtilPersistencia.Listados;
+import Logica.Inserciones;
+import Logica.Listados;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
