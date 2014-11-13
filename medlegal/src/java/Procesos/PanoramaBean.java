@@ -186,7 +186,7 @@ public class PanoramaBean {
         boolean validado = true;
         Listados lista = new Listados();
         List panora = lista.listaPanormaValidacionRiesgo(idproceso, idriesgo);
-        if(panora != null){
+        if(!panora.isEmpty()){
             validado = false;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
         (FacesMessage.SEVERITY_INFO, "Info", "Este riesgo ya es una causa, una causa no puede ser efecto"));

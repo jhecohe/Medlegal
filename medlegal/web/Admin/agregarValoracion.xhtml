@@ -97,17 +97,38 @@
                                 <f:facet name="header">  
                                     <h:outputText value="Proceso Asociado" />  
                                 </f:facet>  
-                                <h:outputText value="#{val.panoramaderiesgos.riesgoByIdriesgo.descriesgo}" />  
+                                <h:outputText value="#{val.panorama.riesgoByIdefecto.descriesgo}" />  
                             </p:column>  
 
 
-                            <p:column width="125" style="#{val.color}">  
+                            <p:column width="60" style="#{val.color}">  
                                 <f:facet name="header">  
-                                    <h:outputText value="Creado" />  
+                                    <h:outputText value="Origen" />  
+                                </f:facet>  
+                                <h:outputText value="#{val.origen}" />  
+                            </p:column> 
+                            
+                            <p:column width="60" style="#{val.color}">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Probabiliddad" />  
                                 </f:facet>  
                                 <h:outputText value="#{val.probabilidad}" />  
                             </p:column>  
-
+                            
+                            <p:column width="60" style="#{val.color}">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Impacto" />  
+                                </f:facet>  
+                                <h:outputText value="#{val.impacto}" />  
+                            </p:column>
+                            
+                            <p:column width="60" style="#{val.color}">  
+                                <f:facet name="header">  
+                                    <h:outputText value="Control" />  
+                                </f:facet>  
+                                <h:outputText value="#{val.control}" />  
+                            </p:column>  
+                            
                             <p:column headerText="Editar" width="25">  
                                 <p:rowEditor />  
                             </p:column>  

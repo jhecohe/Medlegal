@@ -397,8 +397,9 @@ public class Inserciones {
         return respuesta;
     }
 
-    public void agregarProceso(int codigo, int idasociado, int idsubarea, int idfuncionario) {
+    public int agregarProceso(int codigo, int idasociado, int idsubarea, int idfuncionario) {
         org.hibernate.Transaction tx = null;
+        int llave = 0;
         try {
             Subarea subarea = new Subarea();
             subarea.setIdsubarea(idsubarea);
@@ -420,7 +421,7 @@ public class Inserciones {
             proceso.setCreado(fechainicio);
 
             tx = inicio.getSession().beginTransaction();
-            int llave = (Integer)inicio.getSession().save(proceso);
+            llave = (Integer)inicio.getSession().save(proceso);
             tx.commit();
             trazaProceso(llave);
 
@@ -428,6 +429,7 @@ public class Inserciones {
 //            tx.rollback();
             e.printStackTrace();
         }
+        return llave;
     }
 
     public void trazaProceso(int llave) {
@@ -438,7 +440,8 @@ public class Inserciones {
             System.out.println("Entramos a traza proceso");
             Proceso proceso = (Proceso) inicio.getSession().get(Proceso.class, llave);
             Trazaproceso traza = new Trazaproceso();
-            System.out.println("Funcionario " + proceso.getFuncionario().getIdfuncionario());
+            System.out.println("Funcionario " + proceso.getFuncionario().getIdfuncionario() +
+            "Nombre Proceso" + proceso.getProcesoasociado().getNombreproceso().getDescnombre());
             traza.setProcesoasociado(proceso.getProcesoasociado().getDescasociado());
             traza.setNombreproceso(proceso.getProcesoasociado().getNombreproceso().getDescnombre());
             traza.setTipoproceso(proceso.getProcesoasociado().getNombreproceso().getTipoproceso().getDesctipo());
@@ -451,6 +454,7 @@ public class Inserciones {
             traza.setTipooperacion("Creado");
             inicio.getSession().save(traza);
             tx.commit();
+            inicio.getSession().close();
         } catch (Exception e) {
             tx.rollback();
             e.printStackTrace();
