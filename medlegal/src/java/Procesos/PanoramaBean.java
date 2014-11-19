@@ -6,9 +6,9 @@ package Procesos;
 
 import Persistencia.Panorama;
 import Persistencia.Riesgo;
-import Logica.Eliminar;
-import Logica.Inserciones;
-import Logica.Listados;
+import Utilidades.Eliminar;
+import Utilidades.Inserciones;
+import Utilidades.Listados;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

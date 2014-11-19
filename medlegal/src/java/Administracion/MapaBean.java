@@ -5,7 +5,7 @@
 package Administracion;
 
 import Persistencia.Panorama;
-import Logica.Listados;
+import Utilidades.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

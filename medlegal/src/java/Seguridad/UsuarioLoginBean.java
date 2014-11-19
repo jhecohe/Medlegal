@@ -5,7 +5,7 @@
 package Seguridad;
 
 import Persistencia.Usuario;
-import Logica.Listados;
+import Utilidades.Listados;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;

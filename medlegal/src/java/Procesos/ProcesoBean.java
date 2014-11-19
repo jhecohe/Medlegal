@@ -6,9 +6,9 @@ package Procesos;
 
 import Persistencia.Funcionario;
 import Persistencia.Proceso;
-import Logica.Actualizar;
-import Logica.Inserciones;
-import Logica.Listados;
+import Utilidades.Actualizar;
+import Utilidades.Inserciones;
+import Utilidades.Listados;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

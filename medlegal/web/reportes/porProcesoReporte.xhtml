@@ -10,13 +10,6 @@
 
         <ui:composition template="../Admin/plantillaAdmin.xhtml">
 
-            <ui:define name="top">
-                top
-            </ui:define>
-
-            <ui:define name="left">
-                left
-            </ui:define>
 
             <ui:define name="content">
                 <h:form>
@@ -78,6 +71,7 @@
                                 </f:facet>  
                                 <h:outputText value="#{pro.creado}" />  
                             </p:column>  
+                       
                         </p:dataTable> 
                         <h:commandLink>    
                             <p:graphicImage value="/resources/imagenes/excel.png" /> 

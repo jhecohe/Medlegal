@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Logica;
+package Utilidades;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
