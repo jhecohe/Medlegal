@@ -4,6 +4,7 @@
  */
 package Procesos;
 
+import Logica.PanoramaLogica;
 import Persistencia.Panorama;
 import Persistencia.Riesgo;
 import Utilidades.Eliminar;
@@ -177,15 +178,15 @@ public class PanoramaBean {
     public void panoramaAgregar(){
         System.out.println("Datos panorama" + idproceso +"-"+ idriesgo+"-"+causa);
         if(validacion()){
-            Inserciones ins = new Inserciones();
-            ins.agregarPanoramaRiesgos(idproceso, idriesgo, causa);   
+            PanoramaLogica panorama = new PanoramaLogica();
+            panorama.agregarPanoramaRiesgos(idproceso, idriesgo, causa);   
         }
     }
     
     public boolean validacion(){
         boolean validado = true;
-        Listados lista = new Listados();
-        List panora = lista.listaPanormaValidacionRiesgo(idproceso, idriesgo);
+        PanoramaLogica panorama = new PanoramaLogica();
+        List panora = panorama.listaPanormaValidacionRiesgo(idproceso, idriesgo);
         if(!panora.isEmpty()){
             validado = false;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage

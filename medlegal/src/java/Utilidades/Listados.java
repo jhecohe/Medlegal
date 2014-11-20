@@ -425,33 +425,6 @@ public class Listados implements Serializable{
         return listRegional;
     }
     
-    public List listaPanorama() {
-        List<Panorama> listPanorama = null;
-        try {
-            org.hibernate.Transaction tx = inicio.session.beginTransaction();
-            Query q = inicio.session.createQuery("from Panorama");
-            listPanorama = (List<Panorama>) q.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listPanorama;
-    }
-    
-    public List listaPanormaValidacionRiesgo(int idproceso, int idriesgo){
-        List<Panorama> listaRiesgos = null;
-        try {
-            org.hibernate.Transaction tx = inicio.session.beginTransaction();
-            Query q = inicio.session.createQuery("from Panorama p  "
-                    + "where p.proceso.idproceso = :idproceso and p.riesgoByIdcausa.idriesgo = :idriesgo");
-            q.setParameter("idproceso", idproceso);
-            q.setParameter("idriesgo", idriesgo);
-            listaRiesgos = (List<Panorama>) q.list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listaRiesgos;
-    }
-    
     public List listaProcesotobyId(int idproceso) {
         //Proceso proce = null;
         List<Proceso> proce = null;

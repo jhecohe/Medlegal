@@ -478,26 +478,6 @@ public class Inserciones {
         return id;
     }
 
-    public void agregarPanoramaRiesgos(int idproceso, int idriesgo, int idcausa) {
-        try {
-            //int idpanoramariesgos, Proceso proceso, Riesgo riesgo, int causa
-            Proceso proceso = new Proceso();
-            proceso.setIdproceso(idproceso);
-            Riesgo riesgo = new Riesgo();
-            riesgo.setIdriesgo(idriesgo);
-            Riesgo causa = new Riesgo();
-            causa.setIdriesgo(idcausa);
-            Panorama panorama = new Panorama();
-            panorama.setRiesgoByIdcausa(riesgo);
-            panorama.setProceso(proceso);
-            panorama.setRiesgoByIdefecto(causa);
-            inicio.getSession().persist(panorama);
-            inicio.getSession().getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void agregarValoracion(int idpanorama, int origen, int probabilidad, int impacto, int calificacion, String color) {
         System.out.println("agregar valoracion   " + idpanorama + "/" + origen + "/" + probabilidad + "/" + impacto + "/" + calificacion + "/" + color);
         try {
@@ -514,33 +494,6 @@ public class Inserciones {
             inicio.getSession().persist(valoracion);
             inicio.getSession().getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void agregarMejoramiento(int idestado, int idpanorama, int idfuncionario, int reslutado, String mejora, Date revision) {
-        org.hibernate.Transaction tx = null;
-        try {
-            Panorama panora = new Panorama();
-            panora.setIdpanorama(idpanorama);
-            Funcionario funcio = new Funcionario();
-            funcio.setIdfuncionario(idfuncionario);
-            Estadomejora estado = new Estadomejora();
-            estado.setIdestadomejora(idestado);
-            Planmejoramiento mejoramiento = new Planmejoramiento();
-            mejoramiento.setPanorama(panora);
-            mejoramiento.setFuncionario(funcio);
-            mejoramiento.setResultado(reslutado);
-            mejoramiento.setMejoramiento(mejora);
-            mejoramiento.setFechainicio(new Date());
-            mejoramiento.setFecharevision(revision);
-            System.out.println("Agregar Mejorameinto aqui");
-            tx = inicio.getSession().beginTransaction();
-            inicio.getSession().persist(mejoramiento);
-            tx.commit();
-
-        } catch (Exception e) {
-            tx.rollback();
             e.printStackTrace();
         }
     }

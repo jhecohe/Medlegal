@@ -4,15 +4,12 @@
  */
 package Procesos;
 
-import Utilidades.Actualizar;
-import Utilidades.Inserciones;
+import Logica.MejoramientoLogica;
 import Utilidades.Listados;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.event.RowEditEvent;
-
 /**
  *
  * @author jacs
@@ -39,8 +36,8 @@ public class MejoraBean {
     }
 
     public void agregar(){
-        Inserciones insertar = new Inserciones();
-        insertar.agregarMejoramiento(idestado, idriesgo, idfuncionario, calificacion, mejora, revision);
+        MejoramientoLogica mejoramiento = new MejoramientoLogica();
+        mejoramiento.agregarMejoramiento(idestado, idriesgo, idfuncionario, calificacion, mejora, revision);
     }
     
     public List procesoList() {
