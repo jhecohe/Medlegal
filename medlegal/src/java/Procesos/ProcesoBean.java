@@ -4,6 +4,7 @@
  */
 package Procesos;
 
+import Logica.ProcesoLogica;
 import Persistencia.Funcionario;
 import Persistencia.Proceso;
 import Utilidades.Actualizar;
@@ -125,7 +126,8 @@ public class ProcesoBean {
     }
 
     public void agregar() {
-        Inserciones insertar = new Inserciones();
+        //Inserciones insertar = new Inserciones();
+        ProcesoLogica insertar = new ProcesoLogica();
         String idpro = "" + idtipoproceso + idnombreproceso + idasociado;
         idproceso = Integer.parseInt(idpro);
         System.out.println("Agregar proceso " + idproceso + " " + idasociado + " " + idfuncionario + " " + idsubarea);
